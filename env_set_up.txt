@@ -7,6 +7,8 @@ Bash
 cd ~/hybrid_recsys
 chmod +x setup_env.sh
 ./setup_env.sh
+source /opt/conda/etc/profile.d/conda.sh
+conda activate hybrid_recsys_env
 
 # If you turn off and reopen your JupyterLab, use the bash below to link the kernel with your conda env
 /home/sagemaker-user/anaconda3/bin/python -m ipykernel install --user --name hybrid_recsys_env --display-name "Python 3.11 (SageMaker V2)"
