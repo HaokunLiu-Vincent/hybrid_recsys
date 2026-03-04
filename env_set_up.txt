@@ -1,0 +1,30 @@
+# Use this to active the conda env, so you can manage packages in the terminal
+conda activate hybrid_recsys_env
+
+# If you first-time load the project, use the bash below to install a new conda env
+# and kernel (named "Python 3.11 (SageMaker V2)") in your Sagemaker JupyterLab
+Bash
+cd ~/hybrid_recsys
+chmod +x setup_env.sh
+./setup_env.sh
+
+# If you turn off and reopen your JupyterLab, use the bash below to link the kernel with your conda env
+/home/sagemaker-user/anaconda3/bin/python -m ipykernel install --user --name hybrid_recsys_env --display-name "Python 3.11 (SageMaker V2)"
+
+！！！！To avoid running terminal commands every morning, you can use a Lifecycle Configuration (LCC). This is a script that AWS runs for you every time the instance starts up.
+Step 1: Create the LCC Script
+1. Go to the AWS Sagemaker Console 
+2. Click Lifecycle configurations.
+3. Click Create configuration.
+4. Name it: reconnect-recsys-env.
+5. Under Start notebook, paste this:
+#!/bin/bash
+set -e
+# Re-register the kernel, so it appears in the dropdown menu automatically
+/home/sagemaker-user/anaconda3/bin/python -m ipykernel install --user --name hybrid_recsys_env --display-name "Python 3.11 (SageMaker V2)"
+
+Step 2: Attach it to your Profile
+1. In the SageMaker Console, go to Domains.
+2. Click on your User Profile.
+3. Under Environment, find Lifecycle configurations.
+4. Add the reconnect-recsys-env script you just made as a Start-up script.
