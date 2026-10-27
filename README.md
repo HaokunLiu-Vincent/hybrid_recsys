@@ -1,106 +1,52 @@
-# Movie Recommendation System
-## End-to-End ML Pipeline on AWS SageMaker
-**Hybrid Recommendation: Collaborative Filtering + Content-Based + NLP Transformer**
+# hybrid_recsys — MovieLens Small local MLOps transition
 
-## Project Overview
-This project demonstrates a complete, production-ready machine learning pipeline on AWS SageMaker.
-I built a **three-branch hybrid recommendation system** that fuses:
-- **Collaborative Filtering (NMF Matrix Factorization)**
-- **Content-Based Filtering**
-- **NLP Transformer-based semantic understanding (SBERT)**
+This **existing repository** is being rebuilt in place as a local-first MovieLens Latest Small recommendation-system MVP. Its Git history and uncommitted research work are preserved. The current phase is **audit, preservation and cleanup only**; this is not a completed Small-dataset pipeline.
 
-The focus is on **real-world ML engineering**: environment stabilization, dependency fixing, GPU training, CPU inference deployment, cost control, and full pipeline delivery.
+Planned lifecycle (not implemented here):
 
-## Project Structure
-```
-.
-├── 01_EDA_From_S3.ipynb                # Exploratory Data Analysis
-├── 02_Model_Development.ipynb         # Local model development & testing
-├── 03_SageMaker_Pipeline.ipynb           # SageMaker training & deployment pipeline
-├─ src/
-│   ├── train.py             # Training script for SageMaker
-│   ├── inference.py         # Inference script for endpoint
-│   └── requirements.txt     # Fixed dependencies
-├── setup_env.sh          # conda env set up script
-├── env_set_up.txt        # documentation for conda env set up
-└── README.md
-```
+`Kaggle grouplens/movielens-latest-small → DuckDB / Parquet → local DVC → six independent retrievers → RRF → out-of-time LightGBM LambdaMART → temporal evaluation → MLflow tracking + deployable release registration → FastAPI / Docker → parity tests`
 
-## Actual Workflow
-1. Upload dataset to AWS S3
-2. Perform **Exploratory Data Analysis (EDA)**
-3. Build and validate the hybrid model **locally**
-4. Build a scalable training pipeline on SageMaker
-5. Train the model on **GPU instances**
-6. Deploy a lightweight real-time inference endpoint on **CPU instances**
-7. Test via API, then clean up resources to avoid cost
+## Verified current state
 
-## Tech Stack
-- Python: **3.11**
-- PyTorch: **2.4.0**
-- ML: scikit-learn, pandas, numpy, joblib
-- NLP: transformers, sentence-transformers (SBERT)
-- Cloud: AWS SageMaker, S3
-- Training Instance: **ml.g4dn.xlarge (GPU)**
-- Inference Instance: **ml.t2.medium (CPU)**
+- Readable reusable code remains under `src/recsys/`: Popularity, Genre CBF, ItemCF, Implicit ALS, LightGCN, Hybrid Two-Tower, fusion/RRF, ranker features/LightGBM, metrics, candidate contracts and artifact utilities.
+- Shared in-memory history/feature and evaluation helpers are retained. The old 32M loaders, fixed counts, Colab orchestration, notebook generators, benchmark configs and historical reports are archived; they are not the active execution path.
+- No MovieLens Small data was downloaded. No new split, DuckDB/DVC setup, MLflow service, serving API or Docker implementation exists yet. Existing model logic is retained for review/adaptation, not claimed validated on MovieLens Small.
+- Existing archive entries are untouched. Full 32M notebooks—including outputs—and original mixed-module versions are retained in the [32M reference archive](archive/legacy_movielens32m/README.md).
+- Recovery inventory, backup location, exact changes, compatibility concerns and check results are recorded in [the cleanup audit](docs/repository_cleanup_audit.md). No commit or push was made.
 
-## Stable Environment
-### Python Version
-- **Python 3.11**
-  (Python 3.9 deprecated by AWS in April 2026; 3.10 had compatibility issues)
-
-### requirements.txt
-```
-numpy==1.26.4
-pandas==2.1.4
-joblib==1.3.2
-matplotlib==3.10.8
-seaborn==0.13.2
-scikit-learn==1.2.1
-torch==2.4.0
-sentence-transformers==3.0.1
-transformers==4.40.2
-boto3==1.34.159
-botocore==1.34.159
-sagemaker==2.236.0
-s3fs==2024.3.1
-fsspec==2024.3.1
-ipywidgets==8.1.2
-ipykernel==6.29.3
+```text
+hybrid_recsys/
+├── AGENTS.md
+├── README.md
+├── requirements.txt             # existing dependency reference, not a new lockfile
+├── pytest.ini                   # confines optional pytest discovery to active tests/
+├── src/recsys/                  # reusable code; no automatic dataset loading or fitting
+│   ├── retrievers/
+│   ├── fusion/
+│   ├── rankers/
+│   └── data / features / metrics / contracts / artifacts / runtime helpers
+├── tests/                       # synthetic, non-fitting cleanup checks
+├── tools/run_tests.py           # existing local, thread-bounded test wrapper
+├── docs/repository_cleanup_audit.md
+└── archive/
+    ├── ...                     # older SageMaker/SBERT materials preserved in place
+    └── legacy_movielens32m/     # superseded 32M/Colab reference work
 ```
 
-## Steps to Run
-1. Upload dataset to S3
-2. Run the environment & kernel `setup-env.sh` by following the instructions in  `env_set_up.txt`
-3. Select kernal named "Python 3.11 (SageMaker V2)" for all three notebooks, run `EDA.ipynb` for data insights
-4. Run `Model_Development.ipynb` to validate model 
-5. Run `Pipeline.ipynb` for SageMaker training
-   - Training instance: `ml.g4dn.xlarge (GPU)`
-6. Deploy inference endpoint
-   - Inference instance: `ml.t2.medium (CPU)`
-7. Send user ID → get Top-N movie recommendations (movie ID, title, genre)
-8. **Delete endpoint immediately after testing**
+## Lightweight checks
 
-## Key Challenges & Solutions (Interview Highlights)
-1. **Python & PyTorch version conflict**
-   - Fixed with **Python 3.11 + PyTorch 2.4.0**
-2. **Dependency version hell**
-   - Pinned all library versions to ensure stability
-3. **SageMaker container path misunderstanding**
-   - Used `/opt/ml/input` and `/opt/ml/model` correctly
-4. **Invalid instance type for inference**
-   - Switched to supported, low-cost `ml.t2.medium`
-5. **GPU training & CPU inference separation**
-   - Used `ml.g4dn.xlarge (GPU)` for fast Transformer training
-   - Used `ml.t2.medium (CPU)` for cost-efficient inference
-6. **Full pipeline in cloud API**
-   - Delivered end-to-end system without relying on pre-built solutions
+Use an **already installed** Python environment with NumPy, pandas, SciPy, PyArrow and psutil. Existing PyTorch enables two additional CPU mathematical/sampling checks; no GPU is required. Nothing installs packages automatically.
 
-## Project Value
-- Built a **high-performance hybrid recommender system**
-- Completed full cloud ML lifecycle on AWS SageMaker
-- Experience with GPU training & CPU inference optimization
-- Solved real-world engineering & environment issues
-- Capable of shipping ML models to production
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B tools/run_tests.py
+```
 
-✅ Status: **Full Pipeline Success | EDA ✔ | Model Dev ✔ | GPU Training ✔ | CPU Inference ✔ | API Test ✔**
+The active suite checks synthetic metrics, candidate eligibility/seen filtering, deterministic Top-K, unknown-pair sampling, provenance, serialization, Parquet query grouping and archive isolation. It does not fit a model, run an experiment, acquire data or open archived notebooks. Training-based and old 32M workflow tests remain in the archive; the old full benchmark/smoke commands are no longer the recommended active checks.
+
+## Scientific and transition boundaries
+
+Rating timestamps are submissions, not verified viewing or exposure. Observed high ratings, observed low ratings and unobserved pairs are distinct. Unknown pairs are not verified dislikes. Keep one explicit catalog/seen-item policy and comparable per-user cohorts; Top-K is an upper bound, raw channel scores are not calibrated, and candidate-pool recall limits ranking.
+
+Before Small-dataset model work, approve a new versioned chronological protocol and out-of-time ranker-feature procedure within outer Train. Old 32M split manifests and results must never be reused as Small inputs. Record a Validation-only selection before opening Test. Offline observed-rating metrics cannot establish causal satisfaction or online CTR.
+
+Next, after a separate task: acquire only `grouplens/movielens-latest-small`, record provenance/licence/schema/file hashes, transform `ratings.csv` and `movies.csv` using DuckDB, then configure local DVC versioning. Packaging, bounded CPU experiment configs, MLflow release bundles, API/Docker and parity tests remain intentionally deferred. No cloud, GPU, credentials or external infrastructure are prerequisites for that planned MVP.

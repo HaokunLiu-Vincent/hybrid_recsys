@@ -1,0 +1,1 @@
+{"model_name": "itemcf", "hyperparameters": {"neighbors_per_item": 100, "block": 64}}

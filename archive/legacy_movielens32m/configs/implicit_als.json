@@ -1,0 +1,1 @@
+{"model_name": "implicit_als", "hyperparameters": {"factors": 64, "iterations": 15, "regularization": 0.05, "positive_confidence": 20.0, "low_confidence": 5.0}}

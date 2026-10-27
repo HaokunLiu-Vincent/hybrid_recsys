@@ -1,0 +1,11 @@
+{
+  "seed": 42,
+  "cpu_threads": 4,
+  "retrieval_k": 100,
+  "query_batch": 64,
+  "item_block": 4096,
+  "bootstrap": 300,
+  "early_stop_users": 2000,
+  "snapshot_cutoff_utc": null,
+  "snapshot_label_end_utc": null
+}

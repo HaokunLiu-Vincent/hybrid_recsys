@@ -1,0 +1,1 @@
+{"model_name": "lightgcn", "hyperparameters": {"dim": 64, "layers": 2, "epochs": 30, "batch_size": 8192, "lr": 0.01, "regularization": 0.001, "patience": 4}}

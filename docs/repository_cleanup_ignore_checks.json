@@ -1,0 +1,140 @@
+[
+  {
+    "path": "data/raw/ratings.csv",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "data/processed/ratings.parquet",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "data/raw/ratings.csv.dvc",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  },
+  {
+    "path": "data/raw.dvc",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  },
+  {
+    "path": "dvc.yaml",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  },
+  {
+    "path": "dvc.lock",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  },
+  {
+    "path": ".dvc/config",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  },
+  {
+    "path": ".dvc/config.local",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": ".dvc/cache/ab/file",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": ".dvc/tmp/state",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "mlruns/1/x",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "mlartifacts/x",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "mlflow.db",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "local.duckdb",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "artifacts/model/x.npz",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "checkpoints/model.pt",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": ".env",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": ".env.local",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": ".env.example",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  },
+  {
+    "path": "kaggle.json",
+    "expected_ignored": true,
+    "ignored": true,
+    "passed": true
+  },
+  {
+    "path": "src/recsys/contracts.py",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  },
+  {
+    "path": "tests/helpers.py",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  },
+  {
+    "path": "archive/src/sbert_model/model.safetensors",
+    "expected_ignored": false,
+    "ignored": false,
+    "passed": true
+  }
+]

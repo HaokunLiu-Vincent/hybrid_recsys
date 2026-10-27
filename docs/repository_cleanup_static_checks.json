@@ -1,0 +1,9 @@
+{
+  "python_files_syntax_checked": 31,
+  "active_modules_imported": 28,
+  "imports_from_current_src_only": true,
+  "active_tests_contain_no_fitting_calls": true,
+  "archived_notebook_json_checked": 11,
+  "bytecode_cache_directories_remaining": 0,
+  "pytest_discovery_isolated": true
+}

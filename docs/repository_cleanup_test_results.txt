@@ -1,0 +1,25 @@
+test_candidate_contract_and_top_k_upper_bound (test_core_contracts.RetainedContractTests.test_candidate_contract_and_top_k_upper_bound) ... ok
+test_fusion_feature_provenance_and_weak_labels (test_core_contracts.RetainedContractTests.test_fusion_feature_provenance_and_weak_labels) ... ok
+test_lightgcn_exact_adjoint_gradient (test_core_contracts.RetainedContractTests.test_lightgcn_exact_adjoint_gradient) ... /Users/vincent/Documents/projects/hybrid_recsys/src/recsys/retrievers/lightgcn.py:33: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/Context.cpp:767.)
+  return torch.sparse_csr_tensor(torch.as_tensor(graph.indptr.astype(np.int64), device=device),
+/Users/vincent/Documents/projects/hybrid_recsys/src/recsys/retrievers/lightgcn.py:33: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:51.)
+  return torch.sparse_csr_tensor(torch.as_tensor(graph.indptr.astype(np.int64), device=device),
+ok
+test_metrics_known_answer (test_core_contracts.RetainedContractTests.test_metrics_known_answer) ... ok
+test_parquet_sequence_preserves_queries_and_rows (test_core_contracts.RetainedContractTests.test_parquet_sequence_preserves_queries_and_rows) ... /Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:242: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:242: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:242: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:242: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted
+ok
+test_removed_workflows_are_not_active_imports (test_core_contracts.RetainedContractTests.test_removed_workflows_are_not_active_imports) ... ok
+test_retriever_exact_blocks_and_cold (test_core_contracts.RetainedContractTests.test_retriever_exact_blocks_and_cold) ... ok
+test_source_hashes_are_model_specific (test_core_contracts.RetainedContractTests.test_source_hashes_are_model_specific) ... ok
+test_source_provenance_references_existing_active_files (test_core_contracts.RetainedContractTests.test_source_provenance_references_existing_active_files) ... ok
+test_unknown_sampling_rejects_low_and_positive (test_core_contracts.RetainedContractTests.test_unknown_sampling_rejects_low_and_positive) ... ok
+test_vector_checkpoint_roundtrip_without_fitting (test_core_contracts.RetainedContractTests.test_vector_checkpoint_roundtrip_without_fitting) ... ok
+test_verified_checkpoint_recovery_and_corruption (test_core_contracts.RetainedContractTests.test_verified_checkpoint_recovery_and_corruption) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.075s
+
+OK

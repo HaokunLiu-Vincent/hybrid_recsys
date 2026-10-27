@@ -1,0 +1,9 @@
+{
+  "backup_files_reverified": 91,
+  "archive_originals_verified": 45,
+  "preexisting_archive_files_verified": 20,
+  "cache_files_removed": 60,
+  "retained_computation_ast_matches": true,
+  "git_head_and_branch_unchanged": true,
+  "index_unstaged": true
+}
