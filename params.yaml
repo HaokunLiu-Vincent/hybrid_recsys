@@ -1,0 +1,21 @@
+dataset:
+  id: grouplens/movielens-latest-small
+  raw_dir: data/raw/ml-latest-small
+  provenance_sha256: eb1a6402bc510ccd783b7ef0b5ab9ef5d792f57e960353092d7d60eb897ddbfb
+  ratings_sha256: aa289ca83157595d0df6aea1be6a4ded676ddc4385472e8313a8ed9805352646
+  movies_sha256: 5a5f32dd9bb3797b8e728a1b98958789d2b13f294a69fdfbc5727f8a9611aa07
+  expected_ratings: 100836
+  expected_users: 610
+  expected_metadata_movies: 9742
+protocol:
+  version: small_v1
+  primary: per_user_chronological_70_15_15
+  secondary_version: small_global_v1
+  secondary: global_chronological_80_10_10
+  positive_threshold: 4.0
+  catalog: train_observed
+  seen: all_train_rated
+  history: frozen_train
+  timestamp_ties: whole_groups_nearest_floor_target_earlier_tie
+  short_history: one_group_all_train_two_groups_train_test
+  inner_history_percent: 80

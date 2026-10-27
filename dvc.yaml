@@ -1,0 +1,58 @@
+stages:
+  validate_raw:
+    cmd: .venv/bin/python -B tools/prepare_small_data.py validate-raw
+    deps:
+      - data/raw/ml-latest-small
+      - src/recsys/small_data.py
+      - src/recsys/small_pipeline.py
+      - src/recsys/small_protocol.py
+      - tools/prepare_small_data.py
+      - pyproject.toml
+      - uv.lock
+    params:
+      - params.yaml:
+          - dataset
+    outs:
+      - data/validation/small_raw_v1.json:
+          persist: true
+  prepare_splits:
+    cmd: .venv/bin/python -B tools/prepare_small_data.py prepare
+    deps:
+      - data/raw/ml-latest-small
+      - data/validation/small_raw_v1.json
+      - src/recsys/small_data.py
+      - src/recsys/small_protocol.py
+      - src/recsys/small_pipeline.py
+      - tools/prepare_small_data.py
+      - pyproject.toml
+      - uv.lock
+    params:
+      - params.yaml:
+          - dataset
+          - protocol
+    outs:
+      - data/splits/small_v1:
+          persist: true
+      - data/splits/small_global_v1:
+          persist: true
+      - data/diagnostics/small_protocol_v1.json:
+          persist: true
+  validate_splits:
+    cmd: .venv/bin/python -B tools/prepare_small_data.py validate-splits
+    deps:
+      - data/raw/ml-latest-small
+      - data/splits/small_v1
+      - data/splits/small_global_v1
+      - src/recsys/small_data.py
+      - src/recsys/small_protocol.py
+      - src/recsys/small_pipeline.py
+      - tools/prepare_small_data.py
+      - pyproject.toml
+      - uv.lock
+    params:
+      - params.yaml:
+          - dataset
+          - protocol
+    outs:
+      - data/validation/small_splits_v1.json:
+          persist: true

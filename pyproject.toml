@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools==82.0.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hybrid-recsys"
+version = "0.2.0"
+description = "Local MovieLens Small data foundation and recommendation research"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "numpy==2.4.4", "pandas==3.0.2", "duckdb==1.5.2", "pyarrow==24.0.0",
+  "scipy==1.17.1", "psutil==7.2.2", "PyYAML==6.0.3",
+]
+
+[project.optional-dependencies]
+notebook = ["matplotlib==3.11.2", "nbformat==5.11.1", "nbclient==0.11.0", "ipykernel==7.2.0"]
+acquisition = ["kaggle==2.2.5"]
+
+[dependency-groups]
+dev = ["dvc==3.67.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv]
+default-groups = ["dev"]

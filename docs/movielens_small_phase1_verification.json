@@ -1,0 +1,91 @@
+{
+  "checked_at_utc": "2026-10-27T16:20:32.895686+00:00",
+  "passed": true,
+  "python": "3.11.9",
+  "python_files_ast_valid": 36,
+  "nbformat_valid": true,
+  "notebook_code_cells_ast_valid": 16,
+  "sequential_execution_counts": true,
+  "inline_figures": 7,
+  "code_cells_with_html_tables": 12,
+  "notebook_error_outputs": 0,
+  "raw_files_hash_verified": 6,
+  "raw_manifest_and_notebook_match_summary": true,
+  "preexisting_source_files_unchanged": 28,
+  "head": "e2b160b0049802d7c1cf5bed0a26d2504ab0a47f",
+  "branch": "main",
+  "staged_paths": [],
+  "tracked_raw_data_paths": [],
+  "final_parquet_splits_created": false,
+  "dvc_initialized": false,
+  "git_diff_check_passed": true,
+  "ignore_checks": {
+    "data/raw/ml-latest-small/ratings.csv": {
+      "ignored": true,
+      "expected_ignored": true
+    },
+    "data/raw/ml-latest-small/movies.csv": {
+      "ignored": true,
+      "expected_ignored": true
+    },
+    "data/raw/ml-latest-small/provenance.json": {
+      "ignored": true,
+      "expected_ignored": true
+    },
+    "data/raw/ml-latest-small/_source/kaggle-download.zip": {
+      "ignored": true,
+      "expected_ignored": true
+    },
+    ".venv/pyvenv.cfg": {
+      "ignored": true,
+      "expected_ignored": true
+    },
+    "outputs/eda/visual_check/contact.png": {
+      "ignored": true,
+      "expected_ignored": true
+    },
+    "notebooks/01_MovieLens_Small_EDA.ipynb": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    "src/recsys/small_data.py": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    "src/recsys/small_eda.py": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    "tests/test_small_data.py": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    "requirements-eda.txt": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    "data/raw/ml-latest-small.dvc": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    "dvc.yaml": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    "dvc.lock": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    ".dvc/config": {
+      "ignored": false,
+      "expected_ignored": false
+    },
+    ".env.example": {
+      "ignored": false,
+      "expected_ignored": false
+    }
+  },
+  "status_short_before_writing_this_report": "M .gitignore\n M README.md\n?? docs/movielens_small_phase1_summary.json\n?? docs/phase1_data_acquisition_and_eda.md\n?? notebooks/\n?? requirements-eda.txt\n?? src/recsys/small_data.py\n?? src/recsys/small_eda.py\n?? tests/test_small_data.py\n?? tools/download_movielens_small.py\n?? tools/execute_small_eda.py",
+  "verification_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B /private/tmp/verify_movielens_small_phase1.py",
+  "verification_script_sha256": "7ca0a371d086dfd8111a3bf04b062a9d22d93528b57316f88bba4c927a023287"
+}

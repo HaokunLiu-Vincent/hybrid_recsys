@@ -1,0 +1,3 @@
+# Compatibility entry point only; no second set of version constraints.
+# Prefer: uv sync --locked --inexact --all-extras
+-e .[notebook,acquisition]

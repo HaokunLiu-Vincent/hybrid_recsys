@@ -1,52 +1,50 @@
-# hybrid_recsys — MovieLens Small local MLOps transition
+# hybrid_recsys — MovieLens Small local MLOps
 
-This **existing repository** is being rebuilt in place as a local-first MovieLens Latest Small recommendation-system MVP. Its Git history and uncommitted research work are preserved. The current phase is **audit, preservation and cleanup only**; this is not a completed Small-dataset pipeline.
+The existing repository now has a verified **Phase 2 data foundation**: Kaggle acquisition, executed EDA, deterministic DuckDB/Parquet preparation and local DVC recovery. Six retrieval implementations, RRF and ranking utilities remain available; **no Small models have been trained or evaluated**.
 
-Planned lifecycle (not implemented here):
+Planned lifecycle: Kaggle → DuckDB/Parquet → local DVC → six retrievers → RRF → historical-snapshot LightGBM LambdaMART → offline evaluation → MLflow tracking/release registration → FastAPI/Docker. Later training, tracking and serving stages are not implemented here.
 
-`Kaggle grouplens/movielens-latest-small → DuckDB / Parquet → local DVC → six independent retrievers → RRF → out-of-time LightGBM LambdaMART → temporal evaluation → MLflow tracking + deployable release registration → FastAPI / Docker → parity tests`
+## Frozen evaluation contract
 
-## Verified current state
+**Primary: per-user chronological 70/15/15**, preserving whole timestamp groups. **This is not globally leakage-free:** other users' Train interactions may occur later than a user's held-out targets. That cross-user temporal limitation is explicitly accepted for this educational offline benchmark and disclosed in manifests.
 
-- Readable reusable code remains under `src/recsys/`: Popularity, Genre CBF, ItemCF, Implicit ALS, LightGCN, Hybrid Two-Tower, fusion/RRF, ranker features/LightGBM, metrics, candidate contracts and artifact utilities.
-- Shared in-memory history/feature and evaluation helpers are retained. The old 32M loaders, fixed counts, Colab orchestration, notebook generators, benchmark configs and historical reports are archived; they are not the active execution path.
-- No MovieLens Small data was downloaded. No new split, DuckDB/DVC setup, MLflow service, serving API or Docker implementation exists yet. Existing model logic is retained for review/adaptation, not claimed validated on MovieLens Small.
-- Existing archive entries are untouched. Full 32M notebooks—including outputs—and original mixed-module versions are retained in the [32M reference archive](archive/legacy_movielens32m/README.md).
-- Recovery inventory, backup location, exact changes, compatibility concerns and check results are recorded in [the cleanup audit](docs/repository_cleanup_audit.md). No commit or push was made.
+| Version | Train | Validation | Test | Eligible-positive users V / T |
+|---|---:|---:|---:|---:|
+| `small_v1` — primary | 70,186 | 15,143 | 15,507 | 579 / 583 |
+| `small_global_v1` — global 80/10/10 sensitivity | 80,668 | 10,084 | 10,084 | 62 / 72 |
 
-```text
-hybrid_recsys/
-├── AGENTS.md
-├── README.md
-├── requirements.txt             # existing dependency reference, not a new lockfile
-├── pytest.ini                   # confines optional pytest discovery to active tests/
-├── src/recsys/                  # reusable code; no automatic dataset loading or fitting
-│   ├── retrievers/
-│   ├── fusion/
-│   ├── rankers/
-│   └── data / features / metrics / contracts / artifacts / runtime helpers
-├── tests/                       # synthetic, non-fitting cleanup checks
-├── tools/run_tests.py           # existing local, thread-bounded test wrapper
-├── docs/repository_cleanup_audit.md
-└── archive/
-    ├── ...                     # older SageMaker/SBERT materials preserved in place
-    └── legacy_movielens32m/     # superseded 32M/Colab reference work
-```
+Positive = rating ≥4. Candidate items must be Train-observed; exclude every Train-rated item, including low ratings. Histories stay frozen through Test. Primary Recall/NDCG use eligible positives, with separate all-observed and cold/sparse/warm diagnostics. The primary catalog has 7,525 movies; 417 Validation and 584 Test positives are outside it. No user lacks primary Train ratings, but four users have no Train positives. Secondary Test has 54 of 74 users without Train history; never pool its results with primary metrics.
 
-## Lightweight checks
+The [evaluation protocol](docs/evaluation_protocol.md) specifies boundary/rounding/short-history rules, all four measured comparisons, cohorts, metric denominators, leakage disclosure and ranker contracts. No protocol was chosen by model scores. Primary inner ranker history/labels contain 55,807 / 14,379 rows and at most 571 catalog-positive queries; effective query counts/actual candidate recall remain unknown until retrieval runs.
 
-Use an **already installed** Python environment with NumPy, pandas, SciPy, PyArrow and psutil. Existing PyTorch enables two additional CPU mathematical/sampling checks; no GPU is required. Nothing installs packages automatically.
+## Local commands
+
+The authoritative environment is `pyproject.toml` + `uv.lock`, Python 3.11.9. Preserve an existing `.venv`; do not recreate it. With uv already available inside this project's environment:
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B tools/run_tests.py
+UV_CACHE_DIR=.uv-cache .venv/bin/uv sync --locked --inexact --all-extras
+UV_CACHE_DIR=.uv-cache .venv/bin/uv lock --check --offline
+
+DVC_NO_ANALYTICS=1 .venv/bin/dvc pull
+DVC_NO_ANALYTICS=1 PYTHONDONTWRITEBYTECODE=1 .venv/bin/dvc repro
+DVC_NO_ANALYTICS=1 .venv/bin/dvc status
+DVC_NO_ANALYTICS=1 .venv/bin/dvc push
+
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B tools/run_tests.py
+DVC_NO_ANALYTICS=1 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B tools/verify_small_repro.py
 ```
 
-The active suite checks synthetic metrics, candidate eligibility/seen filtering, deterministic Top-K, unknown-pair sampling, provenance, serialization, Parquet query grouping and archive isolation. It does not fit a model, run an experiment, acquire data or open archived notebooks. Training-based and old 32M workflow tests remain in the archive; the old full benchmark/smoke commands are no longer the recommended active checks.
+Configure a persistent **local filesystem** remote outside this repository before pull/push; this machine uses `/Users/vincent/Documents/projects/hybrid_recsys_dvc_remote`, stored only in ignored local DVC configuration. `dvc push` copies data locally; no Git push or cloud service is involved. See [environment, initialization, pipeline and safe recovery instructions](docs/data_pipeline.md) for fresh setup and explicit stage commands. The requirements files are compatibility shims into the same project. PyTorch/implicit were preserved from the working environment; model-training dependencies are intentionally outside this data-phase lock.
 
-## Scientific and transition boundaries
+## Verified artifacts and checks
 
-Rating timestamps are submissions, not verified viewing or exposure. Observed high ratings, observed low ratings and unobserved pairs are distinct. Unknown pairs are not verified dislikes. Keep one explicit catalog/seen-item policy and comparable per-user cohorts; Top-K is an upper bound, raw channel scores are not calibrated, and candidate-pool recall limits ranking.
+- Exact source: [`grouplens/movielens-latest-small`](https://www.kaggle.com/datasets/grouplens/movielens-latest-small), 100,836 ratings, 610 users, **9,742 metadata movies / 9,724 rated movies**. SHA256, schemas and acquisition evidence are in ignored `data/raw/ml-latest-small/provenance.json`. Original Kaggle files/ZIP are unchanged; only ratings and movies enter processing. Kaggle version remains unavailable; consult the bundled publisher README for licence/citation terms.
+- [Executed EDA notebook](notebooks/01_MovieLens_Small_EDA.ipynb): 16 code cells, seven figures, zero errors. Phase 1 notebook/report remain unchanged. Download and EDA entry points remain `tools/download_movielens_small.py` and `tools/execute_small_eda.py`; DVC normally restores the frozen acquisition rather than downloading a different provenance snapshot.
+- `data/splits/small_v1/` and `data/splits/small_global_v1/`: Train/Validation/Test, movies, Train-only eligibility, evaluation cohorts/targets, canonical mappings, cutoffs, historical ranker history/label windows and manifests. Data is ignored by Git and tracked through DVC.
+- `src/recsys/small_benchmark.py` loads frozen artifacts into retained context/population interfaces without fitting. Its default is Validation and Policy-B relevance. Future training must use historical snapshot retrievers for ranker examples, never full-Train in-sample predictions.
+- **33 tests passed, zero failures/skips** in this environment. Existing 30 Phase 1 source files, the EDA notebook/report and old archive contents remain unchanged.
+- Independent real-data builds were byte-identical. No-change DVC repro rewrote no outputs. Cold-cache local-remote recovery restored all 40 files with matching SHA256; a missing disposable Train file was also restored. Original datasets/cache/remote were never deleted.
 
-Before Small-dataset model work, approve a new versioned chronological protocol and out-of-time ranker-feature procedure within outer Train. Old 32M split manifests and results must never be reused as Small inputs. Record a Validation-only selection before opening Test. Offline observed-rating metrics cannot establish causal satisfaction or online CTR.
+Full measurements and execution evidence: [Phase 2 report](docs/phase2_data_foundation_report.md), [measured summary](docs/movielens_small_phase2_summary.json), [verification](docs/movielens_small_phase2_verification.json). Historical context: [Phase 1 report](docs/phase1_data_acquisition_and_eda.md), [cleanup audit](docs/repository_cleanup_audit.md), [32M reference archive](archive/legacy_movielens32m/README.md). Old 32M splits/results are not Small inputs.
 
-Next, after a separate task: acquire only `grouplens/movielens-latest-small`, record provenance/licence/schema/file hashes, transform `ratings.csv` and `movies.csv` using DuckDB, then configure local DVC versioning. Packaging, bounded CPU experiment configs, MLflow release bundles, API/Docker and parity tests remain intentionally deferred. No cloud, GPU, credentials or external infrastructure are prerequisites for that planned MVP.
+Rating timestamps are submissions, not verified consumption or exposure. Unobserved pairs are not verified dislikes. No model metrics, online CTR, causal effects, MLflow registration, serving, containers or cloud execution are claimed. All current changes remain uncommitted; the next task can address bounded CPU retrieval experiments under the recorded protocol.

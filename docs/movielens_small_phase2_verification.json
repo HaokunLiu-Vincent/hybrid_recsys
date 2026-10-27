@@ -1,0 +1,138 @@
+{
+  "active_python_files_ast_valid": 42,
+  "all_restored_sha256_match": true,
+  "branch": "main",
+  "checked_at_utc": "2026-10-27T17:15:02.019383+00:00",
+  "config_invalidation": {
+    "prepare_splits": [
+      {
+        "changed deps": {
+          "params.yaml": {
+            "protocol": "modified"
+          }
+        }
+      }
+    ],
+    "validate_splits": [
+      {
+        "changed deps": {
+          "params.yaml": {
+            "protocol": "modified"
+          }
+        }
+      }
+    ]
+  },
+  "dvc_push_stdout": "41 files pushed\n",
+  "dvc_remote": "/Users/vincent/Documents/projects/hybrid_recsys_dvc_remote",
+  "dvc_status": {},
+  "environment": {
+    "duckdb": "1.5.2",
+    "dvc": "3.67.1",
+    "implicit": "0.7.2",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "pyarrow": "24.0.0",
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "torch": "2.11.0",
+    "uv": "0.13.6"
+  },
+  "final_git_status_before_writing_this_report": "M .gitignore\n M README.md\n M requirements.txt\n?? .dvc/.gitignore\n?? .dvc/config\n?? .dvcignore\n?? .python-version\n?? data/raw/.gitignore\n?? data/raw/ml-latest-small.dvc\n?? data/splits/.gitignore\n?? docs/data_pipeline.md\n?? docs/evaluation_protocol.md\n?? docs/movielens_small_phase1_summary.json\n?? docs/movielens_small_phase1_verification.json\n?? docs/movielens_small_phase2_summary.json\n?? docs/phase1_data_acquisition_and_eda.md\n?? docs/phase2_data_foundation_report.md\n?? dvc.lock\n?? dvc.yaml\n?? notebooks/01_MovieLens_Small_EDA.ipynb\n?? params.yaml\n?? pyproject.toml\n?? requirements-eda.txt\n?? src/recsys/small_benchmark.py\n?? src/recsys/small_data.py\n?? src/recsys/small_eda.py\n?? src/recsys/small_pipeline.py\n?? src/recsys/small_protocol.py\n?? tests/test_small_data.py\n?? tests/test_small_pipeline.py\n?? tools/download_movielens_small.py\n?? tools/execute_small_eda.py\n?? tools/prepare_small_data.py\n?? tools/verify_small_repro.py\n?? uv.lock",
+  "final_head": "e2b160b0049802d7c1cf5bed0a26d2504ab0a47f",
+  "final_verification_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B /private/tmp/verify_movielens_small_phase2_final.py",
+  "git_diff_check_passed": true,
+  "gitignore_checks": {
+    ".dvc/.gitignore": false,
+    ".dvc/cache/placeholder": true,
+    ".dvc/config": false,
+    ".dvc/config.local": true,
+    ".dvc/tmp/site-cache/state.db": true,
+    ".dvcignore": false,
+    ".env": true,
+    ".env.example": false,
+    ".uv-cache/CACHEDIR.TAG": true,
+    ".venv/pyvenv.cfg": true,
+    "data/raw/.gitignore": false,
+    "data/raw/ml-latest-small.dvc": false,
+    "data/raw/ml-latest-small/provenance.json": true,
+    "data/raw/ml-latest-small/ratings.csv": true,
+    "data/splits/.gitignore": false,
+    "data/splits/small_v1/split_manifest.json": true,
+    "data/splits/small_v1/train.parquet": true,
+    "dvc.lock": false,
+    "dvc.yaml": false,
+    "local.duckdb": true,
+    "models/test.pt": true,
+    "notebooks/01_MovieLens_Small_EDA.ipynb": false,
+    "outputs/phase2/test.json": true,
+    "params.yaml": false,
+    "pyproject.toml": false,
+    "src/recsys/small_pipeline.py": false,
+    "uv.lock": false
+  },
+  "independent_build_byte_identical": true,
+  "initial_git_status": " M .gitignore\n M README.md\n?? docs/movielens_small_phase1_summary.json\n?? docs/movielens_small_phase1_verification.json\n?? docs/phase1_data_acquisition_and_eda.md\n?? notebooks/\n?? requirements-eda.txt\n?? src/recsys/small_data.py\n?? src/recsys/small_eda.py\n?? tests/test_small_data.py\n?? tools/download_movielens_small.py\n?? tools/execute_small_eda.py\n",
+  "initial_head": "e2b160b0049802d7c1cf5bed0a26d2504ab0a47f",
+  "lockfile_packages": 150,
+  "no_change_repro_rewrote_outputs": false,
+  "passed": true,
+  "phase1_artifacts_unchanged": [
+    "docs/phase1_data_acquisition_and_eda.md",
+    "docs/movielens_small_phase1_verification.json",
+    "docs/movielens_small_phase1_summary.json",
+    "notebooks/01_MovieLens_Small_EDA.ipynb"
+  ],
+  "phase1_notebook_nbformat_valid": true,
+  "preexisting_source_files_unchanged": 30,
+  "raw_acquisition_files_unchanged": 6,
+  "raw_invalidation_stages": [
+    "data/raw/ml-latest-small.dvc",
+    "prepare_splits",
+    "validate_raw",
+    "validate_splits"
+  ],
+  "recovery_evidence": "outputs/phase2/reproducibility_573d417bf2c84faf8071aa4c7d751775.json",
+  "recovery_evidence_sha256": "231ec5ed0b37e336afd6b5d342919146334626805c80a681d9fa6879c7c22c06",
+  "recovery_snapshot": "/Users/vincent/Documents/projects/hybrid_recsys_recovery/phase2_20261027T164541Z",
+  "restored_files": 40,
+  "scope": "Data preparation/protocol/recovery, no model training or performance results",
+  "snapshot_files_hash_verified": 19,
+  "staged_paths": [],
+  "unit_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B tools/run_tests.py",
+    "failed": 0,
+    "log_sha256": "5783f0c93e8b01c773a560064fcb4856c3e77e4bdeae04e2ad2a833c10141731",
+    "passed": 33,
+    "skipped": 0
+  },
+  "uv_lock_sha256": "4bc82257a98cfe7d082d3117702f62f124e9efa137632e0995019ede507f8b65",
+  "verification_script_sha256": "51c295c1bb2a98eeeb76b44252a957ca0ce631c977b18803b23c34444fac33bc",
+  "versions": {
+    "small_global_v1": {
+      "counts": {
+        "test": 10084,
+        "train": 80668,
+        "validation": 10084
+      },
+      "evaluation_id": "f39de0dd8a9b1cf5740ca256b4f17b2288c036c1d0a88b3c23fd14588abc46c9",
+      "files": 14,
+      "split_manifest_sha256": "96f555c7329f2a4c243e9b8cbefb21312389157774487af66de7981c69d28af9"
+    },
+    "small_v1": {
+      "counts": {
+        "test": 15507,
+        "train": 70186,
+        "validation": 15143
+      },
+      "evaluation_id": "ea2103396f327451c60a9dd1c8882717cc35cb05ffc210faf71d15d2d5b93b20",
+      "files": 14,
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799"
+    }
+  },
+  "visible_data_paths_in_git_status": [
+    "data/raw/.gitignore",
+    "data/raw/ml-latest-small.dvc",
+    "data/splits/.gitignore"
+  ]
+}

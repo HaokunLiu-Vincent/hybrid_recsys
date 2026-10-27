@@ -1,0 +1,203 @@
+schema: '2.0'
+stages:
+  validate_raw:
+    cmd: .venv/bin/python -B tools/prepare_small_data.py validate-raw
+    deps:
+    - path: data/raw/ml-latest-small
+      hash: md5
+      md5: 587f1f96e195f3158547ce0c5610f030.dir
+      size: 4301086
+      nfiles: 7
+    - path: pyproject.toml
+      hash: md5
+      md5: bf320bf9aa8078e3453daf5be5780da5
+      size: 686
+    - path: src/recsys/small_data.py
+      hash: md5
+      md5: 97bbb3ad63cce510a9e8534d92d880a7
+      size: 13345
+    - path: src/recsys/small_pipeline.py
+      hash: md5
+      md5: 2afc954b252afce5a17d6109821a5686
+      size: 21234
+    - path: src/recsys/small_protocol.py
+      hash: md5
+      md5: a20737249af33c080c9810dc911bc4cd
+      size: 11851
+    - path: tools/prepare_small_data.py
+      hash: md5
+      md5: 3fcc0b463dac8e9c21673379c0566401
+      size: 1747
+    - path: uv.lock
+      hash: md5
+      md5: ba7890d7ec210eb814005dcef2023f36
+      size: 364949
+    params:
+      params.yaml:
+        dataset:
+          id: grouplens/movielens-latest-small
+          raw_dir: data/raw/ml-latest-small
+          provenance_sha256: 
+            eb1a6402bc510ccd783b7ef0b5ab9ef5d792f57e960353092d7d60eb897ddbfb
+          ratings_sha256: 
+            aa289ca83157595d0df6aea1be6a4ded676ddc4385472e8313a8ed9805352646
+          movies_sha256: 
+            5a5f32dd9bb3797b8e728a1b98958789d2b13f294a69fdfbc5727f8a9611aa07
+          expected_ratings: 100836
+          expected_users: 610
+          expected_metadata_movies: 9742
+    outs:
+    - path: data/validation/small_raw_v1.json
+      hash: md5
+      md5: a8949e76bf26335cc9349e77e6f528af
+      size: 1471
+  prepare_splits:
+    cmd: .venv/bin/python -B tools/prepare_small_data.py prepare
+    deps:
+    - path: data/raw/ml-latest-small
+      hash: md5
+      md5: 587f1f96e195f3158547ce0c5610f030.dir
+      size: 4301086
+      nfiles: 7
+    - path: data/validation/small_raw_v1.json
+      hash: md5
+      md5: a8949e76bf26335cc9349e77e6f528af
+      size: 1471
+    - path: pyproject.toml
+      hash: md5
+      md5: bf320bf9aa8078e3453daf5be5780da5
+      size: 686
+    - path: src/recsys/small_data.py
+      hash: md5
+      md5: 97bbb3ad63cce510a9e8534d92d880a7
+      size: 13345
+    - path: src/recsys/small_pipeline.py
+      hash: md5
+      md5: 2afc954b252afce5a17d6109821a5686
+      size: 21234
+    - path: src/recsys/small_protocol.py
+      hash: md5
+      md5: a20737249af33c080c9810dc911bc4cd
+      size: 11851
+    - path: tools/prepare_small_data.py
+      hash: md5
+      md5: 3fcc0b463dac8e9c21673379c0566401
+      size: 1747
+    - path: uv.lock
+      hash: md5
+      md5: ba7890d7ec210eb814005dcef2023f36
+      size: 364949
+    params:
+      params.yaml:
+        dataset:
+          id: grouplens/movielens-latest-small
+          raw_dir: data/raw/ml-latest-small
+          provenance_sha256: 
+            eb1a6402bc510ccd783b7ef0b5ab9ef5d792f57e960353092d7d60eb897ddbfb
+          ratings_sha256: 
+            aa289ca83157595d0df6aea1be6a4ded676ddc4385472e8313a8ed9805352646
+          movies_sha256: 
+            5a5f32dd9bb3797b8e728a1b98958789d2b13f294a69fdfbc5727f8a9611aa07
+          expected_ratings: 100836
+          expected_users: 610
+          expected_metadata_movies: 9742
+        protocol:
+          version: small_v1
+          primary: per_user_chronological_70_15_15
+          secondary_version: small_global_v1
+          secondary: global_chronological_80_10_10
+          positive_threshold: 4.0
+          catalog: train_observed
+          seen: all_train_rated
+          history: frozen_train
+          timestamp_ties: whole_groups_nearest_floor_target_earlier_tie
+          short_history: one_group_all_train_two_groups_train_test
+          inner_history_percent: 80
+    outs:
+    - path: data/diagnostics/small_protocol_v1.json
+      hash: md5
+      md5: d751d6e697682ad089a458d6106c5944
+      size: 22999
+    - path: data/splits/small_global_v1
+      hash: md5
+      md5: 1caeed64d9d324609f18d22c18bd3c80.dir
+      size: 1870603
+      nfiles: 15
+    - path: data/splits/small_v1
+      hash: md5
+      md5: 455595aeb5f24864381e436f11093797.dir
+      size: 1844620
+      nfiles: 15
+  validate_splits:
+    cmd: .venv/bin/python -B tools/prepare_small_data.py validate-splits
+    deps:
+    - path: data/raw/ml-latest-small
+      hash: md5
+      md5: 587f1f96e195f3158547ce0c5610f030.dir
+      size: 4301086
+      nfiles: 7
+    - path: data/splits/small_global_v1
+      hash: md5
+      md5: 1caeed64d9d324609f18d22c18bd3c80.dir
+      size: 1870603
+      nfiles: 15
+    - path: data/splits/small_v1
+      hash: md5
+      md5: 455595aeb5f24864381e436f11093797.dir
+      size: 1844620
+      nfiles: 15
+    - path: pyproject.toml
+      hash: md5
+      md5: bf320bf9aa8078e3453daf5be5780da5
+      size: 686
+    - path: src/recsys/small_data.py
+      hash: md5
+      md5: 97bbb3ad63cce510a9e8534d92d880a7
+      size: 13345
+    - path: src/recsys/small_pipeline.py
+      hash: md5
+      md5: 2afc954b252afce5a17d6109821a5686
+      size: 21234
+    - path: src/recsys/small_protocol.py
+      hash: md5
+      md5: a20737249af33c080c9810dc911bc4cd
+      size: 11851
+    - path: tools/prepare_small_data.py
+      hash: md5
+      md5: 3fcc0b463dac8e9c21673379c0566401
+      size: 1747
+    - path: uv.lock
+      hash: md5
+      md5: ba7890d7ec210eb814005dcef2023f36
+      size: 364949
+    params:
+      params.yaml:
+        dataset:
+          id: grouplens/movielens-latest-small
+          raw_dir: data/raw/ml-latest-small
+          provenance_sha256: 
+            eb1a6402bc510ccd783b7ef0b5ab9ef5d792f57e960353092d7d60eb897ddbfb
+          ratings_sha256: 
+            aa289ca83157595d0df6aea1be6a4ded676ddc4385472e8313a8ed9805352646
+          movies_sha256: 
+            5a5f32dd9bb3797b8e728a1b98958789d2b13f294a69fdfbc5727f8a9611aa07
+          expected_ratings: 100836
+          expected_users: 610
+          expected_metadata_movies: 9742
+        protocol:
+          version: small_v1
+          primary: per_user_chronological_70_15_15
+          secondary_version: small_global_v1
+          secondary: global_chronological_80_10_10
+          positive_threshold: 4.0
+          catalog: train_observed
+          seen: all_train_rated
+          history: frozen_train
+          timestamp_ties: whole_groups_nearest_floor_target_earlier_tie
+          short_history: one_group_all_train_two_groups_train_test
+          inner_history_percent: 80
+    outs:
+    - path: data/validation/small_splits_v1.json
+      hash: md5
+      md5: f4d2cd038d5995eeac59c4c4c8e038b2
+      size: 1075

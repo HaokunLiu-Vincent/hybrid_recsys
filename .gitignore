@@ -7,6 +7,7 @@ __pycache__/
 .ipynb_checkpoints/
 .mypy_cache/
 .ruff_cache/
+.uv-cache/
 .coverage
 htmlcov/
 /build/
@@ -14,10 +15,12 @@ htmlcov/
 *.egg-info/
 .DS_Store
 
-# Data, outputs, trained models and runtime state (keep *.dvc pointer files)
+# Data (including Phase 1 raw CSVs, ZIP and provenance), models and runtime state
+# Keep *.dvc pointer files; the EDA notebook and source remain trackable.
 /data/**
 !/data/**/*.dvc
 !/data/**/
+!/data/**/.gitignore
 /processed/
 /artifacts/
 /results/
