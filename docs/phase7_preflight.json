@@ -1,0 +1,162 @@
+{
+  "catalog_id": "6b607210c9f671ac865f15a1c1ce2168573246722e66ffae32075e9405c36fd2",
+  "complete_sha256": "fdb2675acfa841c72bf1c3b4a6c524bd5b03cf240d1befb75197dc9f8517da2d",
+  "completed_at": "2026-10-28T06:26:50.878401+00:00",
+  "contract": {
+    "bootstrap": {
+      "interval": "95% percentile",
+      "replicates": 2000,
+      "seed": 42,
+      "unit": "paired eligible user"
+    },
+    "catalog": "train_observed",
+    "cohorts": [
+      "cold_0",
+      "sparse_1_4",
+      "moderate_5_19",
+      "warm_20_plus"
+    ],
+    "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+    "history": "frozen_train",
+    "methods": [
+      "als",
+      "rrf",
+      "lambdamart"
+    ],
+    "metrics": [
+      "recall20",
+      "recall50",
+      "recall100",
+      "ndcg20",
+      "hit20",
+      "hit100",
+      "pool_recall",
+      "catalog_coverage20",
+      "catalog_coverage100"
+    ],
+    "model_uri": "models:/MovieLensHybridRecommender/1",
+    "no_test_tuning": true,
+    "ordering": "userId ascending, score descending, movieId ascending; ALS original source ranks then movie-ID tail",
+    "positive_threshold": 4.0,
+    "primary_comparison": [
+      "recall20",
+      "ndcg20"
+    ],
+    "primary_denominator": "eligible",
+    "protocol": "per_user_70_15_15",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "rrf_constant": 60,
+    "secondary_denominator": "all_observed",
+    "seen": "all_train_rated",
+    "selection": "original Validation NDCG@20; 31 trees",
+    "source_budget": 100,
+    "split": "small_v1",
+    "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799"
+  },
+  "data_reads": [
+    "data/splits/small_v1/item_eligibility.parquet",
+    "data/splits/small_v1/movie_mapping.parquet",
+    "data/splits/small_v1/movies.parquet",
+    "data/splits/small_v1/split_manifest.json",
+    "data/splits/small_v1/train.parquet",
+    "data/splits/small_v1/user_mapping.parquet",
+    "data/splits/small_v1/validation.parquet"
+  ],
+  "dvc_object": "455595aeb5f24864381e436f11093797.dir",
+  "evaluator_source_sha256": {
+    "src/recsys_evaluation/__init__.py": "63b25d656c8f11b30cf9ca83966daf3cb7336e4e6d793fb018b2909d863784e6",
+    "src/recsys_evaluation/core.py": "9ae389f2439393b9bba4e4378aad19aa07754d12af426fea8c7d5674e4b210cc",
+    "src/recsys_evaluation/workflow.py": "54e2c707a5cb5eab3c4982c2ad857ac197e2d0a35c87147fa856188e9e8494f5",
+    "tests/test_final_evaluation.py": "4dddb980b657145959abd90924075f354e7b3c604de4f1a7bb78dd1ef2dc9dec",
+    "tools/final_evaluation.py": "6314a6311ccff95f12a7b2be4ac855f4a428a051392131a2049d3e91769313fa"
+  },
+  "full_train_retrievers": {
+    "genre": {
+      "completion_sha256": "8d34a0f2ff5d74c145e1b5f8940fe45672c7c93527ba88c504970d42a58b4eb4",
+      "manifest_sha256": "b8d006807838ec7a5567d75d80e4cea89b4e4b785e023ecf551a4d00921bcaea"
+    },
+    "implicit_als": {
+      "completion_sha256": "c1f9664dd058b305dee50588693d435e6af74d3d3c35e648a4953f9b75918873",
+      "manifest_sha256": "bb350e17ebea100ff8a3e1397e0cac739e384544749cab74a86183e57a1dec14"
+    },
+    "itemcf": {
+      "completion_sha256": "57b99153dda2c3cc57085acf5bacea940046508877036e32be92d571384e9d66",
+      "manifest_sha256": "12b4fd70807396ca9ad68af249e429f843a501e8d922f4ecd870ef60871e88dd"
+    },
+    "lightgcn": {
+      "completion_sha256": "dc857139597d7f0c640ef419d64e607f649c06b30bbf392d7cdab3dc728a7884",
+      "manifest_sha256": "cf4ee23200e90336e774955b26a8732e943c06a5fbbaf5d0104dec4258d5e526"
+    },
+    "popularity": {
+      "completion_sha256": "34d5c0836825c62b0596f534c80f7afd7e9cab72c7e91650e29af77219668300",
+      "manifest_sha256": "a6809928129a651e614c729333db72a4c4d07f2dcbc4c16a8dac419b2597bf0a"
+    },
+    "two_tower": {
+      "completion_sha256": "85547b5bcc14ac656c30cffb56f85853f47af85755fd6fbffd8430e9682830db",
+      "manifest_sha256": "160f72b363eb383059637370727b79075ba8509a751ae8e50231892dd02301ef"
+    }
+  },
+  "initial_git_head": "98a92b54ee3b05fd4ee175442e3bc3991ef436f1",
+  "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "implicit": "0.7.2",
+    "lightgbm": "4.6.0",
+    "mlflow": "3.17.2",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "psutil": "7.2.2",
+    "pyarrow": "24.0.0",
+    "pytz": "2026.5",
+    "scipy": "1.17.1",
+    "threadpoolctl": "3.6.0",
+    "torch": "2.11.0"
+  },
+  "python": "3.11.9",
+  "ranker_model_sha256": "a14b8ecd561056725d200cf8cce023e76086fc8d7aad96426d9a8284ffaa33a7",
+  "registry": {
+    "aliases": {
+      "candidate": "1"
+    },
+    "name": "MovieLensHybridRecommender",
+    "run_id": "b99a65b035ed4f6e868bd846153d14cb",
+    "source": "models:/m-01f3866343e74d258fbc18cd178ced9e",
+    "tags": {
+      "dataset": "movielens_latest_small",
+      "feature_count": "53",
+      "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+      "lock_sha256": "e405905fdb6152228784727fcafa66749ac546a9887dc6eef7254254aaa584e9",
+      "protocol": "per_user_70_15_15",
+      "ranking_model": "lightgbm_lambdamart",
+      "release_complete_sha256": "7776b30a4cd2f392676da1096e5a22b77b7f8d091f5259c2cd0a3b5e868a7a95",
+      "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+      "release_manifest_sha256": "c859217da1492c5c4add7cdd57751da5de98c739458f001ce6ddc909977fc601",
+      "release_status": "validation_candidate",
+      "retriever_count": "6",
+      "rrf_constant": "60",
+      "source_git_revision": "b110fe6959ce47e7a2872acfc793210ccd6508d5",
+      "split": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "test_evaluated": "false"
+    },
+    "version": "1",
+    "versions": [
+      "1"
+    ]
+  },
+  "release_complete_sha256": "7776b30a4cd2f392676da1096e5a22b77b7f8d091f5259c2cd0a3b5e868a7a95",
+  "release_manifest_sha256": "c859217da1492c5c4add7cdd57751da5de98c739458f001ce6ddc909977fc601",
+  "serving_lock_sha256": "1188c119c8ddb1f1c2bf61feec71efef494f1ac884fb6ffe3a6e5310592970bc",
+  "source_status": "?? src/recsys_evaluation/\n?? tests/test_final_evaluation.py\n?? tools/final_evaluation.py\n",
+  "test_access": false,
+  "training_cutoff": "per_user:9859a72f9f04efe290c109f073f6e845cf82a5490b488f688e5f2ef8cc2ec1d6",
+  "validation": {
+    "exact_metrics": true,
+    "exact_rankings": true,
+    "exact_sources": true,
+    "exact_union": true,
+    "positives": 6491,
+    "queries": 579,
+    "union_pairs": 213507
+  }
+}

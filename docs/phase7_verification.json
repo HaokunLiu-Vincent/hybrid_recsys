@@ -1,0 +1,66 @@
+{
+  "active_python_ast": 81,
+  "branch": "main",
+  "checked_at": "2026-10-28T06:40:07.923009+00:00",
+  "documentation_links_valid": true,
+  "evaluator_source_sha256": {
+    "src/recsys_evaluation/__init__.py": "63b25d656c8f11b30cf9ca83966daf3cb7336e4e6d793fb018b2909d863784e6",
+    "src/recsys_evaluation/core.py": "9ae389f2439393b9bba4e4378aad19aa07754d12af426fea8c7d5674e4b210cc",
+    "src/recsys_evaluation/workflow.py": "54e2c707a5cb5eab3c4982c2ad857ac197e2d0a35c87147fa856188e9e8494f5",
+    "tests/test_final_evaluation.py": "4dddb980b657145959abd90924075f354e7b3c604de4f1a7bb78dd1ef2dc9dec",
+    "tools/final_evaluation.py": "6314a6311ccff95f12a7b2be4ac855f4a428a051392131a2049d3e91769313fa"
+  },
+  "final_complete_sha256": "b88ddd9e49fa0b81b24e819348531709c622e5276dadfadadd993866a2499d0a",
+  "final_run_id": "12f4fed76651402c97c09df96d6360dc",
+  "frozen_data_metadata_verified": 43,
+  "frozen_parquet_hashes_verified": 28,
+  "gate_order_valid": true,
+  "git_diff_check": true,
+  "git_status": "M README.md\n?? docs/phase7_commands.json\n?? docs/phase7_final_evaluation.md\n?? docs/phase7_final_metrics.json\n?? docs/phase7_prediction_manifest.json\n?? docs/phase7_preflight.json\n?? docs/phase7_verification.json\n?? docs/system_architecture.md\n?? src/recsys_evaluation/\n?? tests/test_final_evaluation.py\n?? tools/final_evaluation.py\n?? tools/verify_final_evaluation.py",
+  "git_status_scope": "Captured before writing this optional verification record itself",
+  "head": "98a92b54ee3b05fd4ee175442e3bc3991ef436f1",
+  "historical_runs_verified": 21,
+  "intentional_existing_edits": [
+    "README.md"
+  ],
+  "metric_namespaces_verified": 631,
+  "no_commit_or_push": true,
+  "no_training_tuning_or_promotion": true,
+  "original_python_files_unchanged": true,
+  "passed": true,
+  "per_query_aggregation_exact": true,
+  "prediction_complete_sha256": "546153be660ad28ba4ccac9afe75e85cc94b6fe4dde9d88d10f5ac92aea09ae2",
+  "prediction_manifest_sha256": "d2e94de13a8c38e5554d87a33e2d124c378b91406a0bc026eafddcb5141aaa4a",
+  "protected_hash_errors": [],
+  "protected_hashes_verified": 1021,
+  "raw_acquisition_hashes_verified": 7,
+  "registry_unchanged": true,
+  "staged_paths": [],
+  "test_target_access": "Gate C one buffered payload read; final read-only integrity verification hashes both frozen protocols without recalculating Test scores.",
+  "tests": {
+    "isolated": {
+      "count": 104,
+      "failures": 0,
+      "log_sha256": "4284039dee782059d5c1d29cd12b0d7c5e515233d6a3c745ee06661b54513dd2",
+      "seconds": 16.941,
+      "skips": 0
+    },
+    "working": {
+      "count": 104,
+      "failures": 0,
+      "log_sha256": "de689fa288020732a853af65ab4f165232d5ddbbe681720312c7fa850d3ec0d0",
+      "seconds": 14.211,
+      "skips": 0
+    }
+  },
+  "uploaded_results_sha256_verified": true,
+  "verification_command": [
+    "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/python",
+    "tools/verify_final_evaluation.py",
+    "--tracking-uri",
+    "http://127.0.0.1:5002",
+    "--save",
+    "outputs/phase7/verification_final.json"
+  ],
+  "verification_source_sha256": "d836ea7e3637207ddf89a5f613371dc0aa9e9473ac32be05ff3c21b69117742a"
+}

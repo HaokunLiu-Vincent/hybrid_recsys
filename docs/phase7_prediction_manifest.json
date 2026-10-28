@@ -1,0 +1,168 @@
+{
+  "complete_sha256": "546153be660ad28ba4ccac9afe75e85cc94b6fe4dde9d88d10f5ac92aea09ae2",
+  "manifest": {
+    "catalog_id": "6b607210c9f671ac865f15a1c1ce2168573246722e66ffae32075e9405c36fd2",
+    "code_identity": {
+      "src/recsys_evaluation/__init__.py": "63b25d656c8f11b30cf9ca83966daf3cb7336e4e6d793fb018b2909d863784e6",
+      "src/recsys_evaluation/core.py": "9ae389f2439393b9bba4e4378aad19aa07754d12af426fea8c7d5674e4b210cc",
+      "src/recsys_evaluation/workflow.py": "54e2c707a5cb5eab3c4982c2ad857ac197e2d0a35c87147fa856188e9e8494f5",
+      "tests/test_final_evaluation.py": "4dddb980b657145959abd90924075f354e7b3c604de4f1a7bb78dd1ef2dc9dec",
+      "tools/final_evaluation.py": "6314a6311ccff95f12a7b2be4ac855f4a428a051392131a2049d3e91769313fa"
+    },
+    "contract": {
+      "bootstrap": {
+        "interval": "95% percentile",
+        "replicates": 2000,
+        "seed": 42,
+        "unit": "paired eligible user"
+      },
+      "catalog": "train_observed",
+      "cohorts": [
+        "cold_0",
+        "sparse_1_4",
+        "moderate_5_19",
+        "warm_20_plus"
+      ],
+      "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+      "history": "frozen_train",
+      "methods": [
+        "als",
+        "rrf",
+        "lambdamart"
+      ],
+      "metrics": [
+        "recall20",
+        "recall50",
+        "recall100",
+        "ndcg20",
+        "hit20",
+        "hit100",
+        "pool_recall",
+        "catalog_coverage20",
+        "catalog_coverage100"
+      ],
+      "model_uri": "models:/MovieLensHybridRecommender/1",
+      "no_test_tuning": true,
+      "ordering": "userId ascending, score descending, movieId ascending; ALS original source ranks then movie-ID tail",
+      "positive_threshold": 4.0,
+      "primary_comparison": [
+        "recall20",
+        "ndcg20"
+      ],
+      "primary_denominator": "eligible",
+      "protocol": "per_user_70_15_15",
+      "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+      "rrf_constant": 60,
+      "secondary_denominator": "all_observed",
+      "seen": "all_train_rated",
+      "selection": "original Validation NDCG@20; 31 trees",
+      "source_budget": 100,
+      "split": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799"
+    },
+    "data_reads": [
+      "data/splits/small_v1/split_manifest.json"
+    ],
+    "exact_pyfunc_top20": true,
+    "gate": "B",
+    "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+    "model_uri": "models:/MovieLensHybridRecommender/1",
+    "parity_rows": 12200,
+    "passed": true,
+    "preflight_complete_sha256": "fdb2675acfa841c72bf1c3b4a6c524bd5b03cf240d1befb75197dc9f8517da2d",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "runtime": {
+      "packages": {
+        "PyYAML": "6.0.3",
+        "implicit": "0.7.2",
+        "lightgbm": "4.6.0",
+        "mlflow": "3.17.2",
+        "numpy": "2.4.4",
+        "pandas": "3.0.2",
+        "psutil": "7.2.2",
+        "pyarrow": "24.0.0",
+        "pytz": "2026.5",
+        "scipy": "1.17.1",
+        "threadpoolctl": "3.6.0",
+        "torch": "2.11.0"
+      },
+      "python": "3.11.9"
+    },
+    "sealed_at": "2026-10-28T06:27:21.709576+00:00",
+    "source_sha256": {
+      "src/recsys_evaluation/__init__.py": "63b25d656c8f11b30cf9ca83966daf3cb7336e4e6d793fb018b2909d863784e6",
+      "src/recsys_evaluation/core.py": "9ae389f2439393b9bba4e4378aad19aa07754d12af426fea8c7d5674e4b210cc",
+      "src/recsys_evaluation/workflow.py": "54e2c707a5cb5eab3c4982c2ad857ac197e2d0a35c87147fa856188e9e8494f5",
+      "tests/test_final_evaluation.py": "4dddb980b657145959abd90924075f354e7b3c604de4f1a7bb78dd1ef2dc9dec",
+      "tools/final_evaluation.py": "6314a6311ccff95f12a7b2be4ac855f4a428a051392131a2049d3e91769313fa"
+    },
+    "sources": {
+      "genre": 61000,
+      "implicit_als": 61000,
+      "itemcf": 61000,
+      "lightgcn": 61000,
+      "popularity": 61000,
+      "two_tower": 61000
+    },
+    "test_access": false,
+    "training_cutoff": "per_user:9859a72f9f04efe290c109f073f6e845cf82a5490b488f688e5f2ef8cc2ec1d6",
+    "union_rows": 224127,
+    "user_population_sha256": "76c30a2dc4f2cf611bca8e34c3fddcd1ec9dbb69b4dc8faaedd1ff914e69734c",
+    "users": 610
+  },
+  "manifest_sha256": "d2e94de13a8c38e5554d87a33e2d124c378b91406a0bc026eafddcb5141aaa4a",
+  "payload_inventory": {
+    "als.parquet": {
+      "bytes": 4893889,
+      "sha256": "affa644be784435f4ad38dc1f4f276891e81779ce31664bab17ddd867ad6ced1"
+    },
+    "features.parquet": {
+      "bytes": 5955994,
+      "sha256": "5fa18e9db0a43da57ba48276e2948e5a97c8dffff49988113a82a6c646f2b8c5"
+    },
+    "lambdamart.parquet": {
+      "bytes": 4606096,
+      "sha256": "6721729b1b4a9a568821a56b9ad8a8d61d5a85fc7106b3c0815a2bf6a5d26ffb"
+    },
+    "prediction_manifest.json": {
+      "bytes": 3994,
+      "sha256": "d2e94de13a8c38e5554d87a33e2d124c378b91406a0bc026eafddcb5141aaa4a"
+    },
+    "report.json": {
+      "bytes": 3994,
+      "sha256": "d2e94de13a8c38e5554d87a33e2d124c378b91406a0bc026eafddcb5141aaa4a"
+    },
+    "rrf.parquet": {
+      "bytes": 4891707,
+      "sha256": "8914e2c281d6d248b23613eee1f6ff9a0ee74315debd23e4ca82d484ba60fc67"
+    },
+    "six_sources/genre/candidates.parquet": {
+      "bytes": 174035,
+      "sha256": "aa8cff97b58ddd8940ba814a727f5a104c6382b2e2a2c5a4695c8d131d1cc9bf"
+    },
+    "six_sources/implicit_als/candidates.parquet": {
+      "bytes": 583437,
+      "sha256": "ad1e3ed6c493823c6d9e1d2f8e9a8136ca6ff10b9757c4c2c3a16ada9803b940"
+    },
+    "six_sources/itemcf/candidates.parquet": {
+      "bytes": 539493,
+      "sha256": "057a3de60c7cf7d05e338ad332e75627e7b94a650535e4f4690dbf0b6d4e3404"
+    },
+    "six_sources/lightgcn/candidates.parquet": {
+      "bytes": 576295,
+      "sha256": "44fe1e8e2f317cd5741433648f928f41737504bdbf4e675912ac3d377305c27f"
+    },
+    "six_sources/popularity/candidates.parquet": {
+      "bytes": 78230,
+      "sha256": "e7a5327af7248f53cb094ee5f1e751356b074ce4eca595780f1894b1bf950919"
+    },
+    "six_sources/two_tower/candidates.parquet": {
+      "bytes": 524532,
+      "sha256": "28b54ef1caf024a81281b042cd9368e11b79930b7fd41250d08dff76e7f500a8"
+    },
+    "union.parquet": {
+      "bytes": 4606096,
+      "sha256": "6721729b1b4a9a568821a56b9ad8a8d61d5a85fc7106b3c0815a2bf6a5d26ffb"
+    }
+  }
+}

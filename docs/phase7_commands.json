@@ -1,0 +1,135 @@
+{
+  "scope": "Actual primary execution commands; file inspection/edit operations omitted. Final read-only verification command/result is recorded in phase7_verification.json.",
+  "commands": [
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "tools/final_evaluation.py",
+        "preflight",
+        "--tracking-uri",
+        "http://127.0.0.1:5002"
+      ],
+      "cwd": "/Users/vincent/Documents/projects/hybrid_recsys",
+      "exit_code": 0,
+      "log": "outputs/phase7/gate_a.log",
+      "log_sha256": "ac22200425c602c0ab099224b4b39ecdfc30742a9db40850104eceb1a2ba92b1"
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "tools/final_evaluation.py",
+        "seal"
+      ],
+      "cwd": "/Users/vincent/Documents/projects/hybrid_recsys",
+      "exit_code": 0,
+      "log": "outputs/phase7/gate_b.log",
+      "log_sha256": "68b82f47c584543e36124bfb81302689f4b6199226bac26be6a1bb9f12c989c9"
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "tools/final_evaluation.py",
+        "evaluate"
+      ],
+      "cwd": "/Users/vincent/Documents/projects/hybrid_recsys",
+      "exit_code": 0,
+      "log": "outputs/phase7/gate_c.log",
+      "log_sha256": "71080dd3a3fbdc50fdb41eba3d9f2c5b10c6aea9bf2f4938209bdd44121d5ccd"
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "tools/final_evaluation.py",
+        "log",
+        "--tracking-uri",
+        "http://127.0.0.1:5002"
+      ],
+      "cwd": "/Users/vincent/Documents/projects/hybrid_recsys",
+      "exit_code": 0,
+      "log": "outputs/phase7/gate_d.log",
+      "log_sha256": "91f26cf6353a826e3d3dc2a21b7d728d6156f65ad46de5c65cc1d590b6d40819"
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "tools/final_evaluation.py",
+        "log",
+        "--tracking-uri",
+        "http://127.0.0.1:5002"
+      ],
+      "cwd": "/Users/vincent/Documents/projects/hybrid_recsys",
+      "exit_code": 0,
+      "log": "outputs/phase7/gate_d_readonly_verify.log",
+      "log_sha256": "6c1733de57f4f6a6daa51feb75bee4764f9474634778432091c196e19adbdb57"
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "tools/run_tests.py"
+      ],
+      "cwd": "/Users/vincent/Documents/projects/hybrid_recsys",
+      "exit_code": 0,
+      "log": "outputs/phase7/tests_final_working.log",
+      "log_sha256": "de689fa288020732a853af65ab4f165232d5ddbbe681720312c7fa850d3ec0d0",
+      "tests": 104,
+      "seconds": 14.211,
+      "failures": 0,
+      "skips": 0
+    },
+    {
+      "argv": [
+        "/private/tmp/hybrid_recsys_phase5_isolated/bin/python",
+        "-B",
+        "tools/run_tests.py"
+      ],
+      "cwd": "/Users/vincent/Documents/projects/hybrid_recsys",
+      "exit_code": 0,
+      "log": "outputs/phase7/tests_final_isolated.log",
+      "log_sha256": "4284039dee782059d5c1d29cd12b0d7c5e515233d6a3c745ee06661b54513dd2",
+      "tests": 104,
+      "seconds": 16.941,
+      "failures": 0,
+      "skips": 0
+    },
+    {
+      "argv": [
+        ".venv/bin/uv",
+        "lock",
+        "--check",
+        "--offline"
+      ],
+      "environment": {
+        "UV_CACHE_DIR": ".uv-cache"
+      },
+      "exit_code": 0,
+      "stdout": "Resolved 222 packages in 9ms"
+    },
+    {
+      "argv": [
+        "scripts/start_mlflow.sh",
+        "status"
+      ],
+      "exit_code": 0,
+      "result": "running=true, healthy=true, owned localhost port 5002; sandboxed status health probe first reported false due to localhost restrictions; authorized outside-sandbox check passed"
+    },
+    {
+      "argv": [
+        "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/python",
+        "tools/verify_final_evaluation.py",
+        "--tracking-uri",
+        "http://127.0.0.1:5002",
+        "--save",
+        "outputs/phase7/verification_final.json"
+      ],
+      "exit_code": 0,
+      "log": "outputs/phase7/final_verification_readonly.log",
+      "result": "passed; verified raw data, protected files, gates, saved metrics, registry, historical runs and uploaded bytes"
+    }
+  ]
+}
