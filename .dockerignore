@@ -1,0 +1,31 @@
+# Deny by default: no source data, model history, registry stores or credentials.
+**
+!Dockerfile
+!.dockerignore
+!pyproject.toml
+!uv.lock
+!src/
+!src/recsys_serving/
+!src/recsys_serving/*.py
+
+# Explicit protections remain after the allowlist.
+.git/
+.venv/
+.uv-cache/
+.dvc/cache/
+data/
+artifacts/
+outputs/
+mlruns/
+archive/
+**/__pycache__/
+**/*.pyc
+**/.ipynb_checkpoints/
+.env*
+**/.env*
+.aws/
+.ssh/
+**/kaggle.json
+**/credentials.json
+**/*.pem
+**/*.key

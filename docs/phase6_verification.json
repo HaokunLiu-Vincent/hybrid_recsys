@@ -1,0 +1,646 @@
+{
+  "checked_at_utc": "2026-10-28T06:06:37.598482+00:00",
+  "git_head": "1e7e65664723bc86eedbccef572f17dc79113b4b",
+  "initial_git_status": "",
+  "git_status": " M README.md\n M pyproject.toml\n M uv.lock\n?? .dockerignore\n?? Dockerfile\n?? docs/phase6_commands.json\n?? docs/phase6_fastapi_docker.md\n?? docs/phase6_serving_results.json\n?? docs/phase6_verification.json\n?? src/recsys_serving/\n?? tests/test_serving_api.py\n?? tests/test_serving_delivery.py\n?? tools/create_serving_reference.py\n?? tools/export_serving_model.py\n?? tools/verify_docker_serving.py\n?? tools/verify_serving_http.py\n",
+  "branch": "main",
+  "protected_hashes_verified": 744,
+  "protected_hash_errors": [],
+  "frozen_data_metadata_verified": 43,
+  "frozen_data_metadata_errors": [],
+  "original_source_files_verified": 46,
+  "modified_original_source_files": [],
+  "tests": {
+    "working": {
+      "passed": 85,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 13.668,
+      "log": "outputs/phase6/tests_final_working.log",
+      "sha256": "12719475b6246bf2005b2a258c848729b3838c15204086a1adfba8431a4071fc"
+    },
+    "isolated": {
+      "passed": 85,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 15.252,
+      "log": "outputs/phase6/tests_final_isolated.log",
+      "sha256": "cd5bba1da85675b8b974db20aea6403cebc23ea2f6a4aaf9d217376787130765"
+    }
+  },
+  "active_python_files_ast_valid": 75,
+  "lightweight_checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--quiet"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        ".venv/bin/uv",
+        "lock",
+        "--check",
+        "--offline"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Resolved 222 packages in 12ms\n"
+    }
+  ],
+  "selected_registry_version": {
+    "name": "MovieLensHybridRecommender",
+    "version": "1",
+    "run_id": "b99a65b035ed4f6e868bd846153d14cb",
+    "source": "models:/m-01f3866343e74d258fbc18cd178ced9e",
+    "tags": {
+      "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+      "release_status": "validation_candidate",
+      "dataset": "movielens_latest_small",
+      "split": "small_v1",
+      "protocol": "per_user_70_15_15",
+      "ranking_model": "lightgbm_lambdamart",
+      "retriever_count": "6",
+      "rrf_constant": "60",
+      "feature_count": "53",
+      "test_evaluated": "false",
+      "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "source_git_revision": "b110fe6959ce47e7a2872acfc793210ccd6508d5",
+      "lock_sha256": "e405905fdb6152228784727fcafa66749ac546a9887dc6eef7254254aaa584e9",
+      "release_complete_sha256": "7776b30a4cd2f392676da1096e5a22b77b7f8d091f5259c2cd0a3b5e868a7a95",
+      "release_manifest_sha256": "c859217da1492c5c4add7cdd57751da5de98c739458f001ce6ddc909977fc601"
+    },
+    "aliases": {
+      "candidate": "1"
+    }
+  },
+  "registry_and_alias_unchanged": true,
+  "model_info": {
+    "name": "MovieLensHybridRecommender",
+    "version": "1",
+    "release_status": "validation_candidate",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "protocol": "per_user_70_15_15",
+    "retriever_count": 6,
+    "rrf_constant": 60,
+    "ranker": "lightgbm_lambdamart",
+    "feature_schema_version": "small_lambdamart_features_v1",
+    "feature_schema_fingerprint": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+    "test_evaluated": false
+  },
+  "model_release_lock_sha256": "e405905fdb6152228784727fcafa66749ac546a9887dc6eef7254254aaa584e9",
+  "serving_lock_sha256": "1188c119c8ddb1f1c2bf61feec71efef494f1ac884fb6ffe3a6e5310592970bc",
+  "serving_pyproject_sha256": "4d7d33dcc8539f136bbc305c8b8c0f86f7f332be0e3b494e6bc5448b57d1d9fa",
+  "serving_source_sha256": {
+    "app.py": "4afba59d02c569364cb023c171ccca215c2b8192c17bc9e93d2c7d23855b4fc1",
+    "__init__.py": "37d1b03d11316752513f3013b9567fdeac4e3829b40dc231d2ae4a2567ab4cff",
+    "model_loader.py": "13f948939cede921f5c97421ee67e3b1df84dc37a4e10dda577f5cf19e0a03a7",
+    "settings.py": "8bb1c10d58c10977a374c89dc210fb0f374e16c9abb5027a2c719753e61b100b",
+    "schemas.py": "69cb1357e4c26e039275a5fabef30239bf9710e3e2584ecc2bbd40ce5ef4b98a",
+    "__main__.py": "b0e7878cb8d8cabe625dba68666a25837b404d058da0b72ebedf8317e6eb33ee"
+  },
+  "dockerfile_sha256": "0020c7b4a8907355fe312d47b7e237fb1e62d837e3b5bd3a3286cdc1096249ca",
+  "dockerignore_sha256": "a8880fe1e7c3eda3817fb8778bd53e71015676ecb7ccadb342d8d19667d9b9f4",
+  "offline_export": {
+    "path": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/deployment_models/movielens_hybrid_v1",
+    "model_uri": "models:/MovieLensHybridRecommender/1",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "deployment_sha256": "9c9168a51fe50d4dff08d2af0342754beaba581b54c6244488435c353c7c006a",
+    "files": 124
+  },
+  "native_registry": {
+    "url": "http://127.0.0.1:8000",
+    "queries": 611,
+    "parity": {
+      "rows": 12220,
+      "ranking_mismatches": 0,
+      "max_absolute_score_difference": 0.0,
+      "max_relative_score_difference": 0.0,
+      "score_tolerance": 0.0,
+      "exact_scores": true
+    },
+    "invalid_validation_cases": 18,
+    "malformed_json_cases": 2,
+    "batch_body_limits_verified": true,
+    "known_zero_positive_user": 163,
+    "unknown_user": 1000610,
+    "startup_and_runtime": {
+      "name": "MovieLensHybridRecommender",
+      "version": "1",
+      "release_status": "validation_candidate",
+      "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+      "protocol": "per_user_70_15_15",
+      "retriever_count": 6,
+      "rrf_constant": 60,
+      "ranker": "lightgbm_lambdamart",
+      "feature_schema_version": "small_lambdamart_features_v1",
+      "feature_schema_fingerprint": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+      "test_evaluated": false,
+      "source_mode": "registry",
+      "load_count": 1,
+      "startup_seconds": 1.7481452909996733,
+      "requests_served": 52,
+      "rss_bytes": 467795968
+    },
+    "latency": {
+      "known_single": {
+        "samples": 10,
+        "p50_ms": 46.063250018050894,
+        "p95_ms": 47.8859918541275,
+        "min_ms": 44.07524998532608,
+        "max_ms": 48.788541986141354,
+        "sequential_requests_per_second": 21.75737782653074,
+        "raw_ms": [
+          46.05083400383592,
+          46.31791700376198,
+          48.788541986141354,
+          44.53320900211111,
+          45.06454203510657,
+          44.07524998532608,
+          45.46404100256041,
+          46.2369589949958,
+          46.78287502611056,
+          46.07566603226587
+        ]
+      },
+      "unknown_single": {
+        "samples": 10,
+        "p50_ms": 4.153687012149021,
+        "p95_ms": 4.453581239795312,
+        "min_ms": 3.7809170316904783,
+        "max_ms": 4.493125015869737,
+        "sequential_requests_per_second": 240.86276848206705,
+        "raw_ms": [
+          3.987792006228119,
+          3.7809170316904783,
+          4.072832991369069,
+          4.493125015869737,
+          4.405249957926571,
+          3.8933749892748892,
+          4.234541032928973,
+          4.3311669724062085,
+          4.309665993787348,
+          3.838124976027757
+        ]
+      },
+      "batch_8": {
+        "samples": 6,
+        "p50_ms": 124.66164599754848,
+        "p95_ms": 127.70526023814455,
+        "min_ms": 118.44820796977729,
+        "max_ms": 128.38508299319074,
+        "sequential_requests_per_second": 8.055091012366063,
+        "raw_ms": [
+          125.6586670060642,
+          122.91920796269551,
+          118.44820796977729,
+          125.66579197300598,
+          123.66462498903275,
+          128.38508299319074
+        ]
+      }
+    },
+    "scope": "Local bounded loopback inference checks; no held-out targets or quality metrics computed",
+    "gate": "A",
+    "process_start_to_ready_seconds": 2.929329916019924,
+    "peak_sampled_rss_bytes": 467795968,
+    "direct_registered_model_seconds": 6.545613958965987
+  },
+  "native_offline": {
+    "export": {
+      "path": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/deployment_models/movielens_hybrid_v1",
+      "model_uri": "models:/MovieLensHybridRecommender/1",
+      "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+      "deployment_sha256": "9c9168a51fe50d4dff08d2af0342754beaba581b54c6244488435c353c7c006a",
+      "files": 124
+    },
+    "startup_failures": {
+      "wrong_release": {
+        "returncode": 3,
+        "expected_failure": true
+      },
+      "missing_model": {
+        "returncode": 3,
+        "expected_failure": true
+      },
+      "corrupt_model": {
+        "returncode": 3,
+        "expected_failure": true
+      },
+      "wrong_version": {
+        "returncode": 1,
+        "expected_failure": true
+      }
+    },
+    "registry_loaded_service_continues_offline": true,
+    "offline_first": {
+      "url": "http://127.0.0.1:8002",
+      "queries": 611,
+      "parity": {
+        "rows": 12220,
+        "ranking_mismatches": 0,
+        "max_absolute_score_difference": 0.0,
+        "max_relative_score_difference": 0.0,
+        "score_tolerance": 0.0,
+        "exact_scores": true
+      },
+      "invalid_validation_cases": 18,
+      "malformed_json_cases": 2,
+      "batch_body_limits_verified": true,
+      "known_zero_positive_user": 163,
+      "unknown_user": 1000610,
+      "startup_and_runtime": {
+        "name": "MovieLensHybridRecommender",
+        "version": "1",
+        "release_status": "validation_candidate",
+        "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+        "protocol": "per_user_70_15_15",
+        "retriever_count": 6,
+        "rrf_constant": 60,
+        "ranker": "lightgbm_lambdamart",
+        "feature_schema_version": "small_lambdamart_features_v1",
+        "feature_schema_fingerprint": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+        "test_evaluated": false,
+        "source_mode": "local",
+        "load_count": 1,
+        "startup_seconds": 1.4440089580020867,
+        "requests_served": 23,
+        "rss_bytes": 465354752
+      },
+      "latency": {},
+      "scope": "Local bounded loopback inference checks; no held-out targets or quality metrics computed",
+      "process_start_to_ready_seconds": 2.453997666016221
+    },
+    "offline_restart": {
+      "url": "http://127.0.0.1:8002",
+      "queries": 611,
+      "parity": {
+        "rows": 12220,
+        "ranking_mismatches": 0,
+        "max_absolute_score_difference": 0.0,
+        "max_relative_score_difference": 0.0,
+        "score_tolerance": 0.0,
+        "exact_scores": true
+      },
+      "invalid_validation_cases": 18,
+      "malformed_json_cases": 2,
+      "batch_body_limits_verified": true,
+      "known_zero_positive_user": 163,
+      "unknown_user": 1000610,
+      "startup_and_runtime": {
+        "name": "MovieLensHybridRecommender",
+        "version": "1",
+        "release_status": "validation_candidate",
+        "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+        "protocol": "per_user_70_15_15",
+        "retriever_count": 6,
+        "rrf_constant": 60,
+        "ranker": "lightgbm_lambdamart",
+        "feature_schema_version": "small_lambdamart_features_v1",
+        "feature_schema_fingerprint": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+        "test_evaluated": false,
+        "source_mode": "local",
+        "load_count": 1,
+        "startup_seconds": 1.4163349170121364,
+        "requests_served": 23,
+        "rss_bytes": 463011840
+      },
+      "latency": {},
+      "scope": "Local bounded loopback inference checks; no held-out targets or quality metrics computed",
+      "process_start_to_ready_seconds": 2.4547527079703286
+    },
+    "gate": "B",
+    "mlflow_unreachable_during_offline_start_and_restart": true,
+    "offline_start_restart_passed": true
+  },
+  "docker": {
+    "gate_c": "passed",
+    "gate_d": "passed",
+    "image_id": "sha256:22c38e5a263390737b778b5bb3b4fa349a74e6fa2f819a5cf57fe1186be71a30",
+    "image_size_bytes": 8535447513,
+    "platform": "linux/arm64",
+    "container_id": "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0",
+    "url": "http://127.0.0.1:8001",
+    "startup_wall_seconds": 5.720151541987434,
+    "first_http": {
+      "url": "http://127.0.0.1:8001",
+      "queries": 611,
+      "parity": {
+        "rows": 12220,
+        "ranking_mismatches": 0,
+        "max_absolute_score_difference": 0.0,
+        "max_relative_score_difference": 0.0,
+        "score_tolerance": 0.0,
+        "exact_scores": true
+      },
+      "invalid_validation_cases": 18,
+      "malformed_json_cases": 2,
+      "batch_body_limits_verified": true,
+      "known_zero_positive_user": 163,
+      "unknown_user": 1000610,
+      "startup_and_runtime": {
+        "name": "MovieLensHybridRecommender",
+        "version": "1",
+        "release_status": "validation_candidate",
+        "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+        "protocol": "per_user_70_15_15",
+        "retriever_count": 6,
+        "rrf_constant": 60,
+        "ranker": "lightgbm_lambdamart",
+        "feature_schema_version": "small_lambdamart_features_v1",
+        "feature_schema_fingerprint": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+        "test_evaluated": false,
+        "source_mode": "local",
+        "load_count": 1,
+        "startup_seconds": 2.1175372510000443,
+        "requests_served": 52,
+        "rss_bytes": 363315200
+      },
+      "latency": {
+        "known_single": {
+          "samples": 10,
+          "p50_ms": 52.6703959912993,
+          "p95_ms": 55.062544060638174,
+          "min_ms": 51.42045899992809,
+          "max_ms": 55.96087500452995,
+          "sequential_requests_per_second": 18.81187635305314,
+          "raw_ms": [
+            55.96087500452995,
+            53.96458401810378,
+            52.86850000265986,
+            53.528749966062605,
+            52.472291979938745,
+            51.91862495848909,
+            53.20870800642297,
+            51.666334038600326,
+            51.42045899992809,
+            51.488750032149255
+          ]
+        },
+        "unknown_single": {
+          "samples": 10,
+          "p50_ms": 6.440083496272564,
+          "p95_ms": 7.723108329810202,
+          "min_ms": 5.620707990601659,
+          "max_ms": 7.743208028841764,
+          "sequential_requests_per_second": 150.3109557865076,
+          "raw_ms": [
+            6.2271670321933925,
+            6.242666975595057,
+            5.620707990601659,
+            6.891958008054644,
+            6.478374998550862,
+            6.761084019672126,
+            7.743208028841764,
+            7.698542030993849,
+            5.944542004726827,
+            6.401791993994266
+          ]
+        },
+        "batch_8": {
+          "samples": 6,
+          "p50_ms": 160.1346670067869,
+          "p95_ms": 238.92645777959842,
+          "min_ms": 148.62741698743775,
+          "max_ms": 246.96404102724046,
+          "sequential_requests_per_second": 5.554752986288499,
+          "raw_ms": [
+            149.23641696805134,
+            165.37674999563023,
+            214.81370803667232,
+            246.96404102724046,
+            148.62741698743775,
+            154.8925840179436
+          ]
+        }
+      },
+      "scope": "Local bounded loopback inference checks; no held-out targets or quality metrics computed"
+    },
+    "restart_http": {
+      "url": "http://127.0.0.1:8001",
+      "queries": 611,
+      "parity": {
+        "rows": 12220,
+        "ranking_mismatches": 0,
+        "max_absolute_score_difference": 0.0,
+        "max_relative_score_difference": 0.0,
+        "score_tolerance": 0.0,
+        "exact_scores": true
+      },
+      "invalid_validation_cases": 18,
+      "malformed_json_cases": 2,
+      "batch_body_limits_verified": true,
+      "known_zero_positive_user": 163,
+      "unknown_user": 1000610,
+      "startup_and_runtime": {
+        "name": "MovieLensHybridRecommender",
+        "version": "1",
+        "release_status": "validation_candidate",
+        "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+        "protocol": "per_user_70_15_15",
+        "retriever_count": 6,
+        "rrf_constant": 60,
+        "ranker": "lightgbm_lambdamart",
+        "feature_schema_version": "small_lambdamart_features_v1",
+        "feature_schema_fingerprint": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+        "test_evaluated": false,
+        "source_mode": "local",
+        "load_count": 1,
+        "startup_seconds": 1.849120042000095,
+        "requests_served": 23,
+        "rss_bytes": 378331136
+      },
+      "latency": {},
+      "scope": "Local bounded loopback inference checks; no held-out targets or quality metrics computed"
+    },
+    "offline_mlflow_unreachable_verified": true,
+    "restart_ready_seconds": 4.8835669590043835,
+    "runtime": {
+      "uid": 10001,
+      "python": "3.11.9",
+      "machine": "aarch64",
+      "cuda_available": false,
+      "torch_build": "2.11.0+cu130",
+      "packages": {
+        "numpy": "2.4.4",
+        "pandas": "3.0.2",
+        "scipy": "1.17.1",
+        "pyarrow": "24.0.0",
+        "psutil": "7.2.2",
+        "PyYAML": "6.0.3",
+        "pytz": "2026.5",
+        "torch": "2.11.0",
+        "implicit": "0.7.2",
+        "threadpoolctl": "3.6.0",
+        "lightgbm": "4.6.0",
+        "mlflow": "3.17.2",
+        "fastapi": "0.162.0",
+        "uvicorn": "0.54.0",
+        "httpx": "0.28.1"
+      }
+    },
+    "health": "healthy",
+    "stats": "{\"BlockIO\":\"1.2GB / 0B\",\"CPUPerc\":\"16.03%\",\"Container\":\"05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0\",\"ID\":\"05f3718cd42e\",\"MemPerc\":\"8.80%\",\"MemUsage\":\"270.5MiB / 3GiB\",\"Name\":\"movielens-phase6-v1\",\"NetIO\":\"101kB / 1.07MB\",\"PIDs\":\"3\"}\n",
+    "app_file_inventory": "/app/recsys_serving/app.py\n/app/recsys_serving/__init__.py\n/app/recsys_serving/model_loader.py\n/app/recsys_serving/settings.py\n/app/recsys_serving/schemas.py\n/app/recsys_serving/__main__.py\n",
+    "readonly_model_mount": true,
+    "optional_registry_connectivity": {
+      "returncode": 0,
+      "stdout": "200\n",
+      "stderr": ""
+    },
+    "wrong_release_exit_code": 3,
+    "registered_model_mutated": false
+  },
+  "docker_security": {
+    "user": "app",
+    "readonly_rootfs": true,
+    "readonly_model_mount": [
+      {
+        "Type": "bind",
+        "Source": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/deployment_models/movielens_hybrid_v1",
+        "Destination": "/models/movielens_hybrid_v1",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "cpu_quota_nanocpus": 2000000000,
+    "memory_limit_bytes": 3221225472,
+    "pids_limit": 256,
+    "capabilities_dropped": [
+      "ALL"
+    ],
+    "security_options": [
+      "no-new-privileges"
+    ],
+    "published_ports": {
+      "8000/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "8001"
+        }
+      ]
+    }
+  },
+  "inference_contract_verification": {
+    "recommendation_rows": 12220,
+    "eligible_catalog_violations": 0,
+    "train_seen_violations": 0,
+    "duplicate_pairs": 0,
+    "known_zero_positive_users": 4
+  },
+  "python": "3.11.9",
+  "native_versions": {
+    "fastapi": "0.162.0",
+    "uvicorn": "0.54.0",
+    "pydantic": "2.14.1",
+    "httpx": "0.28.1",
+    "mlflow": "3.17.2"
+  },
+  "optional_registry_docker_startup": {
+    "status": "unavailable_with_current_host_header_policy",
+    "http_health": 200,
+    "registry_api_status": 403,
+    "reason": "Invalid Host header - possible DNS rebinding attack detected",
+    "server_binding_or_security_changed": false,
+    "diagnostic_log": "outputs/phase6/docker_registry_diagnostic.log"
+  },
+  "no_test_targets_read": true,
+  "no_real_training_or_data_rebuild": true,
+  "no_registry_versions_created_or_modified": true,
+  "current_native_offline_info": {
+    "name": "MovieLensHybridRecommender",
+    "version": "1",
+    "release_status": "validation_candidate",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "protocol": "per_user_70_15_15",
+    "retriever_count": 6,
+    "rrf_constant": 60,
+    "ranker": "lightgbm_lambdamart",
+    "feature_schema_version": "small_lambdamart_features_v1",
+    "feature_schema_fingerprint": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+    "test_evaluated": false,
+    "source_mode": "local",
+    "load_count": 1,
+    "startup_seconds": 1.4163349170121364,
+    "requests_served": 24,
+    "rss_bytes": 33259520
+  },
+  "current_docker_info": {
+    "name": "MovieLensHybridRecommender",
+    "version": "1",
+    "release_status": "validation_candidate",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "protocol": "per_user_70_15_15",
+    "retriever_count": 6,
+    "rrf_constant": 60,
+    "ranker": "lightgbm_lambdamart",
+    "feature_schema_version": "small_lambdamart_features_v1",
+    "feature_schema_fingerprint": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+    "test_evaluated": false,
+    "source_mode": "local",
+    "load_count": 1,
+    "startup_seconds": 1.849120042000095,
+    "requests_served": 23,
+    "rss_bytes": 393535488
+  },
+  "mlflow_status": {
+    "pid": 44481,
+    "port": 5002,
+    "tracking_uri": "http://127.0.0.1:5002",
+    "backend_uri": "sqlite:////Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/mlflow.db",
+    "artifact_root": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/artifacts",
+    "command": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/python",
+      "-m",
+      "mlflow",
+      "server",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "5002",
+      "--workers",
+      "1",
+      "--backend-store-uri",
+      "sqlite:////Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/mlflow.db",
+      "--registry-store-uri",
+      "sqlite:////Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/mlflow.db",
+      "--serve-artifacts",
+      "--artifacts-destination",
+      "/Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/artifacts"
+    ],
+    "running": true,
+    "healthy": true
+  },
+  "limitations": [
+    "Validation-selected model, no final Test evaluation",
+    "Accepted cross-user temporal exposure and sparse cohort regression",
+    "8.54 GB image: exact historical Torch distribution has CUDA libraries; inference is CPU and CUDA is unavailable",
+    "Docker direct Registry mode blocked by current MLflow host-header policy; required offline mode is fully verified",
+    "Local loopback measurements with small sample counts; no production throughput claims",
+    "DVC environment dependency drift unchanged; serving lock recorded separately",
+    "No remote backup or public artifact/image distribution"
+  ],
+  "live_services": {
+    "native_offline": "http://127.0.0.1:8002",
+    "docker_offline": "http://127.0.0.1:8001",
+    "mlflow": "http://127.0.0.1:5002"
+  },
+  "registry_mode_native_demo_gracefully_stopped": true
+}

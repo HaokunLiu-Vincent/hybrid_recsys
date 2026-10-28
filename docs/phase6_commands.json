@@ -1,0 +1,571 @@
+[
+  {
+    "role": "dependency_resolution",
+    "argv": [
+      ".venv/bin/uv",
+      "add",
+      "--group",
+      "serve",
+      "fastapi==0.162.0",
+      "uvicorn==0.54.0",
+      "httpx==0.28.1",
+      "--no-sync"
+    ],
+    "returncode": 0
+  },
+  {
+    "role": "dependency_install",
+    "argv": [
+      ".venv/bin/uv",
+      "sync",
+      "--locked",
+      "--inexact",
+      "--group",
+      "serve",
+      "--group",
+      "mlops",
+      "--group",
+      "rank",
+      "--all-extras"
+    ],
+    "returncode": 0
+  },
+  {
+    "role": "image_build",
+    "argv": [
+      "docker",
+      "build",
+      "--platform",
+      "linux/arm64",
+      "--progress",
+      "plain",
+      "--tag",
+      "movielens-recsys-api:phase6_v1",
+      "."
+    ],
+    "returncode": 0,
+    "log": "outputs/phase6/docker_build_first.log"
+  },
+  {
+    "role": "native_registry_start",
+    "pid": 37221,
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/python",
+      "-B",
+      "-m",
+      "recsys_serving"
+    ],
+    "environment": {
+      "RECSYS_MODEL_SOURCE": "registry",
+      "RECSYS_TRACKING_URI": "http://127.0.0.1:5002",
+      "RECSYS_HOST": "127.0.0.1",
+      "RECSYS_PORT": "8000"
+    },
+    "url": "http://127.0.0.1:8000"
+  },
+  {
+    "role": "native_offline_start",
+    "pid": 38188,
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/python",
+      "-B",
+      "-m",
+      "recsys_serving"
+    ],
+    "url": "http://127.0.0.1:8002",
+    "model_path": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/deployment_models/movielens_hybrid_v1"
+  },
+  {
+    "role": "docker_integration",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "tools/verify_docker_serving.py",
+      "--image",
+      "movielens-recsys-api:phase6_v1",
+      "--name",
+      "movielens-phase6-v1",
+      "--port",
+      "8001",
+      "--model",
+      "outputs/deployment_models/movielens_hybrid_v1",
+      "--reference-dir",
+      "outputs/phase6/direct_reference",
+      "--output-dir",
+      "outputs/phase6/docker_verification",
+      "--keep-running"
+    ],
+    "returncode": 0
+  },
+  {
+    "role": "fresh_reference_cli",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "tools/create_serving_reference.py",
+      "--tracking-uri",
+      "http://127.0.0.1:5002",
+      "--output-dir",
+      "outputs/phase6/reproduced_reference"
+    ],
+    "returncode": 0
+  },
+  {
+    "argv": [
+      "docker",
+      "container",
+      "inspect",
+      "movielens-phase6-v1"
+    ],
+    "returncode": 1,
+    "seconds": 0.03521670802729204
+  },
+  {
+    "argv": [
+      "docker",
+      "image",
+      "inspect",
+      "movielens-recsys-api:phase6_v1"
+    ],
+    "returncode": 0,
+    "seconds": 0.04504366702167317
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--detach",
+      "--name",
+      "movielens-phase6-v1",
+      "--platform",
+      "linux/arm64",
+      "--label",
+      "io.recsys.phase=6",
+      "--cpus",
+      "2",
+      "--memory",
+      "3g",
+      "--pids-limit",
+      "256",
+      "--read-only",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--tmpfs",
+      "/tmp:rw,noexec,nosuid,size=536870912",
+      "--mount",
+      "type=bind,source=/Users/vincent/Documents/projects/hybrid_recsys/outputs/deployment_models/movielens_hybrid_v1,target=/models/movielens_hybrid_v1,readonly",
+      "--publish",
+      "127.0.0.1:8001:8000",
+      "movielens-recsys-api:phase6_v1"
+    ],
+    "returncode": 0,
+    "seconds": 0.2780866249813698
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.025811666972003877
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.03207233303692192
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.03184329200303182
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.02623662503901869
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.03108741599135101
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.02744937501847744
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.03460025001550093
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.030227624985855073
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.03261666698381305
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.029377416998613626
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.032377291994635016
+  },
+  {
+    "argv": [
+      "docker",
+      "exec",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0",
+      "/opt/venv/bin/python",
+      "-B",
+      "-c",
+      "import os,platform,importlib.metadata as m,json,torch; print(json.dumps(dict(uid=os.getuid(),python=platform.python_version(),machine=platform.machine(),cuda_available=torch.cuda.is_available(),torch_build=torch.__version__,packages={p:m.version(p) for p in ['numpy','pandas','scipy','pyarrow','psutil','PyYAML','pytz','torch','implicit','threadpoolctl','lightgbm','mlflow','fastapi','uvicorn','httpx']})))"
+    ],
+    "returncode": 0,
+    "seconds": 3.189596915966831
+  },
+  {
+    "argv": [
+      "docker",
+      "exec",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0",
+      "find",
+      "/app",
+      "-type",
+      "f"
+    ],
+    "returncode": 0,
+    "seconds": 0.055474374967161566
+  },
+  {
+    "argv": [
+      "docker",
+      "stats",
+      "--no-stream",
+      "--format",
+      "{{json .}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 1.0361152499681339
+  },
+  {
+    "argv": [
+      "docker",
+      "restart",
+      "--time",
+      "30",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 1.0333515829988755
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.025132875016424805
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.030666875012684613
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.05980024999007583
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.02738537499681115
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.025818416965194046
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.02711066696792841
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.023857042018789798
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.026912500034086406
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.026355749985668808
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.03106845897855237
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "--format",
+      "{{json .State}}",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.04911170800914988
+  },
+  {
+    "argv": [
+      "docker",
+      "exec",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0",
+      "/opt/venv/bin/python",
+      "-B",
+      "-c",
+      "import urllib.request; print(urllib.request.urlopen('http://host.docker.internal:5002/health',timeout=3).status)"
+    ],
+    "returncode": 0,
+    "seconds": 0.35543087497353554
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--detach",
+      "--name",
+      "movielens-phase6-v1-wrong-release",
+      "--platform",
+      "linux/arm64",
+      "--label",
+      "io.recsys.phase=6",
+      "--cpus",
+      "2",
+      "--memory",
+      "3g",
+      "--pids-limit",
+      "256",
+      "--read-only",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--tmpfs",
+      "/tmp:rw,noexec,nosuid,size=536870912",
+      "--mount",
+      "type=bind,source=/Users/vincent/Documents/projects/hybrid_recsys/outputs/deployment_models/movielens_hybrid_v1,target=/models/movielens_hybrid_v1,readonly",
+      "--env",
+      "RECSYS_EXPECTED_RELEASE_ID=wrong",
+      "movielens-recsys-api:phase6_v1"
+    ],
+    "returncode": 0,
+    "seconds": 0.3507925419835374
+  },
+  {
+    "argv": [
+      "docker",
+      "wait",
+      "547785a294b6de170aefca46ecd11a1c04b2ffd31682905bd2b436a970b7bbe9"
+    ],
+    "returncode": 0,
+    "seconds": 3.4729002080275677
+  },
+  {
+    "argv": [
+      "docker",
+      "logs",
+      "547785a294b6de170aefca46ecd11a1c04b2ffd31682905bd2b436a970b7bbe9"
+    ],
+    "returncode": 0,
+    "seconds": 0.02647362498100847
+  },
+  {
+    "argv": [
+      "docker",
+      "logs",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.025856457999907434
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "05f3718cd42e37e0b28696bcbc7db5d91f15ecb53a3c4a941b2dfb75637d6bb0"
+    ],
+    "returncode": 0,
+    "seconds": 0.024812791030853987
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--quiet"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".venv/bin/uv",
+      "lock",
+      "--check",
+      "--offline"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "Resolved 222 packages in 12ms\n"
+  }
+]

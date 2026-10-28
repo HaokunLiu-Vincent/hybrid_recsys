@@ -1,0 +1,60 @@
+{
+  "gates": {
+    "A": "passed",
+    "B": "passed",
+    "C": "passed",
+    "D": "passed"
+  },
+  "registered_model_uri": "models:/MovieLensHybridRecommender/1",
+  "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+  "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+  "native_http_parity": {
+    "rows": 12220,
+    "ranking_mismatches": 0,
+    "max_absolute_score_difference": 0.0,
+    "max_relative_score_difference": 0.0,
+    "score_tolerance": 0.0,
+    "exact_scores": true
+  },
+  "docker_http_parity": {
+    "rows": 12220,
+    "ranking_mismatches": 0,
+    "max_absolute_score_difference": 0.0,
+    "max_relative_score_difference": 0.0,
+    "score_tolerance": 0.0,
+    "exact_scores": true
+  },
+  "native_offline_restart": true,
+  "docker_offline_restart": true,
+  "tests": {
+    "working": {
+      "passed": 85,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 13.668,
+      "log": "outputs/phase6/tests_final_working.log",
+      "sha256": "12719475b6246bf2005b2a258c848729b3838c15204086a1adfba8431a4071fc"
+    },
+    "isolated": {
+      "passed": 85,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 15.252,
+      "log": "outputs/phase6/tests_final_isolated.log",
+      "sha256": "cd5bba1da85675b8b974db20aea6403cebc23ea2f6a4aaf9d217376787130765"
+    }
+  },
+  "image_id": "sha256:22c38e5a263390737b778b5bb3b4fa349a74e6fa2f819a5cf57fe1186be71a30",
+  "image_size_bytes": 8535447513,
+  "docker_url": "http://127.0.0.1:8001",
+  "native_url": "http://127.0.0.1:8002",
+  "limitations": [
+    "Validation-selected model, no final Test evaluation",
+    "Accepted cross-user temporal exposure and sparse cohort regression",
+    "8.54 GB image: exact historical Torch distribution has CUDA libraries; inference is CPU and CUDA is unavailable",
+    "Docker direct Registry mode blocked by current MLflow host-header policy; required offline mode is fully verified",
+    "Local loopback measurements with small sample counts; no production throughput claims",
+    "DVC environment dependency drift unchanged; serving lock recorded separately",
+    "No remote backup or public artifact/image distribution"
+  ]
+}

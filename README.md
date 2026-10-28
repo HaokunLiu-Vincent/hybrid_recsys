@@ -1,8 +1,22 @@
 # hybrid_recsys — MovieLens Small local MLOps
 
-**Phase 5 is complete:** local MLflow Tracking/Registry contains 17 verified historical experiment records and a complete six-retriever + RRF + LambdaMART release. `MovieLensHybridRecommender` version **1** has alias **candidate**. An isolated process with no project installed and all original-checkout reads denied reproduced all 12,220 recommendation rows exactly. Test remains unopened; FastAPI/Docker remain future work.
+**Phase 6 is complete:** FastAPI serves immutable `MovieLensHybridRecommender` **Version 1** natively and in a real Linux ARM64 Docker container. Both HTTP paths matched all **12,220 recommendation rows / 611 requests exactly**, including known, cold and unknown users. Offline startup/restart and load-once checks passed. Test remains unopened; this is a Validation candidate, not production approval.
 
 Lifecycle: Kaggle → DuckDB/Parquet → local DVC → six retrievers → RRF → historical-snapshot LambdaMART → offline evaluation → MLflow release registration → FastAPI/Docker.
+
+The verified Docker API is **http://127.0.0.1:8001**, native offline API **http://127.0.0.1:8002**. Endpoints: `/health/live`, `/health/ready`, `/model-info`, `POST /recommend`. Version selection uses **`models:/MovieLensHybridRecommender/1`**, independently of the unchanged candidate alias. The default Docker mode loads a verified outer MLflow export mounted read-only and needs no live Registry for startup or predictions.
+
+```sh
+curl http://127.0.0.1:8001/health/ready
+curl -H 'Content-Type: application/json' -d '{"user_ids":[1,1000610],"top_k":3}' \
+  http://127.0.0.1:8001/recommend
+docker logs movielens-phase6-v1
+docker stop --timeout 30 movielens-phase6-v1
+```
+
+See [Phase 6 report and reproduction commands](docs/phase6_fastapi_docker.md), [measured results](docs/phase6_serving_results.json) and [verification](docs/phase6_verification.json). Image `movielens-recsys-api:phase6_v1` runs as UID 10001, one worker, bounded inference/body/batch limits and localhost-only publication. **85 tests passed in both environments**; original models, datasets and registry payloads remain unchanged.
+
+Two operational limitations are explicit: the exact historical Torch pin requires its CUDA-linked Linux distribution (inference remains CPU-only; image **8.54 GB**), and optional Docker Registry startup gets HTTP 403 from MLflow's existing host-header protection. That policy was preserved. The required offline Docker mode is fully verified. No images/model histories were published publicly.
 
 Local UI / Tracking / Registry: **http://127.0.0.1:5002**. Persistent SQLite and HTTP-served artifacts are under ignored `outputs/mlflow/`; they are not automatically backed up to GitHub or remotely. See [Phase 5 report](docs/phase5_mlflow_registry.md), [local setup and recovery](docs/mlflow_local_setup.md), [run IDs/comparison](docs/phase5_mlflow_runs.json) and [verification](docs/phase5_verification.json).
 
@@ -49,11 +63,11 @@ Primary `small_v1`: per-user chronological 70/15/15, **70,186 Train / 15,143 Val
 
 ## Environment and stage commands
 
-Python **3.11.9**, uv, `.venv`, `pyproject.toml`, `uv.lock`; CPU-first. The `train` group pins Torch 2.11.0 / implicit 0.7.2 / threadpoolctl 3.6.0; `rank` pins native LightGBM 4.6.0; `mlops` pins MLflow **3.17.2**. For a fresh environment:
+Python **3.11.9**, uv, `.venv`, `pyproject.toml`, `uv.lock`; CPU-first. The `train` group pins Torch 2.11.0 / implicit 0.7.2 / threadpoolctl 3.6.0; `rank` pins native LightGBM 4.6.0; `mlops` pins MLflow **3.17.2**; `serve` pins FastAPI **0.162.0**, Uvicorn **0.54.0** and HTTPX **0.28.1**. For a fresh environment:
 
 ```sh
 uv venv --python 3.11.9
-uv sync --locked --group train --group rank --group mlops
+uv sync --locked --group train --group rank --group mlops --group serve
 ```
 
 For the already installed environment, `--no-sync` preserves verified inherited wheels. Completed artifacts are immutable: **use new run IDs**. CLI stages are independent; fusion/evaluation never silently fit missing models.
@@ -86,11 +100,11 @@ The [Phase 4 command sequence](docs/phase4_fusion_and_ranking.md#commands-and-ve
 - Versioned features/training table: `artifacts/{ranking_features,ranking_training}/phase4_v1/`; native ranker, complete rankings, history and importance: `artifacts/lightgbm/phase4_v1/`.
 - Clean-process parity: `artifacts/ranking_evaluations/phase4_v1_clean_reload/` and six historical candidate reloads. All 213,507 ranker predictions match exactly; all six full historical candidate Parquets match byte-for-byte.
 - Complete release: `artifacts/releases/phase5_v1/`; code, one shared Train context, six Full-Train model states, fixed RRF and 53-feature/native ranker contracts. MLflow uses Models From Code, relative artifact paths and supported code packaging. Historical models remain training lineage.
-- **71 tests passed, zero failures/skips, in both working and isolated locked environments.** All 61 Phase 1–4 tests remain unchanged. Phase 5 verified 254 protected hashes and 43 frozen-data metadata records unchanged. All 611 requests (610 known users plus an unknown user) matched exactly through the registry, and all 579 prior Validation users' Top-20 outputs matched exactly.
+- **85 tests passed, zero failures/skips, in both working and isolated locked environments.** All 71 Phase 1–5 tests remain unchanged. Phase 6 verified 744 protected hashes, 43 frozen-data metadata records and all 46 original Python source files unchanged. Separate real native/Linux HTTP tests passed exact parity and offline restart. The optional Docker Registry-startup failure is documented separately.
 - Generated artifacts/logs remain ignored local files; source, configuration, lock and reports are Git-visible. A source clone alone does not contain the datasets/checkpoints.
 
 **DVC dependency drift remains explicit:** all three frozen Phase 2 stages depend on global pyproject/uv.lock; the writer also embeds that entire lock in immutable data identity. A disposable synthetic test confirms changing an unrelated training dependency cannot safely rebuild the same version. The [Phase 4 report](docs/phase4_fusion_and_ranking.md#dvc-environment-drift-assessed-and-deliberately-deferred) proposes a dedicated data-environment contract and future versioned migration. No frozen data or DVC metadata was changed to conceal drift; do not force-repro `small_v1` under the training lock.
 
-Historical imports explicitly retain original metrics/provenance and are idempotent; no real model was retrained. Newly executed integration actions and inference checks are separately recorded. Next, on a separate request: FastAPI/Docker using an explicitly selected complete model version, with health/version and offline-serving parity tests. No recommendation service, Docker image, cloud resource, data download or final Test evaluation was added in Phase 5. Current changes remain uncommitted.
+Historical imports retain original metrics/provenance and are idempotent; no real model was retrained. The HTTP adapter calls the complete pyfunc and implements no alternate recommendation logic. Next, on a separate request: controlled final Test evaluation of the recorded Version 1 under the frozen protocol, without tuning from Test. No final Test evaluation, cloud resources, frontend, feedback store or online training was added in Phase 6. Current serving changes remain uncommitted.
 
 Earlier references: [Phase 1 EDA](notebooks/01_MovieLens_Small_EDA.ipynb), [Phase 2 report](docs/phase2_data_foundation_report.md), [pipeline](docs/data_pipeline.md), [cleanup audit](docs/repository_cleanup_audit.md), [32M archive](archive/legacy_movielens32m/README.md).
