@@ -1,0 +1,5959 @@
+{
+  "gate_a": {
+    "framework_version": "small_rrf_v1",
+    "kind": "validation_fusion",
+    "status": "completed",
+    "run_id": "phase4_v1_validation",
+    "dataset_id": "grouplens/movielens-latest-small",
+    "split_version": "small_v1",
+    "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+    "evaluation_id": "585db5a09f479eeadaffc9cff33bfac1d254d971ebdd67f97670000be9196793",
+    "training_kind": "external_train_per_user",
+    "training_cutoff": "per_user:9859a72f9f04efe290c109f073f6e845cf82a5490b488f688e5f2ef8cc2ec1d6",
+    "per_user_cutoff_table_sha256": "9859a72f9f04efe290c109f073f6e845cf82a5490b488f688e5f2ef8cc2ec1d6",
+    "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+    "catalog_id": "6b607210c9f671ac865f15a1c1ce2168573246722e66ffae32075e9405c36fd2",
+    "policy": {
+      "positive_threshold": 4.0,
+      "catalog": "train_observed",
+      "seen": "all_train_rated",
+      "history": "frozen_train",
+      "primary_metric_denominator": "eligible held-out positives",
+      "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+      "positive_history_cohorts": [
+        "cold_0",
+        "sparse_1_4",
+        "moderate_5_19",
+        "warm_20_plus"
+      ]
+    },
+    "rrf_constant": 60,
+    "source_budget": 100,
+    "union_budget": 600,
+    "inputs": {
+      "popularity": {
+        "path": "artifacts/candidates/popularity/phase3_v1_seed42_main/validation_main",
+        "manifest_sha256": "878942a2ad1be7f54d83bd325e6465dcfaa562cd98e50c4ce89a1a80e2f26fc7",
+        "candidate_sha256": "5da5aebbae2d153ddf739f40cb07f309b87f0c1be739f0dbf2970885535f5b2f",
+        "checkpoint": {
+          "path": "artifacts/popularity/phase3_v1_seed42_main",
+          "manifest_sha256": "a6809928129a651e614c729333db72a4c4d07f2dcbc4c16a8dac419b2597bf0a"
+        },
+        "config": {
+          "model": "popularity",
+          "seed": 42,
+          "cpu_threads": 1,
+          "retrieval_k": 100,
+          "query_batch": 32,
+          "item_block": 1024
+        },
+        "training_lock_sha256": "3eb14664ea5975689db167930d2ac388e3e747f847c3e79bbfeec48dcf6cb7c3"
+      },
+      "genre": {
+        "path": "artifacts/candidates/genre/phase3_v1_seed42_main/validation_main",
+        "manifest_sha256": "f08504426029643e5b8d7dc1d71ed94ba1cd3fc882cbb088cbf54b0f324f7903",
+        "candidate_sha256": "5d10f39122e293467272bc80004e16efae2a8f4973aa95b1ffc835a641216f16",
+        "checkpoint": {
+          "path": "artifacts/genre/phase3_v1_seed42_main",
+          "manifest_sha256": "b8d006807838ec7a5567d75d80e4cea89b4e4b785e023ecf551a4d00921bcaea"
+        },
+        "config": {
+          "model": "genre",
+          "seed": 42,
+          "cpu_threads": 1,
+          "retrieval_k": 100,
+          "query_batch": 32,
+          "item_block": 1024
+        },
+        "training_lock_sha256": "3eb14664ea5975689db167930d2ac388e3e747f847c3e79bbfeec48dcf6cb7c3"
+      },
+      "itemcf": {
+        "path": "artifacts/candidates/itemcf/phase3_v1_seed42_main/validation_main",
+        "manifest_sha256": "38aef2158672d3bd66830184ee2dc65241efc94881b1a9ed481fccc70a9421eb",
+        "candidate_sha256": "fafbca63145167a687865a5cdc3f92a8da8ab053c2a66976d104e530d578c1ef",
+        "checkpoint": {
+          "path": "artifacts/itemcf/phase3_v1_seed42_main",
+          "manifest_sha256": "12b4fd70807396ca9ad68af249e429f843a501e8d922f4ecd870ef60871e88dd"
+        },
+        "config": {
+          "model": "itemcf",
+          "seed": 42,
+          "cpu_threads": 1,
+          "retrieval_k": 100,
+          "query_batch": 32,
+          "item_block": 1024,
+          "itemcf": {
+            "neighbors_per_item": 100,
+            "block": 64
+          }
+        },
+        "training_lock_sha256": "3eb14664ea5975689db167930d2ac388e3e747f847c3e79bbfeec48dcf6cb7c3"
+      },
+      "implicit_als": {
+        "path": "artifacts/candidates/implicit_als/phase3_v1_seed42_main/validation_main",
+        "manifest_sha256": "b0f5abce8f4260bc0ea97d85678717d444f66a00e79e8afa5f7e4889713ae465",
+        "candidate_sha256": "52c2df8ec9febb1e31d7056199d79bbd562d03a48200bc8ab45d923995be8566",
+        "checkpoint": {
+          "path": "artifacts/implicit_als/phase3_v1_seed42_main",
+          "manifest_sha256": "bb350e17ebea100ff8a3e1397e0cac739e384544749cab74a86183e57a1dec14"
+        },
+        "config": {
+          "model": "implicit_als",
+          "seed": 42,
+          "cpu_threads": 1,
+          "retrieval_k": 100,
+          "query_batch": 32,
+          "item_block": 1024,
+          "als": {
+            "factors": 32,
+            "iterations": 20,
+            "regularization": 0.1,
+            "positive_confidence": 20.0,
+            "low_confidence": 1.0
+          }
+        },
+        "training_lock_sha256": "3eb14664ea5975689db167930d2ac388e3e747f847c3e79bbfeec48dcf6cb7c3"
+      },
+      "lightgcn": {
+        "path": "artifacts/candidates/lightgcn/phase3_v1_seed42_main/validation_main",
+        "manifest_sha256": "f34936d5cde379ae6049cdaf25b5f381fcd78e7a27ee5acd91f174ba0912f03a",
+        "candidate_sha256": "03a3836429911b02987e3637370971d23f7febb025f3c4117362a89debab798c",
+        "checkpoint": {
+          "path": "artifacts/lightgcn/phase3_v1_seed42_main",
+          "manifest_sha256": "cf4ee23200e90336e774955b26a8732e943c06a5fbbaf5d0104dec4258d5e526"
+        },
+        "config": {
+          "model": "lightgcn",
+          "seed": 42,
+          "cpu_threads": 1,
+          "retrieval_k": 100,
+          "query_batch": 32,
+          "item_block": 1024,
+          "lightgcn": {
+            "dim": 32,
+            "layers": 2,
+            "epochs": 40,
+            "lr": 0.03,
+            "regularization": 0.0001,
+            "batch_size": 2048,
+            "patience": 10
+          }
+        },
+        "training_lock_sha256": "3eb14664ea5975689db167930d2ac388e3e747f847c3e79bbfeec48dcf6cb7c3"
+      },
+      "two_tower": {
+        "path": "artifacts/candidates/two_tower/phase3_v1_seed42_main/validation_main",
+        "manifest_sha256": "ad7449c638a9f08e169eb5502d2c7b9c18a1a8d959c23a7cc9c141a46c9316b9",
+        "candidate_sha256": "ec801ade43dc71941f6ecb3e646013e5583cd36b363c99a4bc70c7c9840cc2a9",
+        "checkpoint": {
+          "path": "artifacts/two_tower/phase3_v1_seed42_main",
+          "manifest_sha256": "160f72b363eb383059637370727b79075ba8509a751ae8e50231892dd02301ef"
+        },
+        "config": {
+          "model": "two_tower",
+          "seed": 42,
+          "cpu_threads": 1,
+          "retrieval_k": 100,
+          "query_batch": 32,
+          "item_block": 1024,
+          "two_tower": {
+            "dim": 32,
+            "hidden": 64,
+            "epochs": 20,
+            "lr": 0.003,
+            "regularization": 1e-05,
+            "batch_size": 1024,
+            "patience": 10
+          }
+        },
+        "training_lock_sha256": "3eb14664ea5975689db167930d2ac388e3e747f847c3e79bbfeec48dcf6cb7c3"
+      }
+    },
+    "metrics": [
+      {
+        "cohort": "all",
+        "queries": 579,
+        "relevant_positives": 6491,
+        "recall20": 0.16493769970318795,
+        "recall50": 0.27929645542357273,
+        "recall100": 0.4018857955064416,
+        "ndcg20": 0.12757831924855587,
+        "hit20": 0.5526770293609672,
+        "pool_recall": 0.5966644374520742,
+        "catalog_coverage20": 0.059800664451827246,
+        "catalog_coverage100": 0.2190033222591362,
+        "union_catalog_coverage": 0.7289036544850498,
+        "zero_union_hit_queries": 45,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      },
+      {
+        "cohort": "cold_0",
+        "queries": 0,
+        "relevant_positives": 0,
+        "recall20": null,
+        "recall50": null,
+        "recall100": null,
+        "ndcg20": null,
+        "hit20": null,
+        "pool_recall": null,
+        "catalog_coverage20": null,
+        "catalog_coverage100": null,
+        "union_catalog_coverage": null,
+        "zero_union_hit_queries": 0,
+        "empty_candidate_queries": 0,
+        "undefined_reason": "No relevance-bearing queries in this cohort"
+      },
+      {
+        "cohort": "sparse_1_4",
+        "queries": 12,
+        "relevant_positives": 22,
+        "recall20": 0.19444444444444442,
+        "recall50": 0.27777777777777773,
+        "recall100": 0.27777777777777773,
+        "ndcg20": 0.06650177540197204,
+        "hit20": 0.25,
+        "pool_recall": 0.5763888888888888,
+        "catalog_coverage20": 0.016079734219269105,
+        "catalog_coverage100": 0.05847176079734219,
+        "union_catalog_coverage": 0.29926910299003323,
+        "zero_union_hit_queries": 2,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      },
+      {
+        "cohort": "moderate_5_19",
+        "queries": 200,
+        "relevant_positives": 675,
+        "recall20": 0.22609523809523807,
+        "recall50": 0.35948704481792715,
+        "recall100": 0.5032265406162465,
+        "ndcg20": 0.12612076670161654,
+        "hit20": 0.46,
+        "pool_recall": 0.6794908963585433,
+        "catalog_coverage20": 0.037475083056478405,
+        "catalog_coverage100": 0.15295681063122923,
+        "union_catalog_coverage": 0.6175415282392026,
+        "zero_union_hit_queries": 31,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      },
+      {
+        "cohort": "warm_20_plus",
+        "queries": 367,
+        "relevant_positives": 5794,
+        "recall20": 0.13064454271325576,
+        "recall50": 0.2356455187829152,
+        "recall100": 0.3507172592415451,
+        "ndcg20": 0.13036967901843838,
+        "hit20": 0.6130790190735694,
+        "pool_recall": 0.5521903633416229,
+        "catalog_coverage20": 0.05023255813953489,
+        "catalog_coverage100": 0.18205980066445182,
+        "union_catalog_coverage": 0.6191362126245847,
+        "zero_union_hit_queries": 12,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      }
+    ],
+    "individual_top20": {
+      "popularity": {
+        "cohort": "all",
+        "queries": 579,
+        "relevant_positives": 6491,
+        "recall20": 0.11227474323235627,
+        "recall50": 0.19066203737378937,
+        "recall100": 0.28678645048936946,
+        "ndcg20": 0.09178086694874814,
+        "hit20": 0.4317789291882556,
+        "pool_recall": 0.28678645048936946,
+        "catalog_coverage20": 0.01754152823920266,
+        "catalog_coverage100": 0.053289036544850496,
+        "union_catalog_coverage": 0.053289036544850496,
+        "zero_union_hit_queries": 175,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      },
+      "genre": {
+        "cohort": "all",
+        "queries": 579,
+        "relevant_positives": 6491,
+        "recall20": 0.0151059105440385,
+        "recall50": 0.02528524564974755,
+        "recall100": 0.04140657155019147,
+        "ndcg20": 0.011678675517366443,
+        "hit20": 0.10362694300518134,
+        "pool_recall": 0.04140657155019147,
+        "catalog_coverage20": 0.19920265780730897,
+        "catalog_coverage100": 0.5251827242524917,
+        "union_catalog_coverage": 0.5251827242524917,
+        "zero_union_hit_queries": 422,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      },
+      "itemcf": {
+        "cohort": "all",
+        "queries": 579,
+        "relevant_positives": 6491,
+        "recall20": 0.16157502300952162,
+        "recall50": 0.2621018929284153,
+        "recall100": 0.36858153055225235,
+        "ndcg20": 0.12306367722996259,
+        "hit20": 0.5233160621761658,
+        "pool_recall": 0.36858153055225235,
+        "catalog_coverage20": 0.12345514950166113,
+        "catalog_coverage100": 0.37249169435215945,
+        "union_catalog_coverage": 0.37249169435215945,
+        "zero_union_hit_queries": 127,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      },
+      "implicit_als": {
+        "cohort": "all",
+        "queries": 579,
+        "relevant_positives": 6491,
+        "recall20": 0.17130076326796875,
+        "recall50": 0.2942855151946067,
+        "recall100": 0.3994294250804758,
+        "ndcg20": 0.12608457044413487,
+        "hit20": 0.5837651122625216,
+        "pool_recall": 0.3994294250804758,
+        "catalog_coverage20": 0.13182724252491695,
+        "catalog_coverage100": 0.2672425249169435,
+        "union_catalog_coverage": 0.2672425249169435,
+        "zero_union_hit_queries": 97,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      },
+      "lightgcn": {
+        "cohort": "all",
+        "queries": 579,
+        "relevant_positives": 6491,
+        "recall20": 0.1366871969782144,
+        "recall50": 0.2420459566410662,
+        "recall100": 0.3654424494970141,
+        "ndcg20": 0.10782324249965212,
+        "hit20": 0.4939550949913644,
+        "pool_recall": 0.3654424494970141,
+        "catalog_coverage20": 0.04890365448504983,
+        "catalog_coverage100": 0.18179401993355482,
+        "union_catalog_coverage": 0.18179401993355482,
+        "zero_union_hit_queries": 125,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      },
+      "two_tower": {
+        "cohort": "all",
+        "queries": 579,
+        "relevant_positives": 6491,
+        "recall20": 0.045533128752545976,
+        "recall50": 0.10665769238116177,
+        "recall100": 0.20306351254529592,
+        "ndcg20": 0.034236027776664506,
+        "hit20": 0.26770293609671847,
+        "pool_recall": 0.20306351254529592,
+        "catalog_coverage20": 0.12757475083056477,
+        "catalog_coverage100": 0.16956810631229235,
+        "union_catalog_coverage": 0.16956810631229235,
+        "zero_union_hit_queries": 195,
+        "empty_candidate_queries": 0,
+        "undefined_reason": null
+      }
+    },
+    "diagnostics": {
+      "before_deduplication": {
+        "popularity": 57900,
+        "genre": 57900,
+        "itemcf": 57900,
+        "implicit_als": 57900,
+        "lightgcn": 57900,
+        "two_tower": 57900
+      },
+      "union_pairs": 213507,
+      "retrieved_relevant_pairs": 3270,
+      "relevant_pairs": 6491,
+      "union_positive_micro_coverage": 0.503774456940379,
+      "pairwise": {
+        "popularity|genre": {
+          "intersection_pairs": 1042,
+          "mean_overlap_per_query": 1.7996545768566494,
+          "mean_query_jaccard": 0.009138357622307077,
+          "aggregate_pair_jaccard": 0.009079976995067882
+        },
+        "popularity|itemcf": {
+          "intersection_pairs": 29626,
+          "mean_overlap_per_query": 51.167530224525045,
+          "mean_query_jaccard": 0.3657940661113285,
+          "aggregate_pair_jaccard": 0.34379279132917123
+        },
+        "popularity|implicit_als": {
+          "intersection_pairs": 17739,
+          "mean_overlap_per_query": 30.637305699481864,
+          "mean_query_jaccard": 0.18953032576504678,
+          "aggregate_pair_jaccard": 0.1808976045522685
+        },
+        "popularity|lightgcn": {
+          "intersection_pairs": 35839,
+          "mean_overlap_per_query": 61.89810017271157,
+          "mean_query_jaccard": 0.4740244004433793,
+          "aggregate_pair_jaccard": 0.4482060004252073
+        },
+        "popularity|two_tower": {
+          "intersection_pairs": 14676,
+          "mean_overlap_per_query": 25.34715025906736,
+          "mean_query_jaccard": 0.15714297398963537,
+          "aggregate_pair_jaccard": 0.14512875281832205
+        },
+        "genre|itemcf": {
+          "intersection_pairs": 1685,
+          "mean_overlap_per_query": 2.9101899827288427,
+          "mean_query_jaccard": 0.014902595532413807,
+          "aggregate_pair_jaccard": 0.01476580642334487
+        },
+        "genre|implicit_als": {
+          "intersection_pairs": 1978,
+          "mean_overlap_per_query": 3.4162348877374784,
+          "mean_query_jaccard": 0.01753647551524633,
+          "aggregate_pair_jaccard": 0.01737801128077173
+        },
+        "genre|lightgcn": {
+          "intersection_pairs": 1380,
+          "mean_overlap_per_query": 2.383419689119171,
+          "mean_query_jaccard": 0.012148324105907748,
+          "aggregate_pair_jaccard": 0.012060828526481384
+        },
+        "genre|two_tower": {
+          "intersection_pairs": 1817,
+          "mean_overlap_per_query": 3.138169257340242,
+          "mean_query_jaccard": 0.01609113673072405,
+          "aggregate_pair_jaccard": 0.01594097365396594
+        },
+        "itemcf|implicit_als": {
+          "intersection_pairs": 22083,
+          "mean_overlap_per_query": 38.13989637305699,
+          "mean_query_jaccard": 0.2480652631150094,
+          "aggregate_pair_jaccard": 0.23563494350011205
+        },
+        "itemcf|lightgcn": {
+          "intersection_pairs": 30594,
+          "mean_overlap_per_query": 52.83937823834197,
+          "mean_query_jaccard": 0.38172775829965017,
+          "aggregate_pair_jaccard": 0.35905922118160694
+        },
+        "itemcf|two_tower": {
+          "intersection_pairs": 14662,
+          "mean_overlap_per_query": 25.322970639032814,
+          "mean_query_jaccard": 0.1527928776664382,
+          "aggregate_pair_jaccard": 0.1449702386837786
+        },
+        "implicit_als|lightgcn": {
+          "intersection_pairs": 22587,
+          "mean_overlap_per_query": 39.01036269430052,
+          "mean_query_jaccard": 0.2521171902513981,
+          "aggregate_pair_jaccard": 0.24231598596762255
+        },
+        "implicit_als|two_tower": {
+          "intersection_pairs": 13612,
+          "mean_overlap_per_query": 23.50949913644214,
+          "mean_query_jaccard": 0.1361190869847623,
+          "aggregate_pair_jaccard": 0.1332054644380945
+        },
+        "lightgcn|two_tower": {
+          "intersection_pairs": 19941,
+          "mean_overlap_per_query": 34.44041450777202,
+          "mean_query_jaccard": 0.2162022849829444,
+          "aggregate_pair_jaccard": 0.2080242856695772
+        }
+      },
+      "unique_contribution": {
+        "popularity": {
+          "candidate_pairs": 13300,
+          "relevant_pairs": 128,
+          "source_relevant_pairs": 1534,
+          "source_movie_coverage": 401
+        },
+        "genre": {
+          "candidate_pairs": 53442,
+          "relevant_pairs": 112,
+          "source_relevant_pairs": 233,
+          "source_movie_coverage": 3952
+        },
+        "itemcf": {
+          "candidate_pairs": 15898,
+          "relevant_pairs": 123,
+          "source_relevant_pairs": 1771,
+          "source_movie_coverage": 2803
+        },
+        "implicit_als": {
+          "candidate_pairs": 24060,
+          "relevant_pairs": 417,
+          "source_relevant_pairs": 1889,
+          "source_movie_coverage": 2011
+        },
+        "lightgcn": {
+          "candidate_pairs": 7961,
+          "relevant_pairs": 118,
+          "source_relevant_pairs": 1823,
+          "source_movie_coverage": 1368
+        },
+        "two_tower": {
+          "candidate_pairs": 29106,
+          "relevant_pairs": 186,
+          "source_relevant_pairs": 1097,
+          "source_movie_coverage": 1276
+        }
+      },
+      "sources_per_candidate": {
+        "1": 143767,
+        "2": 30885,
+        "3": 19317,
+        "4": 13935,
+        "5": 5446,
+        "6": 157
+      },
+      "query_sizes": {
+        "min": 286,
+        "median": 356.0,
+        "max": 570
+      },
+      "popularity_concentration": {
+        "full_union": {
+          "rows": 213507,
+          "train_positive_top_decile_share": 0.6393982398703555,
+          "mean_train_positive_count": 31.2123966217041,
+          "recommendation_frequency_gini": 0.8166918233573985
+        },
+        "top20": {
+          "rows": 11580,
+          "train_positive_top_decile_share": 0.9948186528497409,
+          "mean_train_positive_count": 105.73799896240234,
+          "recommendation_frequency_gini": 0.9869803246518514
+        }
+      }
+    },
+    "ablations": {
+      "popularity": {
+        "metrics": {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.17384238307558877,
+          "recall50": 0.2874339784552763,
+          "recall100": 0.3987826225752028,
+          "ndcg20": 0.1291206192089065,
+          "hit20": 0.5768566493955095,
+          "pool_recall": 0.5831311886201165,
+          "catalog_coverage20": 0.0962126245847176,
+          "catalog_coverage100": 0.293421926910299,
+          "union_catalog_coverage": 0.7289036544850498,
+          "zero_union_hit_queries": 48,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        "lost_unique_relevant_pairs": 128,
+        "delta_union_recall": -0.013533248831957723,
+        "delta_ndcg20": 0.0015422999603506293,
+        "delta_recall20": 0.008904683372400829,
+        "delta_coverage20": 0.03641196013289036
+      },
+      "genre": {
+        "metrics": {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.16149575828757814,
+          "recall50": 0.2787190918558305,
+          "recall100": 0.402093732977558,
+          "ndcg20": 0.12701694028816307,
+          "hit20": 0.542314335060449,
+          "pool_recall": 0.5786611780526484,
+          "catalog_coverage20": 0.05621262458471761,
+          "catalog_coverage100": 0.1945514950166113,
+          "union_catalog_coverage": 0.4964784053156146,
+          "zero_union_hit_queries": 48,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        "lost_unique_relevant_pairs": 112,
+        "delta_union_recall": -0.01800325939942582,
+        "delta_ndcg20": -0.0005613789603927943,
+        "delta_recall20": -0.0034419414156098005,
+        "delta_coverage20": -0.0035880398671096353
+      },
+      "itemcf": {
+        "metrics": {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.15415850220709426,
+          "recall50": 0.26567205095471236,
+          "recall100": 0.37369403618939023,
+          "ndcg20": 0.11740445350516725,
+          "hit20": 0.542314335060449,
+          "pool_recall": 0.5761720642901277,
+          "catalog_coverage20": 0.06445182724252492,
+          "catalog_coverage100": 0.2212624584717608,
+          "union_catalog_coverage": 0.6455813953488372,
+          "zero_union_hit_queries": 48,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        "lost_unique_relevant_pairs": 123,
+        "delta_union_recall": -0.02049237316194652,
+        "delta_ndcg20": -0.010173865743388619,
+        "delta_recall20": -0.010779197496093684,
+        "delta_coverage20": 0.004651162790697674
+      },
+      "implicit_als": {
+        "metrics": {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.14768247322502118,
+          "recall50": 0.2495709521785065,
+          "recall100": 0.35940008360644293,
+          "ndcg20": 0.11454337663935113,
+          "hit20": 0.5215889464594128,
+          "pool_recall": 0.5228424712513923,
+          "catalog_coverage20": 0.04930232558139535,
+          "catalog_coverage100": 0.2570099667774086,
+          "union_catalog_coverage": 0.7118936877076412,
+          "zero_union_hit_queries": 63,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        "lost_unique_relevant_pairs": 417,
+        "delta_union_recall": -0.07382196620068193,
+        "delta_ndcg20": -0.013034942609204736,
+        "delta_recall20": -0.01725522647816677,
+        "delta_coverage20": -0.010498338870431896
+      },
+      "lightgcn": {
+        "metrics": {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.16300661209281478,
+          "recall50": 0.27089313521591996,
+          "recall100": 0.3928558035742701,
+          "ndcg20": 0.1280430895992679,
+          "hit20": 0.5613126079447323,
+          "pool_recall": 0.5817605238667998,
+          "catalog_coverage20": 0.09222591362126246,
+          "catalog_coverage100": 0.28890365448504984,
+          "union_catalog_coverage": 0.7150830564784053,
+          "zero_union_hit_queries": 47,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        "lost_unique_relevant_pairs": 118,
+        "delta_union_recall": -0.014903913585274431,
+        "delta_ndcg20": 0.000464770350712046,
+        "delta_recall20": -0.0019310876103731667,
+        "delta_coverage20": 0.03242524916943522
+      },
+      "two_tower": {
+        "metrics": {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.1613245761902023,
+          "recall50": 0.2838056929749267,
+          "recall100": 0.3979120879553221,
+          "ndcg20": 0.13072379919378516,
+          "hit20": 0.5492227979274611,
+          "pool_recall": 0.5700751672338175,
+          "catalog_coverage20": 0.05142857142857143,
+          "catalog_coverage100": 0.2688372093023256,
+          "union_catalog_coverage": 0.7287707641196013,
+          "zero_union_hit_queries": 54,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        "lost_unique_relevant_pairs": 186,
+        "delta_union_recall": -0.026589270218256744,
+        "delta_ndcg20": 0.0031454799452292903,
+        "delta_recall20": -0.00361312351298565,
+        "delta_coverage20": -0.008372093023255818
+      }
+    },
+    "fusion_seconds": 3.3013752499828115,
+    "union_rows": 213507,
+    "queries": 579,
+    "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+    "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+    "source_sha256": "6346ffa976404301ecfe7ff3f2986df27320a921132099724501d970dfda5b11",
+    "test_access": false,
+    "union_sha256": "3fdacca0fe440460363df7a74d66b871f1dad7254ae96e8723f34d0139a47198"
+  },
+  "gate_b": {
+    "kind": "historical_ranking_dataset",
+    "version": "small_lambdamart_v1",
+    "status": "completed",
+    "run_id": "phase4_v1",
+    "feature_inputs": {
+      "path": "artifacts/ranking_features/phase4_v1",
+      "manifest_sha256": "4f1ffad314a1c547be312bb90a2e4e4a98f498a9db1679938647020665e1ecde"
+    },
+    "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+    "historical_fusion": {
+      "path": "artifacts/fusion/phase4_v1_rank_train",
+      "manifest_sha256": "e2544abfbfd059421fbf1afbed2b8abababb05eeb76c0648afabf95fe7f3b8bb"
+    },
+    "validation_fusion": {
+      "path": "artifacts/fusion/phase4_v1_validation",
+      "manifest_sha256": "8d2d25a6d329301f2cf3341b2cda5c5213661ace1f9d008d3a24e3e6e1092c6b"
+    },
+    "historical_evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+    "validation_evaluation_id": "585db5a09f479eeadaffc9cff33bfac1d254d971ebdd67f97670000be9196793",
+    "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+    "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+    "sampling": {
+      "unknown_per_query": 100,
+      "minimum_effective_queries": 50
+    },
+    "seed": 42,
+    "statistics": {
+      "total_historical_queries": 610,
+      "users_with_future_observed_positive": 574,
+      "users_with_snapshot_eligible_positive": 571,
+      "queries_with_retrieved_positive": 528,
+      "queries_with_retrieved_positive_and_contrast": 528,
+      "queries_only_zero": 82,
+      "queries_only_positive": 0,
+      "pre_sampling_feedback_counts": {
+        "unobserved": 220354,
+        "observed_positive": 3160,
+        "observed_low": 2144
+      },
+      "sampled_feedback_counts": {
+        "unobserved": 52800,
+        "observed_positive": 3160,
+        "observed_low": 1976
+      },
+      "sampling": {
+        "queries": 610,
+        "effective_queries": 528,
+        "queries_no_retrieved_positive": 82,
+        "queries_no_contrast": 0,
+        "positive_candidate_labels": 3160,
+        "observed_low_candidates": 1976,
+        "sampled_unlabeled_candidates": 52800
+      },
+      "effective_training_queries": 528,
+      "training_rows": 57936,
+      "query_sizes": {
+        "min": 101,
+        "median": 107.0,
+        "p90": 122.0,
+        "max": 190
+      },
+      "snapshot_rows": 55807,
+      "label_rows": 14379,
+      "future_positives": 6532,
+      "eligible_future_positives": 6160,
+      "retrieved_positive_candidates": 3160,
+      "historical_union_macro_recall": 0.5961351490602835,
+      "eligible_positive_absent_fraction": 0.487012987012987,
+      "label_definition": "1 observed rating>=4; 0 observed low or sampled unknown proxy. Unknown is not verified dislike.",
+      "sampling_policy": "All retrieved positives and observed lows; <=100 uniform unknowns per composite query, seeded by seed+queryId. Label-conditioned training sampling only, never retrieval.",
+      "label_conditioned_sampling_disclosure": true
+    },
+    "gate_b_feasible": true,
+    "feasibility_rule": "At least configured informative groups; each has positive and contrasting labels; all features built/frozen before labels.",
+    "label_window_sha256": "e736bff782ddd0e8e7f81635dba6e60eefa4705b0eb27ed9dbd9bd33e1e67983",
+    "source_sha256": "5d30dd2d8a273530c45157834c543a272e3239947642f03c0acff5a0593062e5",
+    "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+    "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+    "test_access": false
+  },
+  "gate_c": {
+    "kind": "lightgbm_lambdamart",
+    "version": "small_lambdamart_v1",
+    "status": "completed",
+    "run_id": "phase4_v1",
+    "training_data": {
+      "path": "artifacts/ranking_training/phase4_v1",
+      "manifest_sha256": "de88eff4d565de6515fb706b3490c6c5252871ad0e723ee007a42d6d67e8e6e3"
+    },
+    "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+    "validation_evaluation_id": "585db5a09f479eeadaffc9cff33bfac1d254d971ebdd67f97670000be9196793",
+    "validation_union_sha256": "3fdacca0fe440460363df7a74d66b871f1dad7254ae96e8723f34d0139a47198",
+    "historical_evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+    "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+    "config": {
+      "seed": 42,
+      "sampling": {
+        "unknown_per_query": 100,
+        "minimum_effective_queries": 50
+      },
+      "boosting_rounds": 200,
+      "early_stopping_rounds": 20,
+      "lightgbm": {
+        "learning_rate": 0.05,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "min_data_in_leaf": 50,
+        "lambda_l1": 0.1,
+        "lambda_l2": 1.0,
+        "max_bin": 127,
+        "lambdarank_truncation_level": 30,
+        "feature_fraction": 1.0,
+        "bagging_fraction": 1.0,
+        "bagging_freq": 0
+      }
+    },
+    "params": {
+      "learning_rate": 0.05,
+      "num_leaves": 15,
+      "max_depth": 5,
+      "min_data_in_leaf": 50,
+      "lambda_l1": 0.1,
+      "lambda_l2": 1.0,
+      "max_bin": 127,
+      "lambdarank_truncation_level": 30,
+      "feature_fraction": 1.0,
+      "bagging_fraction": 1.0,
+      "bagging_freq": 0,
+      "objective": "lambdarank",
+      "metric": "None",
+      "label_gain": [
+        0,
+        1
+      ],
+      "seed": 42,
+      "data_random_seed": 42,
+      "feature_fraction_seed": 42,
+      "bagging_seed": 42,
+      "deterministic": true,
+      "force_col_wise": true,
+      "num_threads": 1,
+      "verbosity": 1
+    },
+    "lightgbm_version": "4.6.0",
+    "best_iteration": 31,
+    "trained_iterations": 51,
+    "training_groups": 528,
+    "training_rows": 57936,
+    "validation_groups": 579,
+    "validation_rows": 213507,
+    "training_seconds": 7.329539625032339,
+    "peak_rss_bytes": 948060160,
+    "early_stopping_metric": "Custom full-eligible-denominator user-macro NDCG@20 over all 579 full-union Validation queries, retaining zero hits",
+    "native_candidate_conditional_ndcg_not_used": true,
+    "validation_labels_used_for_gradients": false,
+    "schema_source_sha256": "fb871b6e4bf0aa1e2815c9f6707f044c64b7931d974c0bb7c86e7f269e9692a0",
+    "source_sha256": "5d30dd2d8a273530c45157834c543a272e3239947642f03c0acff5a0593062e5",
+    "source_git_revision": "c68dce24bc92adf8047837ca66deedbdc038686e",
+    "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+    "dvc_metadata_sha256": {
+      "dvc.yaml": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+      "dvc.lock": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf"
+    },
+    "python_warnings": [],
+    "comparison": {
+      "best_individual_source": "implicit_als",
+      "individual": [
+        {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.17130076326796875,
+          "recall50": 0.2942855151946067,
+          "recall100": 0.3994294250804758,
+          "ndcg20": 0.12608457044413487,
+          "hit20": 0.5837651122625216,
+          "pool_recall": 0.5966644374520742,
+          "catalog_coverage20": 0.13182724252491695,
+          "catalog_coverage100": 0.2672425249169435,
+          "union_catalog_coverage": 0.7289036544850498,
+          "zero_union_hit_queries": 45,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "cold_0",
+          "queries": 0,
+          "relevant_positives": 0,
+          "recall20": null,
+          "recall50": null,
+          "recall100": null,
+          "ndcg20": null,
+          "hit20": null,
+          "pool_recall": null,
+          "catalog_coverage20": null,
+          "catalog_coverage100": null,
+          "union_catalog_coverage": null,
+          "zero_union_hit_queries": 0,
+          "empty_candidate_queries": 0,
+          "undefined_reason": "No relevance-bearing queries in this cohort"
+        },
+        {
+          "cohort": "sparse_1_4",
+          "queries": 12,
+          "relevant_positives": 22,
+          "recall20": 0.15277777777777776,
+          "recall50": 0.27777777777777773,
+          "recall100": 0.40277777777777773,
+          "ndcg20": 0.08545565485633914,
+          "hit20": 0.25,
+          "pool_recall": 0.5763888888888888,
+          "catalog_coverage20": 0.023654485049833886,
+          "catalog_coverage100": 0.08970099667774087,
+          "union_catalog_coverage": 0.29926910299003323,
+          "zero_union_hit_queries": 2,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "moderate_5_19",
+          "queries": 200,
+          "relevant_positives": 675,
+          "recall20": 0.23914775910364144,
+          "recall50": 0.3983347338935574,
+          "recall100": 0.49572654061624655,
+          "ndcg20": 0.1402447093851046,
+          "hit20": 0.475,
+          "pool_recall": 0.6794908963585433,
+          "catalog_coverage20": 0.08292358803986712,
+          "catalog_coverage100": 0.2029235880398671,
+          "union_catalog_coverage": 0.6175415282392026,
+          "zero_union_hit_queries": 31,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "warm_20_plus",
+          "queries": 367,
+          "relevant_positives": 5794,
+          "recall20": 0.13493257977681822,
+          "recall50": 0.2381227062278815,
+          "recall100": 0.34684195004090695,
+          "ndcg20": 0.11969633937835723,
+          "hit20": 0.6539509536784741,
+          "pool_recall": 0.5521903633416229,
+          "catalog_coverage20": 0.12491694352159469,
+          "catalog_coverage100": 0.2583388704318937,
+          "union_catalog_coverage": 0.6191362126245847,
+          "zero_union_hit_queries": 12,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        }
+      ],
+      "rrf": [
+        {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.16493769970318795,
+          "recall50": 0.27929645542357273,
+          "recall100": 0.4018857955064416,
+          "ndcg20": 0.12757831924855587,
+          "hit20": 0.5526770293609672,
+          "pool_recall": 0.5966644374520742,
+          "catalog_coverage20": 0.059800664451827246,
+          "catalog_coverage100": 0.2190033222591362,
+          "union_catalog_coverage": 0.7289036544850498,
+          "zero_union_hit_queries": 45,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "cold_0",
+          "queries": 0,
+          "relevant_positives": 0,
+          "recall20": null,
+          "recall50": null,
+          "recall100": null,
+          "ndcg20": null,
+          "hit20": null,
+          "pool_recall": null,
+          "catalog_coverage20": null,
+          "catalog_coverage100": null,
+          "union_catalog_coverage": null,
+          "zero_union_hit_queries": 0,
+          "empty_candidate_queries": 0,
+          "undefined_reason": "No relevance-bearing queries in this cohort"
+        },
+        {
+          "cohort": "sparse_1_4",
+          "queries": 12,
+          "relevant_positives": 22,
+          "recall20": 0.19444444444444442,
+          "recall50": 0.27777777777777773,
+          "recall100": 0.27777777777777773,
+          "ndcg20": 0.06650177540197204,
+          "hit20": 0.25,
+          "pool_recall": 0.5763888888888888,
+          "catalog_coverage20": 0.016079734219269105,
+          "catalog_coverage100": 0.05847176079734219,
+          "union_catalog_coverage": 0.29926910299003323,
+          "zero_union_hit_queries": 2,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "moderate_5_19",
+          "queries": 200,
+          "relevant_positives": 675,
+          "recall20": 0.22609523809523807,
+          "recall50": 0.35948704481792715,
+          "recall100": 0.5032265406162465,
+          "ndcg20": 0.12612076670161654,
+          "hit20": 0.46,
+          "pool_recall": 0.6794908963585433,
+          "catalog_coverage20": 0.037475083056478405,
+          "catalog_coverage100": 0.15295681063122923,
+          "union_catalog_coverage": 0.6175415282392026,
+          "zero_union_hit_queries": 31,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "warm_20_plus",
+          "queries": 367,
+          "relevant_positives": 5794,
+          "recall20": 0.13064454271325576,
+          "recall50": 0.2356455187829152,
+          "recall100": 0.3507172592415451,
+          "ndcg20": 0.13036967901843838,
+          "hit20": 0.6130790190735694,
+          "pool_recall": 0.5521903633416229,
+          "catalog_coverage20": 0.05023255813953489,
+          "catalog_coverage100": 0.18205980066445182,
+          "union_catalog_coverage": 0.6191362126245847,
+          "zero_union_hit_queries": 12,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        }
+      ],
+      "lambdamart": [
+        {
+          "cohort": "all",
+          "queries": 579,
+          "relevant_positives": 6491,
+          "recall20": 0.18710644287581268,
+          "recall50": 0.3112114450771412,
+          "recall100": 0.4185712753428419,
+          "ndcg20": 0.14279932641448312,
+          "hit20": 0.614853195164076,
+          "pool_recall": 0.5966644374520742,
+          "catalog_coverage20": 0.10524916943521595,
+          "catalog_coverage100": 0.2288372093023256,
+          "union_catalog_coverage": 0.7289036544850498,
+          "zero_union_hit_queries": 45,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "cold_0",
+          "queries": 0,
+          "relevant_positives": 0,
+          "recall20": null,
+          "recall50": null,
+          "recall100": null,
+          "ndcg20": null,
+          "hit20": null,
+          "pool_recall": null,
+          "catalog_coverage20": null,
+          "catalog_coverage100": null,
+          "union_catalog_coverage": null,
+          "zero_union_hit_queries": 0,
+          "empty_candidate_queries": 0,
+          "undefined_reason": "No relevance-bearing queries in this cohort"
+        },
+        {
+          "cohort": "sparse_1_4",
+          "queries": 12,
+          "relevant_positives": 22,
+          "recall20": 0.06944444444444443,
+          "recall50": 0.15277777777777776,
+          "recall100": 0.3611111111111111,
+          "ndcg20": 0.06622408210856759,
+          "hit20": 0.16666666666666666,
+          "pool_recall": 0.5763888888888888,
+          "catalog_coverage20": 0.021794019933554818,
+          "catalog_coverage100": 0.066843853820598,
+          "union_catalog_coverage": 0.29926910299003323,
+          "zero_union_hit_queries": 2,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "moderate_5_19",
+          "queries": 200,
+          "relevant_positives": 675,
+          "recall20": 0.2656691176470588,
+          "recall50": 0.4086656162464986,
+          "recall100": 0.5093361344537815,
+          "ndcg20": 0.15314204802099224,
+          "hit20": 0.515,
+          "pool_recall": 0.6794908963585433,
+          "catalog_coverage20": 0.07109634551495017,
+          "catalog_coverage100": 0.17714285714285713,
+          "union_catalog_coverage": 0.6175415282392026,
+          "zero_union_hit_queries": 31,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        },
+        {
+          "cohort": "warm_20_plus",
+          "queries": 367,
+          "relevant_positives": 5794,
+          "recall20": 0.1481402549382846,
+          "recall50": 0.26328329732161226,
+          "recall100": 0.37098694332265897,
+          "ndcg20": 0.1396667885680776,
+          "hit20": 0.6839237057220708,
+          "pool_recall": 0.5521903633416229,
+          "catalog_coverage20": 0.08916943521594685,
+          "catalog_coverage100": 0.21262458471760798,
+          "union_catalog_coverage": 0.6191362126245847,
+          "zero_union_hit_queries": 12,
+          "empty_candidate_queries": 0,
+          "undefined_reason": null
+        }
+      ],
+      "common_union_recall_ceiling": 0.5966644374520742,
+      "common_queries": 579,
+      "positive_denominator": 6491,
+      "same_candidate_pair_set": true,
+      "individual_interpretation": "Original source ranks first, missing-source union tail by movieId; original Top-20 unchanged; tail has no invented source scores.",
+      "rrf_ranking_seconds": 0.059538083034567535,
+      "lambdamart_prediction_seconds": 0.1572502080234699,
+      "lambdamart_ranking_seconds": 0.21323004201985896,
+      "lambdamart_mean_ranking_ms_per_query": 0.3682729568564058
+    },
+    "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+    "test_access": false,
+    "save_reload_prediction_parity": true,
+    "model_bytes": 59145
+  },
+  "feature_schema": {
+    "version": "small_lambdamart_features_v1",
+    "names": [
+      "popularity_score",
+      "popularity_rank",
+      "popularity_present",
+      "popularity_fallback",
+      "genre_score",
+      "genre_rank",
+      "genre_present",
+      "genre_fallback",
+      "itemcf_score",
+      "itemcf_rank",
+      "itemcf_present",
+      "itemcf_fallback",
+      "implicit_als_score",
+      "implicit_als_rank",
+      "implicit_als_present",
+      "implicit_als_fallback",
+      "lightgcn_score",
+      "lightgcn_rank",
+      "lightgcn_present",
+      "lightgcn_fallback",
+      "two_tower_score",
+      "two_tower_rank",
+      "two_tower_present",
+      "two_tower_fallback",
+      "source_count",
+      "item_positive_log",
+      "item_observed_log",
+      "user_positive_log",
+      "user_observed_log",
+      "genre_similarity",
+      "rrf_score",
+      "best_source_rank",
+      "mean_source_rank",
+      "candidate_count",
+      "genre_Action",
+      "genre_Adventure",
+      "genre_Animation",
+      "genre_Children",
+      "genre_Comedy",
+      "genre_Crime",
+      "genre_Documentary",
+      "genre_Drama",
+      "genre_Fantasy",
+      "genre_Film_Noir",
+      "genre_Horror",
+      "genre_IMAX",
+      "genre_Musical",
+      "genre_Mystery",
+      "genre_Romance",
+      "genre_Sci_Fi",
+      "genre_Thriller",
+      "genre_War",
+      "genre_Western"
+    ],
+    "dtypes": {
+      "popularity_score": "float32",
+      "popularity_rank": "float32",
+      "popularity_present": "float32",
+      "popularity_fallback": "float32",
+      "genre_score": "float32",
+      "genre_rank": "float32",
+      "genre_present": "float32",
+      "genre_fallback": "float32",
+      "itemcf_score": "float32",
+      "itemcf_rank": "float32",
+      "itemcf_present": "float32",
+      "itemcf_fallback": "float32",
+      "implicit_als_score": "float32",
+      "implicit_als_rank": "float32",
+      "implicit_als_present": "float32",
+      "implicit_als_fallback": "float32",
+      "lightgcn_score": "float32",
+      "lightgcn_rank": "float32",
+      "lightgcn_present": "float32",
+      "lightgcn_fallback": "float32",
+      "two_tower_score": "float32",
+      "two_tower_rank": "float32",
+      "two_tower_present": "float32",
+      "two_tower_fallback": "float32",
+      "source_count": "float32",
+      "item_positive_log": "float32",
+      "item_observed_log": "float32",
+      "user_positive_log": "float32",
+      "user_observed_log": "float32",
+      "genre_similarity": "float32",
+      "rrf_score": "float32",
+      "best_source_rank": "float32",
+      "mean_source_rank": "float32",
+      "candidate_count": "float32",
+      "genre_Action": "float32",
+      "genre_Adventure": "float32",
+      "genre_Animation": "float32",
+      "genre_Children": "float32",
+      "genre_Comedy": "float32",
+      "genre_Crime": "float32",
+      "genre_Documentary": "float32",
+      "genre_Drama": "float32",
+      "genre_Fantasy": "float32",
+      "genre_Film_Noir": "float32",
+      "genre_Horror": "float32",
+      "genre_IMAX": "float32",
+      "genre_Musical": "float32",
+      "genre_Mystery": "float32",
+      "genre_Romance": "float32",
+      "genre_Sci_Fi": "float32",
+      "genre_Thriller": "float32",
+      "genre_War": "float32",
+      "genre_Western": "float32"
+    },
+    "genre_columns": {
+      "Action": "genre_Action",
+      "Adventure": "genre_Adventure",
+      "Animation": "genre_Animation",
+      "Children": "genre_Children",
+      "Comedy": "genre_Comedy",
+      "Crime": "genre_Crime",
+      "Documentary": "genre_Documentary",
+      "Drama": "genre_Drama",
+      "Fantasy": "genre_Fantasy",
+      "Film-Noir": "genre_Film_Noir",
+      "Horror": "genre_Horror",
+      "IMAX": "genre_IMAX",
+      "Musical": "genre_Musical",
+      "Mystery": "genre_Mystery",
+      "Romance": "genre_Romance",
+      "Sci-Fi": "genre_Sci_Fi",
+      "Thriller": "genre_Thriller",
+      "War": "genre_War",
+      "Western": "genre_Western"
+    },
+    "missingness": "Absent source score = NaN, rank = 101, present/fallback = 0; present scores finite. Other features finite.",
+    "transformations": "Train/snapshot-only log1p count features, L2 genre similarity, binary movie genres; raw source-specific scores, reciprocal-rank score with c=60. No fitted normalization.",
+    "label_columns_excluded": [
+      "cohort",
+      "feedback_kind",
+      "future_positives",
+      "label",
+      "movieId",
+      "queryId",
+      "rating",
+      "snapshotId",
+      "submitted_at",
+      "timestamp",
+      "userId"
+    ],
+    "sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0"
+  },
+  "feature_shift": {
+    "historical_union": {
+      "popularity_score": {
+        "mean": 67.97185516357422,
+        "std": 33.08842468261719,
+        "missing_fraction": 0.7296794263886057,
+        "quantiles": [
+          42.0,
+          56.0,
+          114.0
+        ]
+      },
+      "popularity_rank": {
+        "mean": 87.34880828857422,
+        "std": 26.98656463623047,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "popularity_present": {
+        "mean": 0.2703205645084381,
+        "std": 0.44412538409233093,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "popularity_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_score": {
+        "mean": 1.323439121246338,
+        "std": 6.800874710083008,
+        "missing_fraction": 0.7296794263886057,
+        "quantiles": [
+          0.7489686012268066,
+          0.8198438882827759,
+          0.9087650179862976
+        ]
+      },
+      "genre_rank": {
+        "mean": 87.34880828857422,
+        "std": 26.98656463623047,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "genre_present": {
+        "mean": 0.2703205645084381,
+        "std": 0.44412538409233093,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_fallback": {
+        "mean": 0.0017725939396768808,
+        "std": 0.0420648530125618,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "itemcf_score": {
+        "mean": 3.3667545318603516,
+        "std": 7.169984817504883,
+        "missing_fraction": 0.7296794263886057,
+        "quantiles": [
+          0.6445790529251099,
+          1.9915637969970703,
+          6.44581937789917
+        ]
+      },
+      "itemcf_rank": {
+        "mean": 87.34880828857422,
+        "std": 26.98656463623047,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "itemcf_present": {
+        "mean": 0.2703205645084381,
+        "std": 0.44412538409233093,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "itemcf_fallback": {
+        "mean": 0.0017725939396768808,
+        "std": 0.0420648530125618,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "implicit_als_score": {
+        "mean": 0.9898945689201355,
+        "std": 6.828779697418213,
+        "missing_fraction": 0.7296794263886057,
+        "quantiles": [
+          0.22703036665916443,
+          0.4619048237800598,
+          0.7927505373954773
+        ]
+      },
+      "implicit_als_rank": {
+        "mean": 87.34880828857422,
+        "std": 26.98656463623047,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "implicit_als_present": {
+        "mean": 0.2703205645084381,
+        "std": 0.44412538409233093,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "implicit_als_fallback": {
+        "mean": 0.0017725939396768808,
+        "std": 0.0420648530125618,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "lightgcn_score": {
+        "mean": 5.958542823791504,
+        "std": 6.8167266845703125,
+        "missing_fraction": 0.7296794263886057,
+        "quantiles": [
+          3.369065523147583,
+          4.9462690353393555,
+          8.480890274047852
+        ]
+      },
+      "lightgcn_rank": {
+        "mean": 87.34880828857422,
+        "std": 26.98656463623047,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "lightgcn_present": {
+        "mean": 0.2703205645084381,
+        "std": 0.44412538409233093,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "lightgcn_fallback": {
+        "mean": 0.0017725939396768808,
+        "std": 0.0420648530125618,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "two_tower_score": {
+        "mean": 1.479841709136963,
+        "std": 6.789156913757324,
+        "missing_fraction": 0.7296794263886057,
+        "quantiles": [
+          0.9555423855781555,
+          0.9888750314712524,
+          0.9973971247673035
+        ]
+      },
+      "two_tower_rank": {
+        "mean": 87.34880828857422,
+        "std": 26.98656463623047,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "two_tower_present": {
+        "mean": 0.2703205645084381,
+        "std": 0.44412538409233093,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "two_tower_fallback": {
+        "mean": 0.0017725939396768808,
+        "std": 0.0420648530125618,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "source_count": {
+        "mean": 1.6219234466552734,
+        "std": 1.0661002397537231,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          1.0,
+          1.0,
+          3.0
+        ]
+      },
+      "item_positive_log": {
+        "mean": 2.5906522274017334,
+        "std": 1.3902827501296997,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.6931471824645996,
+          2.8332133293151855,
+          4.204692840576172
+        ]
+      },
+      "item_observed_log": {
+        "mean": 3.133479595184326,
+        "std": 1.3264868259429932,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          1.0986123085021973,
+          3.4339871406555176,
+          4.6151204109191895
+        ]
+      },
+      "user_positive_log": {
+        "mean": 3.2574782371520996,
+        "std": 1.0957998037338257,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          1.945910096168518,
+          3.178053855895996,
+          4.787491798400879
+        ]
+      },
+      "user_observed_log": {
+        "mean": 3.8833870887756348,
+        "std": 1.0887986421585083,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          2.5649492740631104,
+          3.7135720252990723,
+          5.497168064117432
+        ]
+      },
+      "genre_similarity": {
+        "mean": 0.5466545224189758,
+        "std": 0.24582739174365997,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.1983211651444435,
+          0.5658518671989441,
+          0.8429723978042603
+        ]
+      },
+      "rrf_score": {
+        "mean": 0.015824146568775177,
+        "std": 0.01263310108333826,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.00671140942722559,
+          0.010638297535479069,
+          0.03412022031843665
+        ]
+      },
+      "best_source_rank": {
+        "mean": 48.24799728393555,
+        "std": 29.163951873779297,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          9.0,
+          47.0,
+          89.0
+        ]
+      },
+      "mean_source_rank": {
+        "mean": 53.915122985839844,
+        "std": 26.338829040527344,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          17.0,
+          55.0,
+          90.0
+        ]
+      },
+      "candidate_count": {
+        "mean": 379.22381591796875,
+        "std": 58.15147018432617,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          314.0,
+          366.0,
+          466.0
+        ]
+      },
+      "genre_Action": {
+        "mean": 0.3548644483089447,
+        "std": 0.4784722328186035,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Adventure": {
+        "mean": 0.2602212131023407,
+        "std": 0.43875521421432495,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Animation": {
+        "mean": 0.061358340084552765,
+        "std": 0.23998644948005676,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Children": {
+        "mean": 0.07625699043273926,
+        "std": 0.26540887355804443,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Comedy": {
+        "mean": 0.3795832693576813,
+        "std": 0.485283225774765,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Crime": {
+        "mean": 0.2226688116788864,
+        "std": 0.41603776812553406,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Documentary": {
+        "mean": 0.0057476358488202095,
+        "std": 0.07559497654438019,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Drama": {
+        "mean": 0.5425466895103455,
+        "std": 0.49818649888038635,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "genre_Fantasy": {
+        "mean": 0.10303202271461487,
+        "std": 0.30400070548057556,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Film_Noir": {
+        "mean": 0.008893989957869053,
+        "std": 0.09388762712478638,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Horror": {
+        "mean": 0.04435473307967186,
+        "std": 0.2058819830417633,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_IMAX": {
+        "mean": 0.035638000816106796,
+        "std": 0.18538591265678406,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Musical": {
+        "mean": 0.03191112354397774,
+        "std": 0.17576348781585693,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Mystery": {
+        "mean": 0.06868357956409454,
+        "std": 0.25291529297828674,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Romance": {
+        "mean": 0.186658576130867,
+        "std": 0.38963720202445984,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Sci_Fi": {
+        "mean": 0.1631850004196167,
+        "std": 0.36953437328338623,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Thriller": {
+        "mean": 0.3109041154384613,
+        "std": 0.46286362409591675,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_War": {
+        "mean": 0.051258984953165054,
+        "std": 0.22052550315856934,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Western": {
+        "mean": 0.015962207689881325,
+        "std": 0.12532922625541687,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "sampled_training": {
+      "popularity_score": {
+        "mean": 67.10398864746094,
+        "std": 33.216827392578125,
+        "missing_fraction": 0.7155136702568351,
+        "quantiles": [
+          40.0,
+          54.0,
+          114.0
+        ]
+      },
+      "popularity_rank": {
+        "mean": 86.41097259521484,
+        "std": 27.829233169555664,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          34.0,
+          101.0,
+          101.0
+        ]
+      },
+      "popularity_present": {
+        "mean": 0.284486323595047,
+        "std": 0.4511694312095642,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "popularity_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_score": {
+        "mean": 0.8208546042442322,
+        "std": 0.058038607239723206,
+        "missing_fraction": 0.733119304059652,
+        "quantiles": [
+          0.747409462928772,
+          0.8174217343330383,
+          0.8985316157341003
+        ]
+      },
+      "genre_rank": {
+        "mean": 87.43923950195312,
+        "std": 26.956527709960938,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          38.0,
+          101.0,
+          101.0
+        ]
+      },
+      "genre_present": {
+        "mean": 0.26688069105148315,
+        "std": 0.4423294961452484,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "itemcf_score": {
+        "mean": 3.280695676803589,
+        "std": 2.867713451385498,
+        "missing_fraction": 0.7137358464512565,
+        "quantiles": [
+          0.7645232677459717,
+          2.396961212158203,
+          6.944097518920898
+        ]
+      },
+      "itemcf_rank": {
+        "mean": 86.20384216308594,
+        "std": 28.125268936157227,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          34.0,
+          101.0,
+          101.0
+        ]
+      },
+      "itemcf_present": {
+        "mean": 0.2862641513347626,
+        "std": 0.45201435685157776,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "itemcf_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "implicit_als_score": {
+        "mean": 0.522172749042511,
+        "std": 0.2295074611902237,
+        "missing_fraction": 0.7091445733222866,
+        "quantiles": [
+          0.24394088983535767,
+          0.5027413368225098,
+          0.8217732906341553
+        ]
+      },
+      "implicit_als_rank": {
+        "mean": 85.97221374511719,
+        "std": 28.257688522338867,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          33.0,
+          101.0,
+          101.0
+        ]
+      },
+      "implicit_als_present": {
+        "mean": 0.29085543751716614,
+        "std": 0.4541569650173187,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "implicit_als_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "lightgcn_score": {
+        "mean": 5.798548221588135,
+        "std": 2.297765016555786,
+        "missing_fraction": 0.7100766362883182,
+        "quantiles": [
+          3.489227056503296,
+          5.228555202484131,
+          8.815864562988281
+        ]
+      },
+      "lightgcn_rank": {
+        "mean": 86.11702728271484,
+        "std": 28.04754638671875,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          34.0,
+          101.0,
+          101.0
+        ]
+      },
+      "lightgcn_present": {
+        "mean": 0.28992336988449097,
+        "std": 0.453726589679718,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "lightgcn_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "two_tower_score": {
+        "mean": 0.982171893119812,
+        "std": 0.02179323509335518,
+        "missing_fraction": 0.7214167357083678,
+        "quantiles": [
+          0.9584190249443054,
+          0.9894199371337891,
+          0.9974398612976074
+        ]
+      },
+      "two_tower_rank": {
+        "mean": 86.77909851074219,
+        "std": 27.51040267944336,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          36.0,
+          101.0,
+          101.0
+        ]
+      },
+      "two_tower_present": {
+        "mean": 0.27858325839042664,
+        "std": 0.44830194115638733,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "two_tower_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "source_count": {
+        "mean": 1.6969932317733765,
+        "std": 1.1207764148712158,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          1.0,
+          1.0,
+          4.0
+        ]
+      },
+      "item_positive_log": {
+        "mean": 2.6486833095550537,
+        "std": 1.3763741254806519,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.6931471824645996,
+          2.944438934326172,
+          4.204692840576172
+        ]
+      },
+      "item_observed_log": {
+        "mean": 3.1976397037506104,
+        "std": 1.306061029434204,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          1.0986123085021973,
+          3.4965076446533203,
+          4.624972820281982
+        ]
+      },
+      "user_positive_log": {
+        "mean": 3.444361448287964,
+        "std": 1.0675209760665894,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          2.1972246170043945,
+          3.367295742034912,
+          4.9089648723602295
+        ]
+      },
+      "user_observed_log": {
+        "mean": 4.0427565574646,
+        "std": 1.0944749116897583,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          2.70805025100708,
+          3.931825637817383,
+          5.549076080322266
+        ]
+      },
+      "genre_similarity": {
+        "mean": 0.5509014129638672,
+        "std": 0.2370874583721161,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.21814174205064774,
+          0.5664250254631042,
+          0.8398559093475342
+        ]
+      },
+      "rrf_score": {
+        "mean": 0.016703741624951363,
+        "std": 0.013461095280945301,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.00671140942722559,
+          0.010989011265337467,
+          0.03714393079280853
+        ]
+      },
+      "best_source_rank": {
+        "mean": 47.29727554321289,
+        "std": 29.395713806152344,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          8.0,
+          46.0,
+          89.0
+        ]
+      },
+      "mean_source_rank": {
+        "mean": 53.59355163574219,
+        "std": 26.26835823059082,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          17.0,
+          54.0,
+          90.0
+        ]
+      },
+      "candidate_count": {
+        "mean": 368.90997314453125,
+        "std": 51.49018478393555,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          311.0,
+          356.0,
+          450.0
+        ]
+      },
+      "genre_Action": {
+        "mean": 0.37046051025390625,
+        "std": 0.482928067445755,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Adventure": {
+        "mean": 0.2736985683441162,
+        "std": 0.44585609436035156,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Animation": {
+        "mean": 0.06455399096012115,
+        "std": 0.2457372099161148,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Children": {
+        "mean": 0.07963959872722626,
+        "std": 0.27073442935943604,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Comedy": {
+        "mean": 0.37653619050979614,
+        "std": 0.4845169484615326,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Crime": {
+        "mean": 0.2317212074995041,
+        "std": 0.4219318628311157,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Documentary": {
+        "mean": 0.004832919221371412,
+        "std": 0.06935101002454758,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Drama": {
+        "mean": 0.5368337631225586,
+        "std": 0.4986414313316345,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "genre_Fantasy": {
+        "mean": 0.10798121988773346,
+        "std": 0.3103567063808441,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Film_Noir": {
+        "mean": 0.009217066690325737,
+        "std": 0.09556208550930023,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Horror": {
+        "mean": 0.042615991085767746,
+        "std": 0.2019897699356079,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_IMAX": {
+        "mean": 0.03900856152176857,
+        "std": 0.19361531734466553,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Musical": {
+        "mean": 0.03314001485705376,
+        "std": 0.17900210618972778,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Mystery": {
+        "mean": 0.06874827295541763,
+        "std": 0.2530255913734436,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Romance": {
+        "mean": 0.18354736268520355,
+        "std": 0.38711461424827576,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Sci_Fi": {
+        "mean": 0.16851353645324707,
+        "std": 0.37432166934013367,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Thriller": {
+        "mean": 0.32050883769989014,
+        "std": 0.4666721820831299,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_War": {
+        "mean": 0.05064208805561066,
+        "std": 0.21926574409008026,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Western": {
+        "mean": 0.01586233079433441,
+        "std": 0.1249428540468216,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation_union": {
+      "popularity_score": {
+        "mean": 76.61172485351562,
+        "std": 35.50190734863281,
+        "missing_fraction": 0.7288145119363768,
+        "quantiles": [
+          48.0,
+          65.0,
+          128.0
+        ]
+      },
+      "popularity_rank": {
+        "mean": 87.30513000488281,
+        "std": 27.01863670349121,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "popularity_present": {
+        "mean": 0.2711854875087738,
+        "std": 0.4445716142654419,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "popularity_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_score": {
+        "mean": 0.8250846266746521,
+        "std": 0.056612346321344376,
+        "missing_fraction": 0.7288145119363768,
+        "quantiles": [
+          0.7542667388916016,
+          0.8215985894203186,
+          0.9014092683792114
+        ]
+      },
+      "genre_rank": {
+        "mean": 87.30513000488281,
+        "std": 27.01863670349121,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "genre_present": {
+        "mean": 0.2711854875087738,
+        "std": 0.4445716142654419,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "itemcf_score": {
+        "mean": 3.5971438884735107,
+        "std": 3.1463510990142822,
+        "missing_fraction": 0.7288145119363768,
+        "quantiles": [
+          0.8535534143447876,
+          2.6190080642700195,
+          7.598787307739258
+        ]
+      },
+      "itemcf_rank": {
+        "mean": 87.30513000488281,
+        "std": 27.01863670349121,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "itemcf_present": {
+        "mean": 0.2711854875087738,
+        "std": 0.4445716142654419,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "itemcf_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "implicit_als_score": {
+        "mean": 0.5462461113929749,
+        "std": 0.22189581394195557,
+        "missing_fraction": 0.7288145119363768,
+        "quantiles": [
+          0.2817186415195465,
+          0.5234712958335876,
+          0.8383492231369019
+        ]
+      },
+      "implicit_als_rank": {
+        "mean": 87.30513000488281,
+        "std": 27.01863670349121,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "implicit_als_present": {
+        "mean": 0.2711854875087738,
+        "std": 0.4445716142654419,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "implicit_als_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "lightgcn_score": {
+        "mean": 5.869501113891602,
+        "std": 2.2580037117004395,
+        "missing_fraction": 0.7288145119363768,
+        "quantiles": [
+          3.6544787883758545,
+          5.275148868560791,
+          8.827672004699707
+        ]
+      },
+      "lightgcn_rank": {
+        "mean": 87.30513000488281,
+        "std": 27.01863670349121,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "lightgcn_present": {
+        "mean": 0.2711854875087738,
+        "std": 0.4445716142654419,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "lightgcn_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "two_tower_score": {
+        "mean": 0.9835554361343384,
+        "std": 0.020727597177028656,
+        "missing_fraction": 0.7288145119363768,
+        "quantiles": [
+          0.9624801278114319,
+          0.9904053807258606,
+          0.9976799488067627
+        ]
+      },
+      "two_tower_rank": {
+        "mean": 87.30513000488281,
+        "std": 27.01863670349121,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          37.0,
+          101.0,
+          101.0
+        ]
+      },
+      "two_tower_present": {
+        "mean": 0.2711854875087738,
+        "std": 0.4445716142654419,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "two_tower_fallback": {
+        "mean": 0.0,
+        "std": 0.0,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "source_count": {
+        "mean": 1.6271129846572876,
+        "std": 1.0616921186447144,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          1.0,
+          1.0,
+          3.0
+        ]
+      },
+      "item_positive_log": {
+        "mean": 2.7332680225372314,
+        "std": 1.4138507843017578,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.6931471824645996,
+          3.044522523880005,
+          4.330733299255371
+        ]
+      },
+      "item_observed_log": {
+        "mean": 3.302945375442505,
+        "std": 1.3342632055282593,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          1.0986123085021973,
+          3.6375861167907715,
+          4.736198425292969
+        ]
+      },
+      "user_positive_log": {
+        "mean": 3.5451266765594482,
+        "std": 1.054242491722107,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          2.3025851249694824,
+          3.4339871406555176,
+          5.023880481719971
+        ]
+      },
+      "user_observed_log": {
+        "mean": 4.161868095397949,
+        "std": 1.0750116109848022,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          2.890371799468994,
+          3.9889841079711914,
+          5.739792823791504
+        ]
+      },
+      "genre_similarity": {
+        "mean": 0.5533313155174255,
+        "std": 0.24065791070461273,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.21233859658241272,
+          0.5692893266677856,
+          0.8456119298934937
+        ]
+      },
+      "rrf_score": {
+        "mean": 0.015874778851866722,
+        "std": 0.012632510624825954,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.00671140942722559,
+          0.010638297535479069,
+          0.03455011099576949
+        ]
+      },
+      "best_source_rank": {
+        "mean": 48.215206146240234,
+        "std": 29.2017822265625,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          9.0,
+          47.0,
+          90.0
+        ]
+      },
+      "mean_source_rank": {
+        "mean": 54.03343963623047,
+        "std": 26.281103134155273,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          17.0,
+          55.0,
+          90.0
+        ]
+      },
+      "candidate_count": {
+        "mean": 375.36492919921875,
+        "std": 51.83767318725586,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          318.0,
+          361.0,
+          449.0
+        ]
+      },
+      "genre_Action": {
+        "mean": 0.3613651990890503,
+        "std": 0.4803960919380188,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Adventure": {
+        "mean": 0.26319512724876404,
+        "std": 0.4403674006462097,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Animation": {
+        "mean": 0.0638808086514473,
+        "std": 0.2445404827594757,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Children": {
+        "mean": 0.07732298970222473,
+        "std": 0.26710325479507446,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Comedy": {
+        "mean": 0.38629648089408875,
+        "std": 0.4868999123573303,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Crime": {
+        "mean": 0.22598321735858917,
+        "std": 0.4182281792163849,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Documentary": {
+        "mean": 0.005404974799603224,
+        "std": 0.07331958413124084,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Drama": {
+        "mean": 0.5441461205482483,
+        "std": 0.4980473220348358,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "genre_Fantasy": {
+        "mean": 0.11049286276102066,
+        "std": 0.31350308656692505,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Film_Noir": {
+        "mean": 0.008046574890613556,
+        "std": 0.08934107422828674,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Horror": {
+        "mean": 0.047286506742239,
+        "std": 0.21225100755691528,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_IMAX": {
+        "mean": 0.03665921837091446,
+        "std": 0.18792371451854706,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Musical": {
+        "mean": 0.03238769620656967,
+        "std": 0.17702749371528625,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Mystery": {
+        "mean": 0.06783852726221085,
+        "std": 0.25146859884262085,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Romance": {
+        "mean": 0.18451854586601257,
+        "std": 0.3879064917564392,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Sci_Fi": {
+        "mean": 0.16521237790584564,
+        "std": 0.3713721036911011,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_Thriller": {
+        "mean": 0.31455641984939575,
+        "std": 0.4643389880657196,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "genre_War": {
+        "mean": 0.04878997057676315,
+        "std": 0.2154286652803421,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "genre_Western": {
+        "mean": 0.015704402700066566,
+        "std": 0.12432929873466492,
+        "missing_fraction": 0.0,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "historical_vs_validation": [
+      {
+        "feature": "popularity_score",
+        "standardized_mean_shift": 0.2611145671882141,
+        "snapshot": {
+          "mean": 67.97185516357422,
+          "std": 33.08842468261719,
+          "missing_fraction": 0.7296794263886057,
+          "quantiles": [
+            42.0,
+            56.0,
+            114.0
+          ]
+        },
+        "full_train": {
+          "mean": 76.61172485351562,
+          "std": 35.50190734863281,
+          "missing_fraction": 0.7288145119363768,
+          "quantiles": [
+            48.0,
+            65.0,
+            128.0
+          ]
+        },
+        "missingness_delta": -0.0008649144522289154,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "popularity_rank",
+        "standardized_mean_shift": -0.0016185195959609667,
+        "snapshot": {
+          "mean": 87.34880828857422,
+          "std": 26.98656463623047,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "full_train": {
+          "mean": 87.30513000488281,
+          "std": 27.01863670349121,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "popularity_present",
+        "standardized_mean_shift": 0.0019474748152559576,
+        "snapshot": {
+          "mean": 0.2703205645084381,
+          "std": 0.44412538409233093,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.2711854875087738,
+          "std": 0.4445716142654419,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "popularity_fallback",
+        "standardized_mean_shift": 0.0,
+        "snapshot": {
+          "mean": 0.0,
+          "std": 0.0,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.0,
+          "std": 0.0,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_score",
+        "standardized_mean_shift": -0.07327799964213767,
+        "snapshot": {
+          "mean": 1.323439121246338,
+          "std": 6.800874710083008,
+          "missing_fraction": 0.7296794263886057,
+          "quantiles": [
+            0.7489686012268066,
+            0.8198438882827759,
+            0.9087650179862976
+          ]
+        },
+        "full_train": {
+          "mean": 0.8250846266746521,
+          "std": 0.056612346321344376,
+          "missing_fraction": 0.7288145119363768,
+          "quantiles": [
+            0.7542667388916016,
+            0.8215985894203186,
+            0.9014092683792114
+          ]
+        },
+        "missingness_delta": -0.0008649144522289154,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_rank",
+        "standardized_mean_shift": -0.0016185195959609667,
+        "snapshot": {
+          "mean": 87.34880828857422,
+          "std": 26.98656463623047,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "full_train": {
+          "mean": 87.30513000488281,
+          "std": 27.01863670349121,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_present",
+        "standardized_mean_shift": 0.0019474748152559576,
+        "snapshot": {
+          "mean": 0.2703205645084381,
+          "std": 0.44412538409233093,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.2711854875087738,
+          "std": 0.4445716142654419,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_fallback",
+        "standardized_mean_shift": -0.042139549118299126,
+        "snapshot": {
+          "mean": 0.0017725939396768808,
+          "std": 0.0420648530125618,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.0,
+          "std": 0.0,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "itemcf_score",
+        "standardized_mean_shift": 0.03213247482068358,
+        "snapshot": {
+          "mean": 3.3667545318603516,
+          "std": 7.169984817504883,
+          "missing_fraction": 0.7296794263886057,
+          "quantiles": [
+            0.6445790529251099,
+            1.9915637969970703,
+            6.44581937789917
+          ]
+        },
+        "full_train": {
+          "mean": 3.5971438884735107,
+          "std": 3.1463510990142822,
+          "missing_fraction": 0.7288145119363768,
+          "quantiles": [
+            0.8535534143447876,
+            2.6190080642700195,
+            7.598787307739258
+          ]
+        },
+        "missingness_delta": -0.0008649144522289154,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "itemcf_rank",
+        "standardized_mean_shift": -0.0016185195959609667,
+        "snapshot": {
+          "mean": 87.34880828857422,
+          "std": 26.98656463623047,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "full_train": {
+          "mean": 87.30513000488281,
+          "std": 27.01863670349121,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "itemcf_present",
+        "standardized_mean_shift": 0.0019474748152559576,
+        "snapshot": {
+          "mean": 0.2703205645084381,
+          "std": 0.44412538409233093,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.2711854875087738,
+          "std": 0.4445716142654419,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "itemcf_fallback",
+        "standardized_mean_shift": -0.042139549118299126,
+        "snapshot": {
+          "mean": 0.0017725939396768808,
+          "std": 0.0420648530125618,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.0,
+          "std": 0.0,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "implicit_als_score",
+        "standardized_mean_shift": -0.0649674579039199,
+        "snapshot": {
+          "mean": 0.9898945689201355,
+          "std": 6.828779697418213,
+          "missing_fraction": 0.7296794263886057,
+          "quantiles": [
+            0.22703036665916443,
+            0.4619048237800598,
+            0.7927505373954773
+          ]
+        },
+        "full_train": {
+          "mean": 0.5462461113929749,
+          "std": 0.22189581394195557,
+          "missing_fraction": 0.7288145119363768,
+          "quantiles": [
+            0.2817186415195465,
+            0.5234712958335876,
+            0.8383492231369019
+          ]
+        },
+        "missingness_delta": -0.0008649144522289154,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "implicit_als_rank",
+        "standardized_mean_shift": -0.0016185195959609667,
+        "snapshot": {
+          "mean": 87.34880828857422,
+          "std": 26.98656463623047,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "full_train": {
+          "mean": 87.30513000488281,
+          "std": 27.01863670349121,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "implicit_als_present",
+        "standardized_mean_shift": 0.0019474748152559576,
+        "snapshot": {
+          "mean": 0.2703205645084381,
+          "std": 0.44412538409233093,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.2711854875087738,
+          "std": 0.4445716142654419,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "implicit_als_fallback",
+        "standardized_mean_shift": -0.042139549118299126,
+        "snapshot": {
+          "mean": 0.0017725939396768808,
+          "std": 0.0420648530125618,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.0,
+          "std": 0.0,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "lightgcn_score",
+        "standardized_mean_shift": -0.013062238522992068,
+        "snapshot": {
+          "mean": 5.958542823791504,
+          "std": 6.8167266845703125,
+          "missing_fraction": 0.7296794263886057,
+          "quantiles": [
+            3.369065523147583,
+            4.9462690353393555,
+            8.480890274047852
+          ]
+        },
+        "full_train": {
+          "mean": 5.869501113891602,
+          "std": 2.2580037117004395,
+          "missing_fraction": 0.7288145119363768,
+          "quantiles": [
+            3.6544787883758545,
+            5.275148868560791,
+            8.827672004699707
+          ]
+        },
+        "missingness_delta": -0.0008649144522289154,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "lightgcn_rank",
+        "standardized_mean_shift": -0.0016185195959609667,
+        "snapshot": {
+          "mean": 87.34880828857422,
+          "std": 26.98656463623047,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "full_train": {
+          "mean": 87.30513000488281,
+          "std": 27.01863670349121,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "lightgcn_present",
+        "standardized_mean_shift": 0.0019474748152559576,
+        "snapshot": {
+          "mean": 0.2703205645084381,
+          "std": 0.44412538409233093,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.2711854875087738,
+          "std": 0.4445716142654419,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "lightgcn_fallback",
+        "standardized_mean_shift": -0.042139549118299126,
+        "snapshot": {
+          "mean": 0.0017725939396768808,
+          "std": 0.0420648530125618,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.0,
+          "std": 0.0,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "two_tower_score",
+        "standardized_mean_shift": -0.07309983836092614,
+        "snapshot": {
+          "mean": 1.479841709136963,
+          "std": 6.789156913757324,
+          "missing_fraction": 0.7296794263886057,
+          "quantiles": [
+            0.9555423855781555,
+            0.9888750314712524,
+            0.9973971247673035
+          ]
+        },
+        "full_train": {
+          "mean": 0.9835554361343384,
+          "std": 0.020727597177028656,
+          "missing_fraction": 0.7288145119363768,
+          "quantiles": [
+            0.9624801278114319,
+            0.9904053807258606,
+            0.9976799488067627
+          ]
+        },
+        "missingness_delta": -0.0008649144522289154,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "two_tower_rank",
+        "standardized_mean_shift": -0.0016185195959609667,
+        "snapshot": {
+          "mean": 87.34880828857422,
+          "std": 26.98656463623047,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "full_train": {
+          "mean": 87.30513000488281,
+          "std": 27.01863670349121,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            37.0,
+            101.0,
+            101.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "two_tower_present",
+        "standardized_mean_shift": 0.0019474748152559576,
+        "snapshot": {
+          "mean": 0.2703205645084381,
+          "std": 0.44412538409233093,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.2711854875087738,
+          "std": 0.4445716142654419,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "two_tower_fallback",
+        "standardized_mean_shift": -0.042139549118299126,
+        "snapshot": {
+          "mean": 0.0017725939396768808,
+          "std": 0.0420648530125618,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.0,
+          "std": 0.0,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "source_count",
+        "standardized_mean_shift": 0.004867776789181644,
+        "snapshot": {
+          "mean": 1.6219234466552734,
+          "std": 1.0661002397537231,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            1.0,
+            1.0,
+            3.0
+          ]
+        },
+        "full_train": {
+          "mean": 1.6271129846572876,
+          "std": 1.0616921186447144,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            1.0,
+            1.0,
+            3.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "item_positive_log",
+        "standardized_mean_shift": 0.10258042482523314,
+        "snapshot": {
+          "mean": 2.5906522274017334,
+          "std": 1.3902827501296997,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.6931471824645996,
+            2.8332133293151855,
+            4.204692840576172
+          ]
+        },
+        "full_train": {
+          "mean": 2.7332680225372314,
+          "std": 1.4138507843017578,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.6931471824645996,
+            3.044522523880005,
+            4.330733299255371
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "item_observed_log",
+        "standardized_mean_shift": 0.12775534362183077,
+        "snapshot": {
+          "mean": 3.133479595184326,
+          "std": 1.3264868259429932,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            1.0986123085021973,
+            3.4339871406555176,
+            4.6151204109191895
+          ]
+        },
+        "full_train": {
+          "mean": 3.302945375442505,
+          "std": 1.3342632055282593,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            1.0986123085021973,
+            3.6375861167907715,
+            4.736198425292969
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "user_positive_log",
+        "standardized_mean_shift": 0.26250090429585404,
+        "snapshot": {
+          "mean": 3.2574782371520996,
+          "std": 1.0957998037338257,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            1.945910096168518,
+            3.178053855895996,
+            4.787491798400879
+          ]
+        },
+        "full_train": {
+          "mean": 3.5451266765594482,
+          "std": 1.054242491722107,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            2.3025851249694824,
+            3.4339871406555176,
+            5.023880481719971
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "user_observed_log",
+        "standardized_mean_shift": 0.2557690612749432,
+        "snapshot": {
+          "mean": 3.8833870887756348,
+          "std": 1.0887986421585083,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            2.5649492740631104,
+            3.7135720252990723,
+            5.497168064117432
+          ]
+        },
+        "full_train": {
+          "mean": 4.161868095397949,
+          "std": 1.0750116109848022,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            2.890371799468994,
+            3.9889841079711914,
+            5.739792823791504
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_similarity",
+        "standardized_mean_shift": 0.027160492779470354,
+        "snapshot": {
+          "mean": 0.5466545224189758,
+          "std": 0.24582739174365997,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.1983211651444435,
+            0.5658518671989441,
+            0.8429723978042603
+          ]
+        },
+        "full_train": {
+          "mean": 0.5533313155174255,
+          "std": 0.24065791070461273,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.21233859658241272,
+            0.5692893266677856,
+            0.8456119298934937
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "rrf_score",
+        "standardized_mean_shift": 0.004007906115650717,
+        "snapshot": {
+          "mean": 0.015824146568775177,
+          "std": 0.01263310108333826,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.00671140942722559,
+            0.010638297535479069,
+            0.03412022031843665
+          ]
+        },
+        "full_train": {
+          "mean": 0.015874778851866722,
+          "std": 0.012632510624825954,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.00671140942722559,
+            0.010638297535479069,
+            0.03455011099576949
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "best_source_rank",
+        "standardized_mean_shift": -0.001124372233133272,
+        "snapshot": {
+          "mean": 48.24799728393555,
+          "std": 29.163951873779297,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            9.0,
+            47.0,
+            89.0
+          ]
+        },
+        "full_train": {
+          "mean": 48.215206146240234,
+          "std": 29.2017822265625,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            9.0,
+            47.0,
+            90.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "mean_source_rank",
+        "standardized_mean_shift": 0.004492099865509288,
+        "snapshot": {
+          "mean": 53.915122985839844,
+          "std": 26.338829040527344,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            17.0,
+            55.0,
+            90.0
+          ]
+        },
+        "full_train": {
+          "mean": 54.03343963623047,
+          "std": 26.281103134155273,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            17.0,
+            55.0,
+            90.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "candidate_count",
+        "standardized_mean_shift": -0.06635922886417588,
+        "snapshot": {
+          "mean": 379.22381591796875,
+          "std": 58.15147018432617,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            314.0,
+            366.0,
+            466.0
+          ]
+        },
+        "full_train": {
+          "mean": 375.36492919921875,
+          "std": 51.83767318725586,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            318.0,
+            361.0,
+            449.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Action",
+        "standardized_mean_shift": 0.013586474479011469,
+        "snapshot": {
+          "mean": 0.3548644483089447,
+          "std": 0.4784722328186035,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.3613651990890503,
+          "std": 0.4803960919380188,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Adventure",
+        "standardized_mean_shift": 0.006778071348391155,
+        "snapshot": {
+          "mean": 0.2602212131023407,
+          "std": 0.43875521421432495,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.26319512724876404,
+          "std": 0.4403674006462097,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Animation",
+        "standardized_mean_shift": 0.010510879144883354,
+        "snapshot": {
+          "mean": 0.061358340084552765,
+          "std": 0.23998644948005676,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.0638808086514473,
+          "std": 0.2445404827594757,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Children",
+        "standardized_mean_shift": 0.0040164417082021245,
+        "snapshot": {
+          "mean": 0.07625699043273926,
+          "std": 0.26540887355804443,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.07732298970222473,
+          "std": 0.26710325479507446,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Comedy",
+        "standardized_mean_shift": 0.013833594857291194,
+        "snapshot": {
+          "mean": 0.3795832693576813,
+          "std": 0.485283225774765,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.38629648089408875,
+          "std": 0.4868999123573303,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Crime",
+        "standardized_mean_shift": 0.007966598067853011,
+        "snapshot": {
+          "mean": 0.2226688116788864,
+          "std": 0.41603776812553406,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.22598321735858917,
+          "std": 0.4182281792163849,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Documentary",
+        "standardized_mean_shift": -0.00453285475941403,
+        "snapshot": {
+          "mean": 0.0057476358488202095,
+          "std": 0.07559497654438019,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.005404974799603224,
+          "std": 0.07331958413124084,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Drama",
+        "standardized_mean_shift": 0.003210506590398092,
+        "snapshot": {
+          "mean": 0.5425466895103455,
+          "std": 0.49818649888038635,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.5441461205482483,
+          "std": 0.4980473220348358,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Fantasy",
+        "standardized_mean_shift": 0.024542180040705564,
+        "snapshot": {
+          "mean": 0.10303202271461487,
+          "std": 0.30400070548057556,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.11049286276102066,
+          "std": 0.31350308656692505,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Film_Noir",
+        "standardized_mean_shift": -0.00902584390730415,
+        "snapshot": {
+          "mean": 0.008893989957869053,
+          "std": 0.09388762712478638,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.008046574890613556,
+          "std": 0.08934107422828674,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Horror",
+        "standardized_mean_shift": 0.014240069088378784,
+        "snapshot": {
+          "mean": 0.04435473307967186,
+          "std": 0.2058819830417633,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.047286506742239,
+          "std": 0.21225100755691528,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_IMAX",
+        "standardized_mean_shift": 0.005508603864082724,
+        "snapshot": {
+          "mean": 0.035638000816106796,
+          "std": 0.18538591265678406,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.03665921837091446,
+          "std": 0.18792371451854706,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Musical",
+        "standardized_mean_shift": 0.002711442908388502,
+        "snapshot": {
+          "mean": 0.03191112354397774,
+          "std": 0.17576348781585693,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.03238769620656967,
+          "std": 0.17702749371528625,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Mystery",
+        "standardized_mean_shift": -0.003341246359334415,
+        "snapshot": {
+          "mean": 0.06868357956409454,
+          "std": 0.25291529297828674,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.06783852726221085,
+          "std": 0.25146859884262085,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Romance",
+        "standardized_mean_shift": -0.0054923663698829474,
+        "snapshot": {
+          "mean": 0.186658576130867,
+          "std": 0.38963720202445984,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.18451854586601257,
+          "std": 0.3879064917564392,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Sci_Fi",
+        "standardized_mean_shift": 0.005486302852466177,
+        "snapshot": {
+          "mean": 0.1631850004196167,
+          "std": 0.36953437328338623,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.16521237790584564,
+          "std": 0.3713721036911011,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Thriller",
+        "standardized_mean_shift": 0.007890670644227599,
+        "snapshot": {
+          "mean": 0.3109041154384613,
+          "std": 0.46286362409591675,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.31455641984939575,
+          "std": 0.4643389880657196,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_War",
+        "standardized_mean_shift": -0.01119604916909112,
+        "snapshot": {
+          "mean": 0.051258984953165054,
+          "std": 0.22052550315856934,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.04878997057676315,
+          "std": 0.2154286652803421,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      },
+      {
+        "feature": "genre_Western",
+        "standardized_mean_shift": -0.002057022113017439,
+        "snapshot": {
+          "mean": 0.015962207689881325,
+          "std": 0.12532922625541687,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "full_train": {
+          "mean": 0.015704402700066566,
+          "std": 0.12432929873466492,
+          "missing_fraction": 0.0,
+          "quantiles": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "missingness_delta": 0.0,
+        "descriptive_shift_flag": false
+      }
+    ],
+    "policy": "Descriptive only; no Validation-label-driven normalization or refitting",
+    "candidate_distributions": {
+      "historical_union": {
+        "candidate_count": {
+          "count": 610.0,
+          "mean": 369.9311475409836,
+          "std": 58.67954648785971,
+          "min": 100.0,
+          "25%": 330.0,
+          "50%": 357.0,
+          "75%": 406.75,
+          "max": 557.0
+        },
+        "mean_contributing_sources": 1.6219234466552734
+      },
+      "sampled_training": {
+        "candidate_count": {
+          "count": 528.0,
+          "mean": 109.72727272727273,
+          "std": 9.862886105960108,
+          "min": 101.0,
+          "25%": 104.0,
+          "50%": 107.0,
+          "75%": 111.0,
+          "max": 190.0
+        },
+        "mean_contributing_sources": 1.6969932317733765
+      },
+      "validation_union": {
+        "candidate_count": {
+          "count": 579.0,
+          "mean": 368.75129533678756,
+          "std": 49.426821699725956,
+          "min": 286.0,
+          "25%": 332.0,
+          "50%": 356.0,
+          "75%": 397.0,
+          "max": 570.0
+        },
+        "mean_contributing_sources": 1.6271129846572876
+      }
+    }
+  },
+  "historical_boundaries": {
+    "per_user_chronology_strict": true,
+    "users_with_label_rows": 607,
+    "minimum_user_gap_seconds": 1,
+    "history_timestamp_min": 828124615,
+    "history_timestamp_max": 1537158046,
+    "label_timestamp_min": 829828005,
+    "label_timestamp_max": 1537158199,
+    "cutoffs_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+    "cutoffs_columns": [
+      "userId",
+      "snapshot_max_timestamp",
+      "label_min_timestamp",
+      "label_max_timestamp"
+    ],
+    "snapshot_rows": 55807,
+    "label_rows": 14379
+  },
+  "historical_models": {
+    "popularity": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "model_name": "popularity",
+      "run_id": "phase4_v1_snapshot",
+      "status": "completed",
+      "config": {
+        "model": "popularity",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024
+      },
+      "config_sha256": "9b75b10b5aee21e5d63ef3de93312a38568d3e4157ad0dbc35f32b28c3e98076",
+      "seed": 42,
+      "device": "cpu",
+      "train_rows": 55807,
+      "positive_edges": 27831,
+      "train_known_items": 6584,
+      "context_fit_seconds": 0.06903279200196266,
+      "algorithm_fit_seconds": 7.204205030575395e-05,
+      "training_seconds": 0.06910483405226842,
+      "peak_rss_bytes": 321536000,
+      "selected_epoch": null,
+      "selection_rule": "Fixed Phase 3 configuration; retained minimum observed Train BPR snapshot; no later-label selector",
+      "packages": {
+        "numpy": "2.4.4",
+        "scipy": "1.17.1",
+        "pandas": "3.0.2",
+        "pyarrow": "24.0.0",
+        "psutil": "7.2.2",
+        "torch": "2.11.0",
+        "implicit": "0.7.2",
+        "threadpoolctl": "3.6.0",
+        "pytz": "2026.5"
+      },
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "critical_source_hashes": {
+        "__init__.py": "aca00ef55aef4a6e2741600d945ca2cdc64e2d49cda2b6f6ebe053d401af34f4",
+        "artifacts.py": "89f7fa2f1ef0d8aeb20af55af03147147d84d61cc5aaf9f993c84baf8bc8ba98",
+        "contracts.py": "5500131eb7206163d9be452eaead848c34657a6b79497317ab86ad2b9021a50c",
+        "data.py": "2fe5e49542dc74e17ae43ee9b5db6681aad9c68b36baa1d8ffd8a87ab3c432e2",
+        "evaluation.py": "be42f387f867608b90802c17024ec77f9fa0bb69655bf7a2073c1f0eb9cdc50d",
+        "features.py": "a47da64066aa782da76972a023bdca71e708c6b5ce6929c8f662d919747eda77",
+        "metrics.py": "44625c6806506f0dbe0f28bb77a5f7cb24b4877e26543d29af0b567a1ac89307",
+        "retrievers/base.py": "dba699d7e0d0a881167f6e1bd4195f85f0e8cd846eaa32c54045f2c5a2ea8a09",
+        "retrievers/popularity.py": "1263e6c5d6a5759821ff624bdc280f1bfc109731c1a3bdcd9f4fa1c55e23db49",
+        "runtime.py": "764a4a3850f13270407fc1c8073e0c77b8176b44ea9bb797ee6765f1edac00a6",
+        "training.py": "8ab663e4a3a9f98993067c326efd0be459ffb0fa613839d7a7af0285853579e0",
+        "small_benchmark.py": "7e481734b241b654b300605b129bf2700c4f5473883e4bb8ce7271935ad5af84",
+        "retrieval_artifacts.py": "538bfbbd9f6ed6a7d283ee885ffc8cf32458f3016da6ea6487c32a5d577af954"
+      },
+      "historical_source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9",
+      "source_git_revision": "c68dce24bc92adf8047837ca66deedbdc038686e",
+      "later_label_access_during_fit": false,
+      "full_train_factors_or_context_reused": false,
+      "test_access": false,
+      "score_probes": [
+        {
+          "userId": 1,
+          "score_std": 23.21416664123535,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 2,
+          "score_std": 23.093908309936523,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 3,
+          "score_std": 26.1104736328125,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 4,
+          "score_std": 21.257389068603516,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 5,
+          "score_std": 15.394859313964844,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 6,
+          "score_std": 12.812309265136719,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 7,
+          "score_std": 22.045581817626953,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 8,
+          "score_std": 17.30567169189453,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 9,
+          "score_std": 26.04505157470703,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 10,
+          "score_std": 23.798477172851562,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 11,
+          "score_std": 24.40198516845703,
+          "differs_from_popularity": false
+        },
+        {
+          "userId": 12,
+          "score_std": 26.154281616210938,
+          "differs_from_popularity": false
+        }
+      ],
+      "dvc_metadata_sha256": {
+        "dvc.yaml": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+        "dvc.lock": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf"
+      },
+      "reload_prediction_parity": true
+    },
+    "genre": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "model_name": "genre",
+      "run_id": "phase4_v1_snapshot",
+      "status": "completed",
+      "config": {
+        "model": "genre",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024
+      },
+      "config_sha256": "14cf56e8f840a355708e1ada0608b8bdd71ebc11451a93c8413ae3f9ca9a3178",
+      "seed": 42,
+      "device": "cpu",
+      "train_rows": 55807,
+      "positive_edges": 27831,
+      "train_known_items": 6584,
+      "context_fit_seconds": 0.06894258299143985,
+      "algorithm_fit_seconds": 0.00012183404760435224,
+      "training_seconds": 0.0690644170390442,
+      "peak_rss_bytes": 325222400,
+      "selected_epoch": null,
+      "selection_rule": "Fixed Phase 3 configuration; retained minimum observed Train BPR snapshot; no later-label selector",
+      "packages": {
+        "numpy": "2.4.4",
+        "scipy": "1.17.1",
+        "pandas": "3.0.2",
+        "pyarrow": "24.0.0",
+        "psutil": "7.2.2",
+        "torch": "2.11.0",
+        "implicit": "0.7.2",
+        "threadpoolctl": "3.6.0",
+        "pytz": "2026.5"
+      },
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "critical_source_hashes": {
+        "__init__.py": "aca00ef55aef4a6e2741600d945ca2cdc64e2d49cda2b6f6ebe053d401af34f4",
+        "artifacts.py": "89f7fa2f1ef0d8aeb20af55af03147147d84d61cc5aaf9f993c84baf8bc8ba98",
+        "contracts.py": "5500131eb7206163d9be452eaead848c34657a6b79497317ab86ad2b9021a50c",
+        "data.py": "2fe5e49542dc74e17ae43ee9b5db6681aad9c68b36baa1d8ffd8a87ab3c432e2",
+        "evaluation.py": "be42f387f867608b90802c17024ec77f9fa0bb69655bf7a2073c1f0eb9cdc50d",
+        "features.py": "a47da64066aa782da76972a023bdca71e708c6b5ce6929c8f662d919747eda77",
+        "metrics.py": "44625c6806506f0dbe0f28bb77a5f7cb24b4877e26543d29af0b567a1ac89307",
+        "retrievers/base.py": "dba699d7e0d0a881167f6e1bd4195f85f0e8cd846eaa32c54045f2c5a2ea8a09",
+        "retrievers/genre.py": "9b9a44b6a9afb883bb3267154b4341beec7edb64d07d0ff868bbe914927dba43",
+        "runtime.py": "764a4a3850f13270407fc1c8073e0c77b8176b44ea9bb797ee6765f1edac00a6",
+        "training.py": "8ab663e4a3a9f98993067c326efd0be459ffb0fa613839d7a7af0285853579e0",
+        "small_benchmark.py": "7e481734b241b654b300605b129bf2700c4f5473883e4bb8ce7271935ad5af84",
+        "retrieval_artifacts.py": "538bfbbd9f6ed6a7d283ee885ffc8cf32458f3016da6ea6487c32a5d577af954"
+      },
+      "historical_source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9",
+      "source_git_revision": "c68dce24bc92adf8047837ca66deedbdc038686e",
+      "later_label_access_during_fit": false,
+      "full_train_factors_or_context_reused": false,
+      "test_access": false,
+      "score_probes": [
+        {
+          "userId": 1,
+          "score_std": 0.15518803894519806,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 2,
+          "score_std": 0.19703735411167145,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 3,
+          "score_std": 0.2147904634475708,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 4,
+          "score_std": 0.1971748024225235,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 5,
+          "score_std": 0.15260456502437592,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 6,
+          "score_std": 0.19123904407024384,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 7,
+          "score_std": 0.14229898154735565,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 8,
+          "score_std": 0.1973276138305664,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 9,
+          "score_std": 0.21080827713012695,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 10,
+          "score_std": 0.1963280737400055,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 11,
+          "score_std": 0.20821216702461243,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 12,
+          "score_std": 0.29732686281204224,
+          "differs_from_popularity": true
+        }
+      ],
+      "dvc_metadata_sha256": {
+        "dvc.yaml": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+        "dvc.lock": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf"
+      },
+      "reload_prediction_parity": true
+    },
+    "itemcf": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "model_name": "itemcf",
+      "run_id": "phase4_v1_snapshot",
+      "status": "completed",
+      "config": {
+        "model": "itemcf",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024,
+        "itemcf": {
+          "neighbors_per_item": 100,
+          "block": 64
+        }
+      },
+      "config_sha256": "d9b2e0fae6023d8522748e11c914fdd25ae499ce49c7fd01ed1b9076215c42db",
+      "seed": 42,
+      "device": "cpu",
+      "train_rows": 55807,
+      "positive_edges": 27831,
+      "train_known_items": 6584,
+      "context_fit_seconds": 0.06948841596022248,
+      "algorithm_fit_seconds": 0.25403208401985466,
+      "training_seconds": 0.32352049998007715,
+      "peak_rss_bytes": 332808192,
+      "selected_epoch": null,
+      "selection_rule": "Fixed Phase 3 configuration; retained minimum observed Train BPR snapshot; no later-label selector",
+      "packages": {
+        "numpy": "2.4.4",
+        "scipy": "1.17.1",
+        "pandas": "3.0.2",
+        "pyarrow": "24.0.0",
+        "psutil": "7.2.2",
+        "torch": "2.11.0",
+        "implicit": "0.7.2",
+        "threadpoolctl": "3.6.0",
+        "pytz": "2026.5"
+      },
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "critical_source_hashes": {
+        "__init__.py": "aca00ef55aef4a6e2741600d945ca2cdc64e2d49cda2b6f6ebe053d401af34f4",
+        "artifacts.py": "89f7fa2f1ef0d8aeb20af55af03147147d84d61cc5aaf9f993c84baf8bc8ba98",
+        "contracts.py": "5500131eb7206163d9be452eaead848c34657a6b79497317ab86ad2b9021a50c",
+        "data.py": "2fe5e49542dc74e17ae43ee9b5db6681aad9c68b36baa1d8ffd8a87ab3c432e2",
+        "evaluation.py": "be42f387f867608b90802c17024ec77f9fa0bb69655bf7a2073c1f0eb9cdc50d",
+        "features.py": "a47da64066aa782da76972a023bdca71e708c6b5ce6929c8f662d919747eda77",
+        "metrics.py": "44625c6806506f0dbe0f28bb77a5f7cb24b4877e26543d29af0b567a1ac89307",
+        "retrievers/base.py": "dba699d7e0d0a881167f6e1bd4195f85f0e8cd846eaa32c54045f2c5a2ea8a09",
+        "retrievers/itemcf.py": "2b50a564c98c7144973a7ebc04de74e4a2dbd6cc4e07a164fc8166e0c25c2a59",
+        "runtime.py": "764a4a3850f13270407fc1c8073e0c77b8176b44ea9bb797ee6765f1edac00a6",
+        "training.py": "8ab663e4a3a9f98993067c326efd0be459ffb0fa613839d7a7af0285853579e0",
+        "small_benchmark.py": "7e481734b241b654b300605b129bf2700c4f5473883e4bb8ce7271935ad5af84",
+        "retrieval_artifacts.py": "538bfbbd9f6ed6a7d283ee885ffc8cf32458f3016da6ea6487c32a5d577af954"
+      },
+      "historical_source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9",
+      "source_git_revision": "c68dce24bc92adf8047837ca66deedbdc038686e",
+      "later_label_access_during_fit": false,
+      "full_train_factors_or_context_reused": false,
+      "test_access": false,
+      "score_probes": [
+        {
+          "userId": 1,
+          "score_std": 1.6301078796386719,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 2,
+          "score_std": 0.1376635879278183,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 3,
+          "score_std": 0.07417707145214081,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 4,
+          "score_std": 1.631234884262085,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 5,
+          "score_std": 0.5223966836929321,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 6,
+          "score_std": 1.2908539772033691,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 7,
+          "score_std": 1.08877694606781,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 8,
+          "score_std": 0.6955947279930115,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 9,
+          "score_std": 0.16212280094623566,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 10,
+          "score_std": 0.44520536065101624,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 11,
+          "score_std": 0.8372495174407959,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 12,
+          "score_std": 0.219979926943779,
+          "differs_from_popularity": true
+        }
+      ],
+      "dvc_metadata_sha256": {
+        "dvc.yaml": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+        "dvc.lock": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf"
+      },
+      "reload_prediction_parity": true
+    },
+    "implicit_als": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "model_name": "implicit_als",
+      "run_id": "phase4_v1_snapshot",
+      "status": "completed",
+      "config": {
+        "model": "implicit_als",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024,
+        "als": {
+          "factors": 32,
+          "iterations": 20,
+          "regularization": 0.1,
+          "positive_confidence": 20.0,
+          "low_confidence": 1.0
+        }
+      },
+      "config_sha256": "50005259f8caba136bb8ce669b2da69373cb538ed2ab198f15d6695df5e96c15",
+      "seed": 42,
+      "device": "cpu",
+      "train_rows": 55807,
+      "positive_edges": 27831,
+      "train_known_items": 6584,
+      "context_fit_seconds": 0.06882787501672283,
+      "algorithm_fit_seconds": 0.3581877499818802,
+      "training_seconds": 0.427015624998603,
+      "peak_rss_bytes": 332529664,
+      "selected_epoch": null,
+      "selection_rule": "Fixed Phase 3 configuration; retained minimum observed Train BPR snapshot; no later-label selector",
+      "packages": {
+        "numpy": "2.4.4",
+        "scipy": "1.17.1",
+        "pandas": "3.0.2",
+        "pyarrow": "24.0.0",
+        "psutil": "7.2.2",
+        "torch": "2.11.0",
+        "implicit": "0.7.2",
+        "threadpoolctl": "3.6.0",
+        "pytz": "2026.5"
+      },
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "critical_source_hashes": {
+        "__init__.py": "aca00ef55aef4a6e2741600d945ca2cdc64e2d49cda2b6f6ebe053d401af34f4",
+        "artifacts.py": "89f7fa2f1ef0d8aeb20af55af03147147d84d61cc5aaf9f993c84baf8bc8ba98",
+        "contracts.py": "5500131eb7206163d9be452eaead848c34657a6b79497317ab86ad2b9021a50c",
+        "data.py": "2fe5e49542dc74e17ae43ee9b5db6681aad9c68b36baa1d8ffd8a87ab3c432e2",
+        "evaluation.py": "be42f387f867608b90802c17024ec77f9fa0bb69655bf7a2073c1f0eb9cdc50d",
+        "features.py": "a47da64066aa782da76972a023bdca71e708c6b5ce6929c8f662d919747eda77",
+        "metrics.py": "44625c6806506f0dbe0f28bb77a5f7cb24b4877e26543d29af0b567a1ac89307",
+        "retrievers/base.py": "dba699d7e0d0a881167f6e1bd4195f85f0e8cd846eaa32c54045f2c5a2ea8a09",
+        "retrievers/implicit_als.py": "0ae45aa46ff4df5d57e90530ad1592a48b18c94efd5ada20212d4e49b83fdf84",
+        "runtime.py": "764a4a3850f13270407fc1c8073e0c77b8176b44ea9bb797ee6765f1edac00a6",
+        "training.py": "8ab663e4a3a9f98993067c326efd0be459ffb0fa613839d7a7af0285853579e0",
+        "small_benchmark.py": "7e481734b241b654b300605b129bf2700c4f5473883e4bb8ce7271935ad5af84",
+        "retrieval_artifacts.py": "538bfbbd9f6ed6a7d283ee885ffc8cf32458f3016da6ea6487c32a5d577af954"
+      },
+      "historical_source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9",
+      "source_git_revision": "c68dce24bc92adf8047837ca66deedbdc038686e",
+      "later_label_access_during_fit": false,
+      "full_train_factors_or_context_reused": false,
+      "test_access": false,
+      "score_probes": [
+        {
+          "userId": 1,
+          "score_std": 0.2137254923582077,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 2,
+          "score_std": 0.08567098528146744,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 3,
+          "score_std": 0.09935847669839859,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 4,
+          "score_std": 0.22716189920902252,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 5,
+          "score_std": 0.1485326886177063,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 6,
+          "score_std": 0.2091863602399826,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 7,
+          "score_std": 0.21953213214874268,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 8,
+          "score_std": 0.17443780601024628,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 9,
+          "score_std": 0.10572399944067001,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 10,
+          "score_std": 0.17044085264205933,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 11,
+          "score_std": 0.16535916924476624,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 12,
+          "score_std": 0.12554721534252167,
+          "differs_from_popularity": true
+        }
+      ],
+      "dvc_metadata_sha256": {
+        "dvc.yaml": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+        "dvc.lock": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf"
+      },
+      "reload_prediction_parity": true
+    },
+    "lightgcn": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "model_name": "lightgcn",
+      "run_id": "phase4_v1_snapshot",
+      "status": "completed",
+      "config": {
+        "model": "lightgcn",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024,
+        "lightgcn": {
+          "dim": 32,
+          "layers": 2,
+          "epochs": 40,
+          "lr": 0.03,
+          "regularization": 0.0001,
+          "batch_size": 2048,
+          "patience": 10
+        }
+      },
+      "config_sha256": "69d244e43e9653eaa62d571bc02ccbd38138d0635cbc2006c64fdad610622dfd",
+      "seed": 42,
+      "device": "cpu",
+      "train_rows": 55807,
+      "positive_edges": 27831,
+      "train_known_items": 6584,
+      "context_fit_seconds": 0.07269070798065513,
+      "algorithm_fit_seconds": 2.2292319589760154,
+      "training_seconds": 2.3019226669566706,
+      "peak_rss_bytes": 508313600,
+      "selected_epoch": 40,
+      "selection_rule": "Fixed Phase 3 configuration; retained minimum observed Train BPR snapshot; no later-label selector",
+      "packages": {
+        "numpy": "2.4.4",
+        "scipy": "1.17.1",
+        "pandas": "3.0.2",
+        "pyarrow": "24.0.0",
+        "psutil": "7.2.2",
+        "torch": "2.11.0",
+        "implicit": "0.7.2",
+        "threadpoolctl": "3.6.0",
+        "pytz": "2026.5"
+      },
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "critical_source_hashes": {
+        "__init__.py": "aca00ef55aef4a6e2741600d945ca2cdc64e2d49cda2b6f6ebe053d401af34f4",
+        "artifacts.py": "89f7fa2f1ef0d8aeb20af55af03147147d84d61cc5aaf9f993c84baf8bc8ba98",
+        "contracts.py": "5500131eb7206163d9be452eaead848c34657a6b79497317ab86ad2b9021a50c",
+        "data.py": "2fe5e49542dc74e17ae43ee9b5db6681aad9c68b36baa1d8ffd8a87ab3c432e2",
+        "evaluation.py": "be42f387f867608b90802c17024ec77f9fa0bb69655bf7a2073c1f0eb9cdc50d",
+        "features.py": "a47da64066aa782da76972a023bdca71e708c6b5ce6929c8f662d919747eda77",
+        "metrics.py": "44625c6806506f0dbe0f28bb77a5f7cb24b4877e26543d29af0b567a1ac89307",
+        "retrievers/base.py": "dba699d7e0d0a881167f6e1bd4195f85f0e8cd846eaa32c54045f2c5a2ea8a09",
+        "retrievers/lightgcn.py": "58e7640552153d214357598d8ffe1f9896bd82efab357a16773876e3c3558551",
+        "retrievers/neural.py": "d86eb171508a21f42ed15cf21fe3108d5a401b0332b8f9a32b837f70e3065721",
+        "runtime.py": "764a4a3850f13270407fc1c8073e0c77b8176b44ea9bb797ee6765f1edac00a6",
+        "training.py": "8ab663e4a3a9f98993067c326efd0be459ffb0fa613839d7a7af0285853579e0",
+        "small_benchmark.py": "7e481734b241b654b300605b129bf2700c4f5473883e4bb8ce7271935ad5af84",
+        "retrieval_artifacts.py": "538bfbbd9f6ed6a7d283ee885ffc8cf32458f3016da6ea6487c32a5d577af954"
+      },
+      "historical_source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9",
+      "source_git_revision": "c68dce24bc92adf8047837ca66deedbdc038686e",
+      "later_label_access_during_fit": false,
+      "full_train_factors_or_context_reused": false,
+      "test_access": false,
+      "score_probes": [
+        {
+          "userId": 1,
+          "score_std": 3.9702036380767822,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 2,
+          "score_std": 0.9805940389633179,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 3,
+          "score_std": 1.0032715797424316,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 4,
+          "score_std": 3.054518699645996,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 5,
+          "score_std": 1.5567654371261597,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 6,
+          "score_std": 3.4562180042266846,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 7,
+          "score_std": 2.4431447982788086,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 8,
+          "score_std": 1.804177165031433,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 9,
+          "score_std": 1.764858603477478,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 10,
+          "score_std": 1.638471007347107,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 11,
+          "score_std": 2.6615700721740723,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 12,
+          "score_std": 1.8249329328536987,
+          "differs_from_popularity": true
+        }
+      ],
+      "dvc_metadata_sha256": {
+        "dvc.yaml": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+        "dvc.lock": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf"
+      },
+      "reload_prediction_parity": true
+    },
+    "two_tower": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "model_name": "two_tower",
+      "run_id": "phase4_v1_snapshot",
+      "status": "completed",
+      "config": {
+        "model": "two_tower",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024,
+        "two_tower": {
+          "dim": 32,
+          "hidden": 64,
+          "epochs": 20,
+          "lr": 0.003,
+          "regularization": 1e-05,
+          "batch_size": 1024,
+          "patience": 10
+        }
+      },
+      "config_sha256": "6dc6625b06af2c32866a3174b79642bba75d1f669c2e624d4e11f1e488d2b023",
+      "seed": 42,
+      "device": "cpu",
+      "train_rows": 55807,
+      "positive_edges": 27831,
+      "train_known_items": 6584,
+      "context_fit_seconds": 0.07643033401109278,
+      "algorithm_fit_seconds": 3.2831546250381507,
+      "training_seconds": 3.3595849590492435,
+      "peak_rss_bytes": 491110400,
+      "selected_epoch": 20,
+      "selection_rule": "Fixed Phase 3 configuration; retained minimum observed Train BPR snapshot; no later-label selector",
+      "packages": {
+        "numpy": "2.4.4",
+        "scipy": "1.17.1",
+        "pandas": "3.0.2",
+        "pyarrow": "24.0.0",
+        "psutil": "7.2.2",
+        "torch": "2.11.0",
+        "implicit": "0.7.2",
+        "threadpoolctl": "3.6.0",
+        "pytz": "2026.5"
+      },
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "critical_source_hashes": {
+        "__init__.py": "aca00ef55aef4a6e2741600d945ca2cdc64e2d49cda2b6f6ebe053d401af34f4",
+        "artifacts.py": "89f7fa2f1ef0d8aeb20af55af03147147d84d61cc5aaf9f993c84baf8bc8ba98",
+        "contracts.py": "5500131eb7206163d9be452eaead848c34657a6b79497317ab86ad2b9021a50c",
+        "data.py": "2fe5e49542dc74e17ae43ee9b5db6681aad9c68b36baa1d8ffd8a87ab3c432e2",
+        "evaluation.py": "be42f387f867608b90802c17024ec77f9fa0bb69655bf7a2073c1f0eb9cdc50d",
+        "features.py": "a47da64066aa782da76972a023bdca71e708c6b5ce6929c8f662d919747eda77",
+        "metrics.py": "44625c6806506f0dbe0f28bb77a5f7cb24b4877e26543d29af0b567a1ac89307",
+        "retrievers/base.py": "dba699d7e0d0a881167f6e1bd4195f85f0e8cd846eaa32c54045f2c5a2ea8a09",
+        "retrievers/neural.py": "d86eb171508a21f42ed15cf21fe3108d5a401b0332b8f9a32b837f70e3065721",
+        "retrievers/two_tower.py": "fa0b849c3b567f60060b88530bffd2fbb52d6a1c28f71e1360d686c99ebbafc9",
+        "runtime.py": "764a4a3850f13270407fc1c8073e0c77b8176b44ea9bb797ee6765f1edac00a6",
+        "training.py": "8ab663e4a3a9f98993067c326efd0be459ffb0fa613839d7a7af0285853579e0",
+        "small_benchmark.py": "7e481734b241b654b300605b129bf2700c4f5473883e4bb8ce7271935ad5af84",
+        "retrieval_artifacts.py": "538bfbbd9f6ed6a7d283ee885ffc8cf32458f3016da6ea6487c32a5d577af954"
+      },
+      "historical_source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9",
+      "source_git_revision": "c68dce24bc92adf8047837ca66deedbdc038686e",
+      "later_label_access_during_fit": false,
+      "full_train_factors_or_context_reused": false,
+      "test_access": false,
+      "score_probes": [
+        {
+          "userId": 1,
+          "score_std": 0.7501348853111267,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 2,
+          "score_std": 0.6956890821456909,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 3,
+          "score_std": 0.5620172619819641,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 4,
+          "score_std": 0.6943735480308533,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 5,
+          "score_std": 0.7528402805328369,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 6,
+          "score_std": 0.5862008333206177,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 7,
+          "score_std": 0.749828577041626,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 8,
+          "score_std": 0.7417307496070862,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 9,
+          "score_std": 0.7204664945602417,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 10,
+          "score_std": 0.7035930156707764,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 11,
+          "score_std": 0.751126229763031,
+          "differs_from_popularity": true
+        },
+        {
+          "userId": 12,
+          "score_std": 0.6311019062995911,
+          "differs_from_popularity": true
+        }
+      ],
+      "dvc_metadata_sha256": {
+        "dvc.yaml": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+        "dvc.lock": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf"
+      },
+      "reload_prediction_parity": true
+    }
+  },
+  "historical_candidates": {
+    "popularity": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "status": "completed",
+      "model_name": "popularity",
+      "producer_run_id": "phase4_v1_snapshot",
+      "candidate_run_id": "phase4_v1_snapshot",
+      "source_checkpoint": {
+        "path": "artifacts/historical/popularity/phase4_v1_snapshot",
+        "manifest_sha256": "edbc975ec6312ad9a814e54b8fd76dd18c84461d74b6c0e4e97fbb02c3964ea2"
+      },
+      "config": {
+        "model": "popularity",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024
+      },
+      "config_sha256": "9b75b10b5aee21e5d63ef3de93312a38568d3e4157ad0dbc35f32b28c3e98076",
+      "candidate_sha256": "0b7c1ded4819d751bba56ac5c80577d9e36d2087ad79725c2b040de8311124b8",
+      "candidate_rows": 61000,
+      "queries": 610,
+      "inference_seconds": 0.3598955849884078,
+      "pipeline_seconds": 1.759369500039611,
+      "later_labels_read": false,
+      "test_access": false,
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9"
+    },
+    "genre": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "status": "completed",
+      "model_name": "genre",
+      "producer_run_id": "phase4_v1_snapshot",
+      "candidate_run_id": "phase4_v1_snapshot",
+      "source_checkpoint": {
+        "path": "artifacts/historical/genre/phase4_v1_snapshot",
+        "manifest_sha256": "8252897df2b0b132787e02f5d6e45fab55756d5e132c19f1e9110704d6257da6"
+      },
+      "config": {
+        "model": "genre",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024
+      },
+      "config_sha256": "14cf56e8f840a355708e1ada0608b8bdd71ebc11451a93c8413ae3f9ca9a3178",
+      "candidate_sha256": "77143c0bd181cb85a5aab4a9fc293b29c166071e303a43d5b0dfd3511553a3d0",
+      "candidate_rows": 61000,
+      "queries": 610,
+      "inference_seconds": 0.3174751669866964,
+      "pipeline_seconds": 1.7126012080116197,
+      "later_labels_read": false,
+      "test_access": false,
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9"
+    },
+    "itemcf": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "status": "completed",
+      "model_name": "itemcf",
+      "producer_run_id": "phase4_v1_snapshot",
+      "candidate_run_id": "phase4_v1_snapshot",
+      "source_checkpoint": {
+        "path": "artifacts/historical/itemcf/phase4_v1_snapshot",
+        "manifest_sha256": "2a3490ebb4dea02390b08e1618e59ac7ccf275b7e52d5a8bcdfc2ee56b401370"
+      },
+      "config": {
+        "model": "itemcf",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024,
+        "itemcf": {
+          "neighbors_per_item": 100,
+          "block": 64
+        }
+      },
+      "config_sha256": "d9b2e0fae6023d8522748e11c914fdd25ae499ce49c7fd01ed1b9076215c42db",
+      "candidate_sha256": "f027f6f4914377996e94f94b0a1d1d6c1d272a40a2bda87366ae1c04f6f24ecd",
+      "candidate_rows": 61000,
+      "queries": 610,
+      "inference_seconds": 0.20820774807361886,
+      "pipeline_seconds": 1.6045487499795854,
+      "later_labels_read": false,
+      "test_access": false,
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9"
+    },
+    "implicit_als": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "status": "completed",
+      "model_name": "implicit_als",
+      "producer_run_id": "phase4_v1_snapshot",
+      "candidate_run_id": "phase4_v1_snapshot",
+      "source_checkpoint": {
+        "path": "artifacts/historical/implicit_als/phase4_v1_snapshot",
+        "manifest_sha256": "2bff8326f2cdf0db22bc9cac96e0039c85c19eb68a7b6888b3d80e3e7210f0d7"
+      },
+      "config": {
+        "model": "implicit_als",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024,
+        "als": {
+          "factors": 32,
+          "iterations": 20,
+          "regularization": 0.1,
+          "positive_confidence": 20.0,
+          "low_confidence": 1.0
+        }
+      },
+      "config_sha256": "50005259f8caba136bb8ce669b2da69373cb538ed2ab198f15d6695df5e96c15",
+      "candidate_sha256": "3ea8a87c15b183bb0c100cdb7fb5660ac35c6863230604b376f001ea82cc3b6d",
+      "candidate_rows": 61000,
+      "queries": 610,
+      "inference_seconds": 0.33825691684614867,
+      "pipeline_seconds": 1.7591569169890136,
+      "later_labels_read": false,
+      "test_access": false,
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9"
+    },
+    "lightgcn": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "status": "completed",
+      "model_name": "lightgcn",
+      "producer_run_id": "phase4_v1_snapshot",
+      "candidate_run_id": "phase4_v1_snapshot",
+      "source_checkpoint": {
+        "path": "artifacts/historical/lightgcn/phase4_v1_snapshot",
+        "manifest_sha256": "efb33ff9283f14b2c5c8085fc9d1fd5451fb3ce1f92f5bba8bcc3d69fae5e1fa"
+      },
+      "config": {
+        "model": "lightgcn",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024,
+        "lightgcn": {
+          "dim": 32,
+          "layers": 2,
+          "epochs": 40,
+          "lr": 0.03,
+          "regularization": 0.0001,
+          "batch_size": 2048,
+          "patience": 10
+        }
+      },
+      "config_sha256": "69d244e43e9653eaa62d571bc02ccbd38138d0635cbc2006c64fdad610622dfd",
+      "candidate_sha256": "3d4f7fda40ac66504415524c369b7256970ffe9f3d3ff3d171ad23b5edab5dca",
+      "candidate_rows": 61000,
+      "queries": 610,
+      "inference_seconds": 0.3520203740336001,
+      "pipeline_seconds": 1.8759091670508496,
+      "later_labels_read": false,
+      "test_access": false,
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9"
+    },
+    "two_tower": {
+      "framework_version": "small_historical_retrieval_v1",
+      "training_kind": "historical_snapshot_per_user",
+      "dataset_id": "grouplens/movielens-latest-small",
+      "split_version": "small_v1",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "snapshot_id": "1b751b9ecad6e9ef3a5c05c36821bd0e46906048e1dbe166303daba894bff165",
+      "evaluation_id": "d3483d13b35062c05bee6932a4d0018dd96b293c706287448d9b382d831043cb",
+      "query_policy": "All independently derived historical Train users, without consulting later labels",
+      "history_sha256": "f143d3cc9cd7c2aaa6c12d4b12516a552456097806c1ae7604002d2a9c584d87",
+      "training_cutoff": "per_user:379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "per_user_cutoff_table_sha256": "379e7f17bad74836ae4b434139cfc3788e9ac2a3d08213e5108b1d9d9ab25b8f",
+      "label_start": "per_user_after_historical_prefix",
+      "label_end": "per_user_before_external_validation",
+      "mapping_id": "06951befc01e3f0ada339b3b9f8129a47639ce26d7342fb591abc1ed42f06977",
+      "catalog_id": "7671b1e5b2f27b63125a56255bd607cf1ccbd2a5e6ad5ab8daa78c77f74bc4f8",
+      "catalog_policy": "train_observed",
+      "positive_threshold": 4.0,
+      "policy": {
+        "positive_threshold": 4.0,
+        "catalog": "train_observed",
+        "seen": "all_train_rated",
+        "history": "frozen_train",
+        "primary_metric_denominator": "eligible held-out positives",
+        "alternative_metric_denominator": "all observed held-out positives; separate diagnostic",
+        "positive_history_cohorts": [
+          "cold_0",
+          "sparse_1_4",
+          "moderate_5_19",
+          "warm_20_plus"
+        ]
+      },
+      "top_k": 100,
+      "cross_user_temporal_disclosure": "Per-user chronology only: other users' Train events can be later than this user's held-out events. Cross-user future information is accepted for this educational offline benchmark; it is not a globally leakage-free production-time evaluation.",
+      "status": "completed",
+      "model_name": "two_tower",
+      "producer_run_id": "phase4_v1_snapshot",
+      "candidate_run_id": "phase4_v1_snapshot",
+      "source_checkpoint": {
+        "path": "artifacts/historical/two_tower/phase4_v1_snapshot",
+        "manifest_sha256": "802e944be60819f7713c41c53e31d83c92f96a50def9f0f4966d55fa3ac76875"
+      },
+      "config": {
+        "model": "two_tower",
+        "seed": 42,
+        "cpu_threads": 1,
+        "retrieval_k": 100,
+        "query_batch": 32,
+        "item_block": 1024,
+        "two_tower": {
+          "dim": 32,
+          "hidden": 64,
+          "epochs": 20,
+          "lr": 0.003,
+          "regularization": 1e-05,
+          "batch_size": 1024,
+          "patience": 10
+        }
+      },
+      "config_sha256": "6dc6625b06af2c32866a3174b79642bba75d1f669c2e624d4e11f1e488d2b023",
+      "candidate_sha256": "94a3428fbbf736e8e356711a01fa5e45486317f8aa6f655f6184a7ae915f7114",
+      "candidate_rows": 61000,
+      "queries": 610,
+      "inference_seconds": 0.33377095696050674,
+      "pipeline_seconds": 1.7509437499684282,
+      "later_labels_read": false,
+      "test_access": false,
+      "lock_sha256": "8a54ef206c3ae34718e790b2f1eeaeabfaa3e0ff9bb8dd60919abd8d2d9017d5",
+      "source_sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9"
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "rrf_score",
+      "gain": 5474.172528266907,
+      "split": 41
+    },
+    {
+      "feature": "implicit_als_score",
+      "gain": 1728.1381406784058,
+      "split": 41
+    },
+    {
+      "feature": "itemcf_rank",
+      "gain": 1095.959843635559,
+      "split": 48
+    },
+    {
+      "feature": "lightgcn_score",
+      "gain": 718.935727596283,
+      "split": 45
+    },
+    {
+      "feature": "item_observed_log",
+      "gain": 674.0648565292358,
+      "split": 32
+    },
+    {
+      "feature": "itemcf_score",
+      "gain": 578.8775839805603,
+      "split": 39
+    },
+    {
+      "feature": "genre_similarity",
+      "gain": 563.3185386657715,
+      "split": 56
+    },
+    {
+      "feature": "implicit_als_rank",
+      "gain": 509.1489281654358,
+      "split": 28
+    },
+    {
+      "feature": "item_positive_log",
+      "gain": 250.2945532798767,
+      "split": 21
+    },
+    {
+      "feature": "lightgcn_rank",
+      "gain": 171.50427150726318,
+      "split": 14
+    },
+    {
+      "feature": "best_source_rank",
+      "gain": 134.16418027877808,
+      "split": 11
+    },
+    {
+      "feature": "popularity_score",
+      "gain": 115.7572693824768,
+      "split": 16
+    },
+    {
+      "feature": "popularity_rank",
+      "gain": 94.68179941177368,
+      "split": 10
+    },
+    {
+      "feature": "mean_source_rank",
+      "gain": 67.22472047805786,
+      "split": 7
+    },
+    {
+      "feature": "two_tower_score",
+      "gain": 61.17105007171631,
+      "split": 7
+    },
+    {
+      "feature": "genre_score",
+      "gain": 50.116769790649414,
+      "split": 6
+    },
+    {
+      "feature": "two_tower_rank",
+      "gain": 37.45767974853515,
+      "split": 5
+    },
+    {
+      "feature": "genre_Children",
+      "gain": 13.70709991455078,
+      "split": 2
+    },
+    {
+      "feature": "genre_rank",
+      "gain": 13.24336004257202,
+      "split": 2
+    },
+    {
+      "feature": "genre_Fantasy",
+      "gain": 7.694129943847656,
+      "split": 1
+    },
+    {
+      "feature": "source_count",
+      "gain": 6.714449882507324,
+      "split": 1
+    },
+    {
+      "feature": "genre_Action",
+      "gain": 4.751810073852539,
+      "split": 1
+    },
+    {
+      "feature": "genre_Comedy",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Crime",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Documentary",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Drama",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_War",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Mystery",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Musical",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Thriller",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Animation",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Horror",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_IMAX",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Sci_Fi",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Romance",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Film_Noir",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "itemcf_fallback",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Adventure",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "candidate_count",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "itemcf_present",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "popularity_present",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "popularity_fallback",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "user_observed_log",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "user_positive_log",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "two_tower_fallback",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "two_tower_present",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "lightgcn_fallback",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "lightgcn_present",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_present",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_fallback",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "implicit_als_fallback",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "implicit_als_present",
+      "gain": 0.0,
+      "split": 0
+    },
+    {
+      "feature": "genre_Western",
+      "gain": 0.0,
+      "split": 0
+    }
+  ]
+}

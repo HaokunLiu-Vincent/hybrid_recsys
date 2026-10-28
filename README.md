@@ -1,72 +1,76 @@
 # hybrid_recsys — MovieLens Small local MLOps
 
-**Phase 3 is complete:** six independent retrievers were trained on real MovieLens Small Train, saved, reloaded and benchmarked on Validation. Each was also trained and evaluated in a fresh locked Python environment; candidate/per-query metric files matched byte-for-byte. No real-data RRF, historical ranker snapshot fitting, LightGBM, MLflow or serving stage has run.
+**Phase 4 is complete:** six-channel RRF, six independently fitted historical retrievers, and out-of-time LightGBM LambdaMART training/Validation evaluation ran locally on Mac CPU. Checkpoint reload and prediction parity passed in separate locked processes. Test remains unopened; MLflow and serving remain future work.
 
-Planned lifecycle: Kaggle → DuckDB/Parquet → local DVC → six retrievers → RRF → historical-snapshot LambdaMART → offline evaluation → MLflow release registration → FastAPI/Docker.
+Lifecycle: Kaggle → DuckDB/Parquet → local DVC → six retrievers → RRF → historical-snapshot LambdaMART → offline evaluation → MLflow release registration → FastAPI/Docker.
 
-## Actual Validation benchmark
+## Actual Validation result
 
-All channels use the same **579 queries, 6,491 eligible positives**, Train-known catalog of 7,525 movies and Top-100 budget. Every channel produced 57,900 primary candidates, zero empty queries and zero popularity fallback queries in this eligible Validation cohort. Zero-hit queries remain in metric means.
+The same **579 users, 6,491 eligible positives and 213,507 union candidate pairs** are used for every ranking below. The ALS baseline preserves its original Top-20 within that union.
 
-| Retriever | Recall@20 | Recall@50 | Recall@100 | NDCG@20 | HitRate@20 | Coverage@100 |
-|---|---:|---:|---:|---:|---:|---:|
-| Popularity | 0.112275 | 0.190662 | 0.286786 | 0.091781 | 0.431779 | 5.33% |
-| Genre CBF | 0.015106 | 0.025285 | 0.041407 | 0.011679 | 0.103627 | 52.52% |
-| ItemCF | 0.161575 | 0.262102 | 0.368582 | 0.123064 | 0.523316 | 37.25% |
-| Implicit ALS | 0.171301 | 0.294286 | 0.399429 | 0.126085 | 0.583765 | 26.72% |
-| LightGCN | 0.136687 | 0.242046 | 0.365442 | 0.107823 | 0.493955 | 18.18% |
-| Hybrid Two-Tower | 0.045533 | 0.106658 | 0.203064 | 0.034236 | 0.267703 | 16.96% |
+| Ranking | Recall@20 | NDCG@20 | HitRate@20 | Catalog coverage@20 |
+|---|---:|---:|---:|---:|
+| Best individual: Implicit ALS | 0.171301 | 0.126085 | 0.583765 | 13.18% |
+| Six-channel RRF, c=60 | 0.164938 | 0.127578 | 0.552677 | 5.98% |
+| LambdaMART, selected 31 trees | 0.187106 | 0.142799 | 0.614853 | 10.52% |
 
-These are fixed-configuration, seed-42 CPU baselines, not a tuning study. Full timings, cohorts, all-observed diagnostics, model audits, checksums and exact commands are in the [Phase 3 report](docs/phase3_retrieval_benchmark.md) and [measured JSON](docs/phase3_retrieval_benchmark.json). There are no eligible-positive cold-history Validation queries; cold subgroup metrics are undefined. Sparse/moderate/warm cohorts have 12 / 200 / 367 queries.
+Full-union query-macro recall ceiling is **0.596664**; micro positive coverage is **3,270/6,491 = 50.38%**. These differ from ranked Top-K metrics. All 45 users with no relevant union candidate remain in evaluation. Validation selected the ranker iteration; these are not final Test estimates or statistically established improvements. The 12-user sparse cohort has worse Recall@20 after ranking.
+
+The ranker uses **528 effective historical queries / 57,936 rows**, not the 571 potentially eligible queries. All six historical models were independently fitted on 55,807 earlier Train interactions before attaching labels from 14,379 later Train rows. Full-Train Phase 3 models were not retrained or used for in-sample ranker examples. A strict **53-feature schema** includes RRF, source scores/ranks/membership, historical statistics and movie genres; unknown candidates are weak zero labels, not verified dislikes.
+
+Detailed gates, source overlap/contributions, six ablations, sampling, feature shift, timings, checksums and limitations: [Phase 4 report](docs/phase4_fusion_and_ranking.md), [measured JSON](docs/phase4_fusion_and_ranking.json), [verification](docs/phase4_verification.json), [actual commands](docs/phase4_commands.json). The unchanged [Phase 3 report](docs/phase3_retrieval_benchmark.md) retains all six individual benchmarks.
 
 ## Frozen data and interpretation
 
-The exact Kaggle source is [`grouplens/movielens-latest-small`](https://www.kaggle.com/datasets/grouplens/movielens-latest-small): 100,836 ratings, 610 users, 9,742 metadata movies (9,724 rated). Only ratings and allowed movie genres are model inputs; no tags, links, external metadata or pretrained embeddings. Original acquisition and SHA256 provenance remain under ignored, DVC-tracked `data/raw/ml-latest-small/`.
+Source: Kaggle [`grouplens/movielens-latest-small`](https://www.kaggle.com/datasets/grouplens/movielens-latest-small), 100,836 ratings / 610 users / 9,742 metadata movies. Modeling uses ratings and movie genres only. Acquisition hashes/provenance remain under ignored, DVC-tracked `data/raw/ml-latest-small/`.
 
-Primary `small_v1` is per-user chronological 70/15/15: **70,186 Train / 15,143 Validation / 15,507 Test**. Whole timestamps stay together; histories are frozen Train, positive = rating ≥4, Policy B catalog, all Train-rated movies excluded including low ratings. Primary denominators use eligible positives; 417 of 6,908 observed Validation positives are Train-unknown. Separate all-observed diagnostics use 581 users / 6,908 positives and a different evaluation identity.
+Primary `small_v1`: per-user chronological 70/15/15, **70,186 Train / 15,143 Validation / 15,507 Test**. Timestamp ties stay together. Positive = rating ≥4; Policy B uses Train-known items and excludes every Train-rated item, including lows. Validation histories stay frozen. Its 6,491 eligible positives exclude 417 Train-unknown positives; all-observed metrics remain separate.
 
-**The primary permits cross-user future-information exposure and is not globally leakage-free.** Ratings are submissions, not verified viewing or exposure. Unknown pairs are not verified dislikes; no online CTR/causal claims are supported. The separately frozen global sensitivity protocol was not trained/evaluated here. Test targets were not opened. See the unchanged [evaluation protocol](docs/evaluation_protocol.md).
+**Per-user chronology permits cross-user future-information exposure.** This is not globally leakage-free or prospective evaluation. Ratings are submissions, not verified viewing/exposure; unknown pairs are not confirmed dislikes. No online CTR or causal satisfaction claim is supported. The separate global sensitivity protocol was not modeled. See the unchanged [evaluation protocol](docs/evaluation_protocol.md).
 
-## Environment and independent CLI
+## Environment and stage commands
 
-Python 3.11.9 + uv + `.venv` + `pyproject.toml` + `uv.lock`. The `train` group pins PyTorch 2.11.0, implicit 0.7.2 and threadpoolctl 3.6.0; the timezone dependency exposed by clean testing is now pinned too. No Conda migration or current-environment PyTorch reinstallation occurred.
-
-For a **fresh** environment with uv available:
+Python **3.11.9**, uv, `.venv`, `pyproject.toml`, `uv.lock`; CPU-first. The `train` group pins Torch 2.11.0 / implicit 0.7.2 / threadpoolctl 3.6.0; `rank` pins native LightGBM 4.6.0. For a fresh environment:
 
 ```sh
 uv venv --python 3.11.9
-uv sync --locked --group train
+uv sync --locked --group train --group rank
 ```
 
-For the already verified existing environment, `--no-sync` preserves its inherited model wheels. Commands are independent; evaluation/benchmarking never invoke retriever fitting. Use new run IDs, since completed runs cannot be overwritten:
+For the already installed environment, `--no-sync` preserves verified inherited wheels. Completed artifacts are immutable: **use new run IDs**. CLI stages are independent; fusion/evaluation never silently fit missing models.
 
 ```sh
-UV_CACHE_DIR=.uv-cache .venv/bin/uv run --locked --no-sync --group train recsys train \
-  --model popularity --config configs/popularity.yaml --run-id my_popularity_run
+# Existing selected Phase 3 streams → Validation fusion; no retriever fitting.
+UV_CACHE_DIR=.uv-cache .venv/bin/uv run --locked --no-sync --group train --group rank recsys fuse-validation \
+  --evaluations artifacts/candidates/{popularity,genre,itemcf,implicit_als,lightgcn,two_tower}/phase3_v1_seed42_main/validation_main \
+  --run-id my_validation_fusion
 
-UV_CACHE_DIR=.uv-cache .venv/bin/uv run --locked --no-sync --group train recsys evaluate \
-  --model popularity --split validation \
-  --checkpoint artifacts/popularity/my_popularity_run --run-id validation_run
+# Independent historical fitting; repeat for each of the six model configs.
+UV_CACHE_DIR=.uv-cache .venv/bin/uv run --locked --no-sync --group train --group rank recsys historical-train \
+  --model popularity --config configs/popularity.yaml --run-id my_snapshot
 
-# Consume the six existing selected artifacts; never silently fit a missing channel.
-UV_CACHE_DIR=.uv-cache .venv/bin/uv run --locked --no-sync --group train recsys benchmark \
-  --split validation \
-  --evaluations artifacts/candidates/{popularity,genre,itemcf,implicit_als,lightgcn,two_tower}/phase3_v1_seed42_main/validation_main
+# Reload only: verify the existing ranker against all saved Validation feature rows.
+UV_CACHE_DIR=.uv-cache .venv/bin/uv run --locked --no-sync --group train --group rank recsys rank-evaluate \
+  --checkpoint artifacts/lightgbm/phase4_v1 --training-data artifacts/ranking_training/phase4_v1 \
+  --run-id my_reload_check
 
-PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B tools/run_tests.py
+MPLCONFIGDIR=.venv/mplconfig PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B tools/run_tests.py
 UV_CACHE_DIR=.uv-cache .venv/bin/uv lock --check --offline
 ```
 
-The same train command works independently for `genre`, `itemcf`, `implicit_als`, `lightgcn`, `two_tower` with their corresponding YAML configurations. CLI help is `recsys train --help`, `recsys evaluate --help`, `recsys benchmark --help`. Phase 3 rejects `--split test`.
+The [Phase 4 command sequence](docs/phase4_fusion_and_ranking.md#commands-and-verification) covers historical-candidates, fuse-historical, rank-features and rank-train. Existing train/evaluate/benchmark commands remain available. Phase 4 provides no Test command.
 
-## Artifacts and preservation
+## Artifacts and verification
 
-- Selected checkpoints: `artifacts/<model>/phase3_v1_seed42_main/`. Portable weights/factors, mappings, sparse Train histories/features, per-user cutoff identity, configuration/seed, source/dependency provenance and checksummed completion markers. Neural original training states are also retained and verified against exported vectors.
-- Selected independent candidates/metrics: `artifacts/candidates/<model>/phase3_v1_seed42_main/validation_main/`. Primary and all-observed files/identities are separate. No six-channel candidate union/fusion was computed.
-- Aggregate table: `outputs/phase3/phase3_v1_validation_benchmark/benchmark.csv`. Clean replay runs use `phase3_v1_seed42_replay`. Earlier provisional baseline runs were preserved and are not selected.
-- **45 tests passed in each of the working and isolated environments**, with zero failures/skips after the dependency correction. Real-data checkpoints and all candidate checksums passed; all six clean-environment training replays matched.
-- Frozen data, manifests, DVC metadata and historical reports/notebook were preserved. No re-splitting, real DVC repro/push, Git commit/push or cloud/GPU jobs occurred.
+- Full-Train checkpoints: `artifacts/<model>/phase3_v1_seed42_main/`; selected candidates: `artifacts/candidates/<model>/phase3_v1_seed42_main/validation_main/`.
+- Validation fusion: `artifacts/fusion/phase4_v1_validation/`; historical checkpoints/candidates: `artifacts/{historical,historical_candidates}/<model>/phase4_v1_snapshot/`; historical fusion: `artifacts/fusion/phase4_v1_rank_train/`.
+- Versioned features/training table: `artifacts/{ranking_features,ranking_training}/phase4_v1/`; native ranker, complete rankings, history and importance: `artifacts/lightgbm/phase4_v1/`.
+- Clean-process parity: `artifacts/ranking_evaluations/phase4_v1_clean_reload/` and six historical candidate reloads. All 213,507 ranker predictions match exactly; all six full historical candidate Parquets match byte-for-byte.
+- **61 tests passed, zero failures/skips, in both working and isolated locked environments.** All 45 original tests remain. Every new artifact completion marker/checksum passed. All 127 protected hashes and 66 frozen data/document metadata records stayed unchanged.
+- Generated artifacts/logs remain ignored local files; source, configuration, lock and reports are Git-visible. A source clone alone does not contain the datasets/checkpoints.
 
-**DVC note:** its frozen Phase 2 stages record the older `pyproject.toml`/`uv.lock` hashes. Training dependency additions change those source dependencies without changing data objects. Do not regenerate immutable `small_v1` under the training lock to conceal this drift. Data/recovery history remains in [Phase 2 report](docs/phase2_data_foundation_report.md) and [pipeline instructions](docs/data_pipeline.md); the [Phase 3 verification](docs/phase3_verification.json) records preservation checks without reopening Test targets.
+**DVC dependency drift remains explicit:** all three frozen Phase 2 stages depend on global pyproject/uv.lock; the writer also embeds that entire lock in immutable data identity. A disposable synthetic test confirms changing an unrelated training dependency cannot safely rebuild the same version. The [Phase 4 report](docs/phase4_fusion_and_ranking.md#dvc-environment-drift-assessed-and-deliberately-deferred) proposes a dedicated data-environment contract and future versioned migration. No frozen data or DVC metadata was changed to conceal drift; do not force-repro `small_v1` under the training lock.
 
-Next, on a separate request: RRF over the six compatible candidate artifacts. LambdaMART still needs separately fitted historical snapshot retrievers and out-of-time labels inside External Train; these full-Train models must not provide in-sample ranker-training features. MLflow, API/Docker and final Test evaluation remain future work. Historical references: [Phase 1 EDA](notebooks/01_MovieLens_Small_EDA.ipynb), [cleanup audit](docs/repository_cleanup_audit.md), [32M archive](archive/legacy_movielens32m/README.md).
+Next, on a separate request: MLflow tracking and registration of a complete compatible release candidate, including Full-Train retrievers, mappings/history, fusion settings, feature schema and ranker. Historical models remain training lineage. No MLflow, API/Docker, cloud resources, new data download or final Test evaluation was added in Phase 4. Changes remain uncommitted.
+
+Earlier references: [Phase 1 EDA](notebooks/01_MovieLens_Small_EDA.ipynb), [Phase 2 report](docs/phase2_data_foundation_report.md), [pipeline](docs/data_pipeline.md), [cleanup audit](docs/repository_cleanup_audit.md), [32M archive](archive/legacy_movielens32m/README.md).

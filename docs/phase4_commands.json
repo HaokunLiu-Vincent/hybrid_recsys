@@ -1,0 +1,488 @@
+[
+  {
+    "label": "gate_a_retry",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "fuse-validation",
+      "--evaluations",
+      "artifacts/candidates/popularity/phase3_v1_seed42_main/validation_main",
+      "artifacts/candidates/genre/phase3_v1_seed42_main/validation_main",
+      "artifacts/candidates/itemcf/phase3_v1_seed42_main/validation_main",
+      "artifacts/candidates/implicit_als/phase3_v1_seed42_main/validation_main",
+      "artifacts/candidates/lightgcn/phase3_v1_seed42_main/validation_main",
+      "artifacts/candidates/two_tower/phase3_v1_seed42_main/validation_main",
+      "--run-id",
+      "phase4_v1_validation"
+    ],
+    "returncode": 0,
+    "log": "outputs/phase4/gate_a_retry.log"
+  },
+  {
+    "label": "historical_train_popularity",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-train",
+      "--model",
+      "popularity",
+      "--config",
+      "configs/popularity.yaml",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 1.6934804579941556,
+    "log": "outputs/phase4/historical_train_popularity.log"
+  },
+  {
+    "label": "historical_candidates_popularity",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/popularity/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 3.2383762079989538,
+    "log": "outputs/phase4/historical_candidates_popularity.log"
+  },
+  {
+    "label": "historical_train_genre",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-train",
+      "--model",
+      "genre",
+      "--config",
+      "configs/genre.yaml",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 1.684199790994171,
+    "log": "outputs/phase4/historical_train_genre.log"
+  },
+  {
+    "label": "historical_candidates_genre",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/genre/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 3.20538254204439,
+    "log": "outputs/phase4/historical_candidates_genre.log"
+  },
+  {
+    "label": "historical_train_itemcf",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-train",
+      "--model",
+      "itemcf",
+      "--config",
+      "configs/itemcf.yaml",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 2.012744917010423,
+    "log": "outputs/phase4/historical_train_itemcf.log"
+  },
+  {
+    "label": "historical_candidates_itemcf",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/itemcf/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 3.17497666698182,
+    "log": "outputs/phase4/historical_candidates_itemcf.log"
+  },
+  {
+    "label": "historical_train_implicit_als",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-train",
+      "--model",
+      "implicit_als",
+      "--config",
+      "configs/implicit_als.yaml",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 2.056598416005727,
+    "log": "outputs/phase4/historical_train_implicit_als.log"
+  },
+  {
+    "label": "historical_candidates_implicit_als",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/implicit_als/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 3.3217467089998536,
+    "log": "outputs/phase4/historical_candidates_implicit_als.log"
+  },
+  {
+    "label": "historical_train_lightgcn",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-train",
+      "--model",
+      "lightgcn",
+      "--config",
+      "configs/lightgcn.yaml",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 4.281948666030075,
+    "log": "outputs/phase4/historical_train_lightgcn.log"
+  },
+  {
+    "label": "historical_candidates_lightgcn",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/lightgcn/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 3.506822958996054,
+    "log": "outputs/phase4/historical_candidates_lightgcn.log"
+  },
+  {
+    "label": "historical_train_two_tower",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-train",
+      "--model",
+      "two_tower",
+      "--config",
+      "configs/two_tower.yaml",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 5.179976125014946,
+    "log": "outputs/phase4/historical_train_two_tower.log"
+  },
+  {
+    "label": "historical_candidates_two_tower",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/two_tower/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_snapshot"
+    ],
+    "returncode": 0,
+    "seconds": 3.3093866250128485,
+    "log": "outputs/phase4/historical_candidates_two_tower.log"
+  },
+  {
+    "label": "historical_fusion",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "fuse-historical",
+      "--candidates",
+      "artifacts/historical_candidates/popularity/phase4_v1_snapshot",
+      "artifacts/historical_candidates/genre/phase4_v1_snapshot",
+      "artifacts/historical_candidates/itemcf/phase4_v1_snapshot",
+      "artifacts/historical_candidates/implicit_als/phase4_v1_snapshot",
+      "artifacts/historical_candidates/lightgcn/phase4_v1_snapshot",
+      "artifacts/historical_candidates/two_tower/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_rank_train"
+    ],
+    "returncode": 0,
+    "seconds": 4.363201250031125,
+    "log": "outputs/phase4/historical_fusion.log"
+  },
+  {
+    "label": "rank_features",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "rank-features",
+      "--historical-fusion",
+      "artifacts/fusion/phase4_v1_rank_train",
+      "--validation-fusion",
+      "artifacts/fusion/phase4_v1_validation",
+      "--run-id",
+      "phase4_v1"
+    ],
+    "returncode": 0,
+    "seconds": 5.244233250035904,
+    "log": "outputs/phase4/rank_features.log"
+  },
+  {
+    "label": "gate_c",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "recsys",
+      "rank-train",
+      "--training-data",
+      "artifacts/ranking_training/phase4_v1",
+      "--run-id",
+      "phase4_v1"
+    ],
+    "returncode": 0,
+    "seconds": 12.174892582988832,
+    "log": "outputs/phase4/rank_train.log"
+  },
+  {
+    "label": "clean_candidates_popularity",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase3_clean_20261027/bin/recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/popularity/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_clean_reload"
+    ],
+    "returncode": 0,
+    "seconds": 6.322309333016165,
+    "log": "outputs/phase4/clean_candidates_popularity.log"
+  },
+  {
+    "label": "clean_candidates_genre",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase3_clean_20261027/bin/recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/genre/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_clean_reload"
+    ],
+    "returncode": 0,
+    "seconds": 4.852264875022229,
+    "log": "outputs/phase4/clean_candidates_genre.log"
+  },
+  {
+    "label": "clean_candidates_itemcf",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase3_clean_20261027/bin/recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/itemcf/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_clean_reload"
+    ],
+    "returncode": 0,
+    "seconds": 4.723680040973704,
+    "log": "outputs/phase4/clean_candidates_itemcf.log"
+  },
+  {
+    "label": "clean_candidates_implicit_als",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase3_clean_20261027/bin/recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/implicit_als/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_clean_reload"
+    ],
+    "returncode": 0,
+    "seconds": 4.8167269580299035,
+    "log": "outputs/phase4/clean_candidates_implicit_als.log"
+  },
+  {
+    "label": "clean_candidates_lightgcn",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase3_clean_20261027/bin/recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/lightgcn/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_clean_reload"
+    ],
+    "returncode": 0,
+    "seconds": 5.0708747080061585,
+    "log": "outputs/phase4/clean_candidates_lightgcn.log"
+  },
+  {
+    "label": "clean_candidates_two_tower",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase3_clean_20261027/bin/recsys",
+      "historical-candidates",
+      "--checkpoint",
+      "artifacts/historical/two_tower/phase4_v1_snapshot",
+      "--run-id",
+      "phase4_v1_clean_reload"
+    ],
+    "returncode": 0,
+    "seconds": 4.808218916004989,
+    "log": "outputs/phase4/clean_candidates_two_tower.log"
+  },
+  {
+    "label": "clean_ranker_reload",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase3_clean_20261027/bin/recsys",
+      "rank-evaluate",
+      "--checkpoint",
+      "artifacts/lightgbm/phase4_v1",
+      "--training-data",
+      "artifacts/ranking_training/phase4_v1",
+      "--run-id",
+      "phase4_v1_clean_reload"
+    ],
+    "returncode": 0,
+    "seconds": 1.9131111250026152,
+    "log": "outputs/phase4/clean_ranker_reload.log"
+  },
+  {
+    "label": "tests_clean",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase3_clean_20261027/bin/python",
+      "-B",
+      "tools/run_tests.py"
+    ],
+    "returncode": 0,
+    "seconds": 11.63050899998052,
+    "log": "outputs/phase4/tests_clean.log"
+  }
+]
