@@ -54,12 +54,14 @@ def fit_lightgcn(ctx, config, evaluate=None, checkpoint=None, device='cpu'):
         for users, positive, unknown in stream.batches(c['batch_size']):
             u, p, n = [as_tensor(a, device) for a in (users,positive+nu,unknown+nu)]
             loss = bpr_loss(z[u],z[p],z[n])
+            if not torch.isfinite(loss):raise FloatingPointError('LightGCN nonfinite BPR loss')
             weight = len(users)/len(stream.rows)
             (loss*weight).backward()
             total += float(loss.detach())*weight
         with torch.no_grad():
             gradient = propagation(graph, z.grad, c['layers'])
             gradient.add_(base, alpha=2*c['regularization']/base.numel())
+            if not torch.isfinite(gradient).all():raise FloatingPointError('LightGCN nonfinite gradient')
         opt.zero_grad(set_to_none=True)
         base.grad = gradient
         opt.step()

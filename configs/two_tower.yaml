@@ -1,0 +1,14 @@
+model: two_tower
+seed: 42
+cpu_threads: 1
+retrieval_k: 100
+query_batch: 32
+item_block: 1024
+two_tower:
+  dim: 32
+  hidden: 64
+  epochs: 20
+  lr: 0.003
+  regularization: 1.0e-05
+  batch_size: 1024
+  patience: 10

@@ -1,0 +1,6 @@
+model: genre
+seed: 42
+cpu_threads: 1
+retrieval_k: 100
+query_batch: 32
+item_block: 1024

@@ -55,7 +55,10 @@ def fit_two_tower(ctx, config, evaluate=None, checkpoint=None, device='cpu'):
             ng = torch.as_tensor(ctx.genres[unknown],device=device)
             optimizer.zero_grad(set_to_none=True)
             loss = bpr_loss(net.user(u,ug),net.item(p,pg),net.item(n,ng))
+            if not torch.isfinite(loss):raise FloatingPointError('Two-Tower nonfinite BPR loss')
             loss.backward()
+            if any(p.grad is not None and not torch.isfinite(p.grad).all() for p in net.parameters()):
+                raise FloatingPointError('Two-Tower nonfinite gradient')
             optimizer.step()
             total += float(loss.detach())*len(users)/len(stream.rows)
         model = export_vectors(net,ctx,device)

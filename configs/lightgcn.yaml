@@ -1,0 +1,14 @@
+model: lightgcn
+seed: 42
+cpu_threads: 1
+retrieval_k: 100
+query_batch: 32
+item_block: 1024
+lightgcn:
+  dim: 32
+  layers: 2
+  epochs: 40
+  lr: 0.03
+  regularization: 0.0001
+  batch_size: 2048
+  patience: 10

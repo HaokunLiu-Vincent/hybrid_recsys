@@ -1,0 +1,152 @@
+{
+  "active_python_files_ast_valid": 46,
+  "all_observed_diagnostic_evaluation_id": "05f6973f188497538477f4ec8f9a0bfb068e8628ee223b4d1918bc24a515db03",
+  "allowed_input_hashes_unchanged": {
+    "data/splits/small_v1/item_eligibility.parquet": "995e5b8916ca771d635d63a6c799c6429c57130b9aef1946659e9a8f54418e51",
+    "data/splits/small_v1/movie_mapping.parquet": "898df1558c1d9bfdba2b8023b3606b4d7e592d6a0d037c900d5165dab831f28a",
+    "data/splits/small_v1/movies.parquet": "362a7ec8ed9ccffe1e0ee8550a629f4fcd0f27ceba5b193f6e8fb8f2af26dfb6",
+    "data/splits/small_v1/split_manifest.json": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+    "data/splits/small_v1/train.parquet": "13f4ddc43294a172305c62a1723d5e2565a338f546ab09f9604441cf3c4c8665",
+    "data/splits/small_v1/user_mapping.parquet": "3be3861d19b9bb769ae5f47b7ecfaab497074afc466d79942b54d15ba7343912"
+  },
+  "branch": "main",
+  "checked_at_utc": "2026-10-28T00:41:27.649156+00:00",
+  "completed_retrievers": {
+    "genre": {
+      "candidate_directory": "artifacts/candidates/genre/phase3_v1_seed42_main/validation_main",
+      "candidate_manifest_sha256": "f08504426029643e5b8d7dc1d71ed94ba1cd3fc882cbb088cbf54b0f324f7903",
+      "candidate_rows": 57900,
+      "candidate_sha256": "5d10f39122e293467272bc80004e16efae2a8f4973aa95b1ffc835a641216f16",
+      "checkpoint": "artifacts/genre/phase3_v1_seed42_main",
+      "checkpoint_complete_sha256": "8d34a0f2ff5d74c145e1b5f8940fe45672c7c93527ba88c504970d42a58b4eb4",
+      "checkpoint_manifest_sha256": "b8d006807838ec7a5567d75d80e4cea89b4e4b785e023ecf551a4d00921bcaea",
+      "cross_environment_replay_parquet_identical": true,
+      "metrics_recomputed_exact": true,
+      "queries": 579,
+      "relevant_positives": 6491,
+      "reloaded_all_primary_predictions_exact": true
+    },
+    "implicit_als": {
+      "candidate_directory": "artifacts/candidates/implicit_als/phase3_v1_seed42_main/validation_main",
+      "candidate_manifest_sha256": "b0f5abce8f4260bc0ea97d85678717d444f66a00e79e8afa5f7e4889713ae465",
+      "candidate_rows": 57900,
+      "candidate_sha256": "52c2df8ec9febb1e31d7056199d79bbd562d03a48200bc8ab45d923995be8566",
+      "checkpoint": "artifacts/implicit_als/phase3_v1_seed42_main",
+      "checkpoint_complete_sha256": "c1f9664dd058b305dee50588693d435e6af74d3d3c35e648a4953f9b75918873",
+      "checkpoint_manifest_sha256": "bb350e17ebea100ff8a3e1397e0cac739e384544749cab74a86183e57a1dec14",
+      "cross_environment_replay_parquet_identical": true,
+      "metrics_recomputed_exact": true,
+      "queries": 579,
+      "relevant_positives": 6491,
+      "reloaded_all_primary_predictions_exact": true
+    },
+    "itemcf": {
+      "candidate_directory": "artifacts/candidates/itemcf/phase3_v1_seed42_main/validation_main",
+      "candidate_manifest_sha256": "38aef2158672d3bd66830184ee2dc65241efc94881b1a9ed481fccc70a9421eb",
+      "candidate_rows": 57900,
+      "candidate_sha256": "fafbca63145167a687865a5cdc3f92a8da8ab053c2a66976d104e530d578c1ef",
+      "checkpoint": "artifacts/itemcf/phase3_v1_seed42_main",
+      "checkpoint_complete_sha256": "57b99153dda2c3cc57085acf5bacea940046508877036e32be92d571384e9d66",
+      "checkpoint_manifest_sha256": "12b4fd70807396ca9ad68af249e429f843a501e8d922f4ecd870ef60871e88dd",
+      "cross_environment_replay_parquet_identical": true,
+      "metrics_recomputed_exact": true,
+      "queries": 579,
+      "relevant_positives": 6491,
+      "reloaded_all_primary_predictions_exact": true
+    },
+    "lightgcn": {
+      "candidate_directory": "artifacts/candidates/lightgcn/phase3_v1_seed42_main/validation_main",
+      "candidate_manifest_sha256": "f34936d5cde379ae6049cdaf25b5f381fcd78e7a27ee5acd91f174ba0912f03a",
+      "candidate_rows": 57900,
+      "candidate_sha256": "03a3836429911b02987e3637370971d23f7febb025f3c4117362a89debab798c",
+      "checkpoint": "artifacts/lightgcn/phase3_v1_seed42_main",
+      "checkpoint_complete_sha256": "dc857139597d7f0c640ef419d64e607f649c06b30bbf392d7cdab3dc728a7884",
+      "checkpoint_manifest_sha256": "cf4ee23200e90336e774955b26a8732e943c06a5fbbaf5d0104dec4258d5e526",
+      "cross_environment_replay_parquet_identical": true,
+      "metrics_recomputed_exact": true,
+      "queries": 579,
+      "relevant_positives": 6491,
+      "reloaded_all_primary_predictions_exact": true
+    },
+    "popularity": {
+      "candidate_directory": "artifacts/candidates/popularity/phase3_v1_seed42_main/validation_main",
+      "candidate_manifest_sha256": "878942a2ad1be7f54d83bd325e6465dcfaa562cd98e50c4ce89a1a80e2f26fc7",
+      "candidate_rows": 57900,
+      "candidate_sha256": "5da5aebbae2d153ddf739f40cb07f309b87f0c1be739f0dbf2970885535f5b2f",
+      "checkpoint": "artifacts/popularity/phase3_v1_seed42_main",
+      "checkpoint_complete_sha256": "34d5c0836825c62b0596f534c80f7afd7e9cab72c7e91650e29af77219668300",
+      "checkpoint_manifest_sha256": "a6809928129a651e614c729333db72a4c4d07f2dcbc4c16a8dac419b2597bf0a",
+      "cross_environment_replay_parquet_identical": true,
+      "metrics_recomputed_exact": true,
+      "queries": 579,
+      "relevant_positives": 6491,
+      "reloaded_all_primary_predictions_exact": true
+    },
+    "two_tower": {
+      "candidate_directory": "artifacts/candidates/two_tower/phase3_v1_seed42_main/validation_main",
+      "candidate_manifest_sha256": "ad7449c638a9f08e169eb5502d2c7b9c18a1a8d959c23a7cc9c141a46c9316b9",
+      "candidate_rows": 57900,
+      "candidate_sha256": "ec801ade43dc71941f6ecb3e646013e5583cd36b363c99a4bc70c7c9840cc2a9",
+      "checkpoint": "artifacts/two_tower/phase3_v1_seed42_main",
+      "checkpoint_complete_sha256": "85547b5bcc14ac656c30cffb56f85853f47af85755fd6fbffd8430e9682830db",
+      "checkpoint_manifest_sha256": "160f72b363eb383059637370727b79075ba8509a751ae8e50231892dd02301ef",
+      "cross_environment_replay_parquet_identical": true,
+      "metrics_recomputed_exact": true,
+      "queries": 579,
+      "relevant_positives": 6491,
+      "reloaded_all_primary_predictions_exact": true
+    }
+  },
+  "data_integrity_scope": "Train/allowed metadata hashes checked; Validation checked against frozen manifest; Test/raw full ratings never reopened; all frozen data size/mtime unchanged.",
+  "dvc_declared_environment_dependencies_changed": [
+    "pyproject.toml",
+    "uv.lock"
+  ],
+  "frozen_file_metadata_unchanged": 64,
+  "git_status_before_writing_this_report": "M README.md\n M pyproject.toml\n M src/recsys/retrievers/lightgcn.py\n M src/recsys/retrievers/two_tower.py\n M src/recsys/small_benchmark.py\n M uv.lock\n?? configs/genre.yaml\n?? configs/implicit_als.yaml\n?? configs/itemcf.yaml\n?? configs/lightgcn.yaml\n?? configs/popularity.yaml\n?? configs/two_tower.yaml\n?? docs/phase3_commands.json\n?? docs/phase3_retrieval_benchmark.json\n?? docs/phase3_retrieval_benchmark.md\n?? src/recsys/cli.py\n?? src/recsys/retrieval_artifacts.py\n?? src/recsys/retrieval_workflow.py\n?? tests/test_retrieval_training.py",
+  "historical_file_hashes_unchanged": 19,
+  "initial_git_status": "",
+  "isolated_environment_tests": {
+    "failed": 0,
+    "log_sha256": "73bcc4e1b7295d86be4c2069a03d68eaa22a9ee36f2c5060922af731d20b2957",
+    "passed": 45,
+    "skipped": 0
+  },
+  "modified_original_source_files": [
+    "src/recsys/small_benchmark.py",
+    "src/recsys/retrievers/two_tower.py",
+    "src/recsys/retrievers/lightgcn.py"
+  ],
+  "no_data_paths_added_or_removed": true,
+  "no_real_data_fusion_ranker_mlflow_serving_or_cloud": true,
+  "no_real_dvc_repro_or_push_executed": true,
+  "no_test_targets_accessed_by_workflow": true,
+  "passed": true,
+  "phase2_dvc_lock_sha256": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf",
+  "phase2_dvc_yaml_sha256": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+  "phase2_params_sha256": "7c8e6b7a268b611e0bbaf8d87e9f56b411686fda34a0658f4610303541b534cf",
+  "primary_evaluation_id": "585db5a09f479eeadaffc9cff33bfac1d254d971ebdd67f97670000be9196793",
+  "real_data_cross_environment_training_replays": 6,
+  "source_git_revision": "bcb7213b8a084510c26033463bbf4da6a9192cbc",
+  "staged_paths": [],
+  "train_lock_sha256": "3eb14664ea5975689db167930d2ac388e3e747f847c3e79bbfeec48dcf6cb7c3",
+  "training_packages": {
+    "implicit": "0.7.2",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "psutil": "7.2.2",
+    "pyarrow": "24.0.0",
+    "pytz": "2026.5",
+    "scipy": "1.17.1",
+    "threadpoolctl": "3.6.0",
+    "torch": "2.11.0"
+  },
+  "verification_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B /private/tmp/verify_movielens_phase3_final.py",
+  "verification_script_sha256": "e2c895a56b82ad179439b9218097479e35cf24b6634fb64460228841ac780bb5",
+  "working_environment_tests": {
+    "failed": 0,
+    "log_sha256": "73e7398d3f923dccdc3002c1f58e1260fac8b2e361779f895385a80aa3d9143d",
+    "passed": 45,
+    "skipped": 0
+  }
+}

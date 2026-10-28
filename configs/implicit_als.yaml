@@ -1,0 +1,12 @@
+model: implicit_als
+seed: 42
+cpu_threads: 1
+retrieval_k: 100
+query_batch: 32
+item_block: 1024
+als:
+  factors: 32
+  iterations: 20
+  regularization: 0.1
+  positive_confidence: 20.0
+  low_confidence: 1.0
