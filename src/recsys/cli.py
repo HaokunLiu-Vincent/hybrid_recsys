@@ -72,7 +72,34 @@ def main():
     reval.add_argument('--training-data',type=Path,required=True)
     reval.add_argument('--output-root',type=Path,default=ROOT/'artifacts/ranking_evaluations')
     reval.add_argument('--run-id')
+    commands.add_parser('mlflow-backfill')
+    packaging=commands.add_parser('package-release')
+    packaging.add_argument('--run-id')
+    registration=commands.add_parser('register-release')
+    registration.add_argument('--release',type=Path,required=True)
+    registration.add_argument('--parity',type=Path,required=True)
+    registration.add_argument('--backfill-summary',type=Path,required=True)
+    registration.add_argument('--name',default='MovieLensHybridRecommender')
+    verification=commands.add_parser('verify-release')
+    verification.add_argument('--model-uri',default='models:/MovieLensHybridRecommender@candidate')
+    verification.add_argument('--parity',type=Path,required=True)
+    prediction=commands.add_parser('recommend')
+    prediction.add_argument('--release',type=Path,required=True)
+    prediction.add_argument('--user-ids',type=int,nargs='+',required=True)
+    prediction.add_argument('--top-k',type=int,default=20)
     args=vars(parser.parse_args());command=args.pop('command')
+    if command=='mlflow-backfill':
+        from .mlflow_tracking import backfill
+        print(json.dumps(backfill(),indent=2));return
+    if command=='package-release':
+        from .releases import package_release
+        print(json.dumps(package_release(**args),indent=2));return
+    if command in ['register-release','verify-release']:
+        from .mlflow_registry import register_release,verify_release
+        print(json.dumps((register_release if command=='register-release' else verify_release)(**args),indent=2));return
+    if command=='recommend':
+        from .inference import load_hybrid_recommender
+        print(load_hybrid_recommender(args['release']).recommend(args['user_ids'],args['top_k']).to_json(orient='records'));return
     from .fusion.small_rrf import fuse_validation
     from .historical_retrieval import train_historical,historical_candidates,fuse_historical
     from .rankers.small_lambdamart import prepare_ranking_features,train_lambdamart,evaluate_lambdamart

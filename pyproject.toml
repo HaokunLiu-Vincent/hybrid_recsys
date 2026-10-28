@@ -23,6 +23,9 @@ acquisition = ["kaggle==2.2.5"]
 dev = ["dvc==3.67.1"]
 train = ["torch==2.11.0", "implicit==0.7.2", "threadpoolctl==3.6.0"]
 rank = ["lightgbm==4.6.0"]
+mlops = [
+    "mlflow==3.17.2",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

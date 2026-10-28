@@ -1,0 +1,206 @@
+[
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/backfill_wrapper_execution.json",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "tools/backfill_mlflow.py",
+      "--output",
+      "outputs/phase5/backfill_cli_verified.json"
+    ],
+    "returncode": 0,
+    "log": "outputs/phase5/backfill_wrapper.log"
+  },
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/gate_c_execution.json",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "--group",
+      "mlops",
+      "recsys",
+      "package-release",
+      "--run-id",
+      "phase5_v1"
+    ],
+    "returncode": 0,
+    "seconds": 15.733142417040654,
+    "log": "outputs/phase5/gate_c.log"
+  },
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/gate_d_execution.json",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "--group",
+      "mlops",
+      "recsys",
+      "register-release",
+      "--release",
+      "artifacts/releases/phase5_v1",
+      "--parity",
+      "outputs/release_checks/phase5_v1",
+      "--backfill-summary",
+      "outputs/phase5/gate_b.json"
+    ],
+    "returncode": 0,
+    "seconds": 3.7164237910183147,
+    "log": "outputs/phase5/gate_d.log"
+  },
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/health_restart_execution.json",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "tools/verify_mlflow_local.py",
+      "--restart",
+      "--output",
+      "outputs/phase5/gate_a_stable.json"
+    ],
+    "returncode": 0,
+    "evidence": "outputs/phase5/gate_a_stable.json"
+  },
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/independent_registry_execution.json",
+    "argv": [
+      "/private/tmp/hybrid_recsys_phase5_isolated/bin/python",
+      "-I",
+      "-B",
+      "/var/folders/tg/wlyh4rfn4cg7fnv67kjr7mq80000gn/T/phase5-registry-independent-booovdkg/verify_registry_model.py",
+      "--tracking-uri",
+      "http://127.0.0.1:5002",
+      "--model-uri",
+      "models:/MovieLensHybridRecommender@candidate",
+      "--inputs",
+      "/var/folders/tg/wlyh4rfn4cg7fnv67kjr7mq80000gn/T/phase5-registry-independent-booovdkg/inputs.parquet",
+      "--reference",
+      "/var/folders/tg/wlyh4rfn4cg7fnv67kjr7mq80000gn/T/phase5-registry-independent-booovdkg/reference.parquet",
+      "--deny-root",
+      "/Users/vincent/Documents/projects/hybrid_recsys",
+      "--output",
+      "/var/folders/tg/wlyh4rfn4cg7fnv67kjr7mq80000gn/T/phase5-registry-independent-booovdkg/result.json"
+    ],
+    "returncode": 0,
+    "seconds": 29.45906174997799,
+    "staging": "/var/folders/tg/wlyh4rfn4cg7fnv67kjr7mq80000gn/T/phase5-registry-independent-booovdkg"
+  },
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/install_mlflow_execution.json",
+    "argv": [
+      ".venv/bin/uv",
+      "sync",
+      "--locked",
+      "--inexact",
+      "--group",
+      "mlops",
+      "--group",
+      "rank",
+      "--all-extras"
+    ],
+    "returncode": 0
+  },
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/isolate_environment_execution.json",
+    "argv": [
+      ".venv/bin/uv",
+      "sync",
+      "--locked",
+      "--no-default-groups",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "--group",
+      "mlops",
+      "--no-install-project",
+      "--python",
+      ".venv/bin/python"
+    ],
+    "environment": {
+      "UV_PROJECT_ENVIRONMENT": "/private/tmp/hybrid_recsys_phase5_isolated",
+      "UV_CACHE_DIR": ".uv-cache"
+    },
+    "returncode": 0
+  },
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/register_repeat_execution.json",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "--group",
+      "mlops",
+      "recsys",
+      "register-release",
+      "--release",
+      "artifacts/releases/phase5_v1",
+      "--parity",
+      "outputs/release_checks/phase5_v1",
+      "--backfill-summary",
+      "outputs/phase5/gate_b.json"
+    ],
+    "returncode": 0,
+    "seconds": 2.181605749996379,
+    "log": "outputs/phase5/register_repeat.log"
+  },
+  {
+    "record": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/verify_registry_after_restart_execution.json",
+    "argv": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "--group",
+      "train",
+      "--group",
+      "rank",
+      "--group",
+      "mlops",
+      "recsys",
+      "verify-release",
+      "--parity",
+      "outputs/release_checks/phase5_v1"
+    ],
+    "returncode": 0,
+    "seconds": 9.544439083023462,
+    "log": "outputs/phase5/verify_registry_after_restart.log"
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".venv/bin/uv",
+      "lock",
+      "--check",
+      "--offline"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "Resolved 220 packages in 3ms\n"
+  }
+]

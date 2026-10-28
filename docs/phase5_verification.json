@@ -1,0 +1,481 @@
+{
+  "checked_at_utc": "2026-10-28T03:56:15.101894+00:00",
+  "git_head": "b110fe6959ce47e7a2872acfc793210ccd6508d5",
+  "initial_git_status": "",
+  "branch": "main",
+  "git_status": " M README.md\n M pyproject.toml\n M src/recsys/cli.py\n M uv.lock\n?? docs/mlflow_local_setup.md\n?? docs/phase5_commands.json\n?? docs/phase5_mlflow_registry.md\n?? docs/phase5_mlflow_runs.json\n?? docs/phase5_verification.json\n?? scripts/\n?? src/recsys/inference.py\n?? src/recsys/mlflow_local.py\n?? src/recsys/mlflow_model.py\n?? src/recsys/mlflow_registry.py\n?? src/recsys/mlflow_tracking.py\n?? src/recsys/releases.py\n?? tests/test_phase5_mlflow.py\n?? tools/backfill_mlflow.py\n?? tools/compare_mlflow.py\n?? tools/verify_mlflow_local.py\n?? tools/verify_registry_model.py\n",
+  "protected_file_hashes_verified": 254,
+  "protected_hash_errors": [],
+  "frozen_data_metadata_verified": 43,
+  "frozen_metadata_errors": [],
+  "modified_existing_python_files": [
+    "src/recsys/cli.py"
+  ],
+  "active_python_files_ast_valid": 63,
+  "tests": {
+    "working": {
+      "passed": 71,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 12.974,
+      "log": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/tests_retry.log",
+      "sha256": "7a318b0a65e383ee2cc228ffeb33d01a7c85ac068150ea34bdd9b5c8ae0c1775"
+    },
+    "isolated": {
+      "passed": 71,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 17.644,
+      "log": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/phase5/tests_isolated.log",
+      "sha256": "f44ad068c1af71420b466c36aaba9a664d6721a583e5709e7a0b39c0c8ce1350"
+    }
+  },
+  "python": "3.11.9",
+  "runtime_packages": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "pyarrow": "24.0.0",
+    "psutil": "7.2.2",
+    "PyYAML": "6.0.3",
+    "pytz": "2026.5",
+    "torch": "2.11.0",
+    "implicit": "0.7.2",
+    "threadpoolctl": "3.6.0",
+    "lightgbm": "4.6.0",
+    "mlflow": "3.17.2"
+  },
+  "lock_sha256": "e405905fdb6152228784727fcafa66749ac546a9887dc6eef7254254aaa584e9",
+  "dvc_metadata_sha256": {
+    "dvc.yaml": "0e0137cd59a75871b136518b41bb6d22f27a29fe5aaedc5decdb217593315d25",
+    "dvc.lock": "5e6015fb4d20b4e60957cd1d633499b5560bf80f4883cc0cdbf80822e7ef0fcf",
+    "params.yaml": "7c8e6b7a268b611e0bbaf8d87e9f56b411686fda34a0658f4610303541b534cf",
+    "data/raw/ml-latest-small.dvc": "ef12ecfea772d59cca70d077a922c4d286e0c4cf0100872caf0a505cd7cc9a0b"
+  },
+  "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+  "server": {
+    "pid": 90231,
+    "port": 5002,
+    "tracking_uri": "http://127.0.0.1:5002",
+    "backend_uri": "sqlite:////Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/mlflow.db",
+    "artifact_root": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/artifacts",
+    "command": [
+      "/Users/vincent/Documents/projects/hybrid_recsys/.venv/bin/python",
+      "-m",
+      "mlflow",
+      "server",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "5002",
+      "--workers",
+      "1",
+      "--backend-store-uri",
+      "sqlite:////Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/mlflow.db",
+      "--registry-store-uri",
+      "sqlite:////Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/mlflow.db",
+      "--serve-artifacts",
+      "--artifacts-destination",
+      "/Users/vincent/Documents/projects/hybrid_recsys/outputs/mlflow/artifacts"
+    ],
+    "running": true,
+    "healthy": true
+  },
+  "registered_model": {
+    "name": "MovieLensHybridRecommender",
+    "version": "1",
+    "run_id": "b99a65b035ed4f6e868bd846153d14cb",
+    "source": "models:/m-01f3866343e74d258fbc18cd178ced9e",
+    "tags": {
+      "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+      "release_status": "validation_candidate",
+      "dataset": "movielens_latest_small",
+      "split": "small_v1",
+      "protocol": "per_user_70_15_15",
+      "ranking_model": "lightgbm_lambdamart",
+      "retriever_count": "6",
+      "rrf_constant": "60",
+      "feature_count": "53",
+      "test_evaluated": "false",
+      "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "source_git_revision": "b110fe6959ce47e7a2872acfc793210ccd6508d5",
+      "lock_sha256": "e405905fdb6152228784727fcafa66749ac546a9887dc6eef7254254aaa584e9",
+      "release_complete_sha256": "7776b30a4cd2f392676da1096e5a22b77b7f8d091f5259c2cd0a3b5e868a7a95",
+      "release_manifest_sha256": "c859217da1492c5c4add7cdd57751da5de98c739458f001ce6ddc909977fc601"
+    },
+    "aliases": {
+      "candidate": "1"
+    }
+  },
+  "release": {
+    "path": "artifacts/releases/phase5_v1",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "manifest_sha256": "c859217da1492c5c4add7cdd57751da5de98c739458f001ce6ddc909977fc601",
+    "complete_sha256": "7776b30a4cd2f392676da1096e5a22b77b7f8d091f5259c2cd0a3b5e868a7a95",
+    "payload_files": 65,
+    "payload_bytes": 7775208,
+    "file_checksums": {
+      "README.md": {
+        "bytes": 413,
+        "sha256": "f92ee605114d55897733410739eab60f33151b95e2c5fb665366d9526efa614b"
+      },
+      "context/context.json": {
+        "bytes": 458,
+        "sha256": "621ea9c9e8fcdc7b05c9893ed272c94e834e48d218637d59d89695dcbabd1619"
+      },
+      "context/context_features.npz": {
+        "bytes": 910072,
+        "sha256": "02be6d4d05db9fcf2402b7c2d6f4ac3af95b6ea39dd90d8f358e31cc39ccf2e6"
+      },
+      "context/mappings.npz": {
+        "bytes": 90872,
+        "sha256": "d799b7be79bed4f9e024c950ba3d9e0090acc75f1eb1ed1b093c65e6d07f889d"
+      },
+      "context/observed.npz": {
+        "bytes": 152851,
+        "sha256": "ddfa253a40d9efd09c38198e8b50bd35f0f1a0cdc2de2937abcd0314f908f593"
+      },
+      "context/positive.npz": {
+        "bytes": 57307,
+        "sha256": "3619793fbf13bef02ab74f063c112328ba0a201e10907e176d59bed275f416bb"
+      },
+      "context/train_cutoffs.parquet": {
+        "bytes": 9523,
+        "sha256": "c56b27bc460cfa12bfa4afee81651f5123bc48316f2d0e6985372b6050eb183f"
+      },
+      "manifest.json": {
+        "bytes": 69984,
+        "sha256": "c859217da1492c5c4add7cdd57751da5de98c739458f001ce6ddc909977fc601"
+      },
+      "pyproject.toml": {
+        "bytes": 878,
+        "sha256": "bd8b4a5f52f0d161c80e6cbe11cee54fc00a57bee75702cdc30a0b49905e7abe"
+      },
+      "ranker/feature_schema.json": {
+        "bytes": 4289,
+        "sha256": "a63b962554b36fd9da066e593b3325af9a07715a903945b24574d7e21e622049"
+      },
+      "ranker/model.txt": {
+        "bytes": 59145,
+        "sha256": "a14b8ecd561056725d200cf8cce023e76086fc8d7aad96426d9a8284ffaa33a7"
+      },
+      "requirements.txt": {
+        "bytes": 180,
+        "sha256": "d5e242356250cc40186c30c1bedce39d215d27a36e9cab89d7bdbbb91d707102"
+      },
+      "retrievers/genre/vectors.npz": {
+        "bytes": 787242,
+        "sha256": "049996a1ff715e3937937fe1a19e4bb70c192c6f840205dd4a57b70b35e7fb96"
+      },
+      "retrievers/implicit_als/vectors.npz": {
+        "bytes": 1325546,
+        "sha256": "3093143de3985648de95290fc6565bc3a946581e0e1a915b46785e17b9eff043"
+      },
+      "retrievers/itemcf/neighbors.npz": {
+        "bytes": 912597,
+        "sha256": "a3322d520a5e2a45ab1ec635aac492a132d91c99a7f098c8ede27e82dce8635d"
+      },
+      "retrievers/lightgcn/vectors.npz": {
+        "bytes": 1325546,
+        "sha256": "719220e669bb70a72017c830bd20310801230814b48213bfbc72c3c74d56daec"
+      },
+      "retrievers/popularity/positive_counts.npy": {
+        "bytes": 39096,
+        "sha256": "bf1e608a11f21337fee40ff2404df96165a712eee52bc28012d2a01065247026"
+      },
+      "retrievers/two_tower/vectors.npz": {
+        "bytes": 1325546,
+        "sha256": "d51b2e1b715309d9346786d007aa4617e9ffa224d7762444b6d5970d1780d2e6"
+      },
+      "src/recsys/__init__.py": {
+        "bytes": 84,
+        "sha256": "aca00ef55aef4a6e2741600d945ca2cdc64e2d49cda2b6f6ebe053d401af34f4"
+      },
+      "src/recsys/artifacts.py": {
+        "bytes": 4599,
+        "sha256": "89f7fa2f1ef0d8aeb20af55af03147147d84d61cc5aaf9f993c84baf8bc8ba98"
+      },
+      "src/recsys/candidate_fusion.py": {
+        "bytes": 130,
+        "sha256": "dcde7fa16ff4f3ff12bcc3904854f02a945d8575bda1a899591bfb82c5f4380b"
+      },
+      "src/recsys/cli.py": {
+        "bytes": 7020,
+        "sha256": "9a342778de2d462d43fe590a0a4019c9b08607f1eb1c265a7aae2ce050310cfd"
+      },
+      "src/recsys/contracts.py": {
+        "bytes": 4005,
+        "sha256": "5500131eb7206163d9be452eaead848c34657a6b79497317ab86ad2b9021a50c"
+      },
+      "src/recsys/data.py": {
+        "bytes": 4757,
+        "sha256": "2fe5e49542dc74e17ae43ee9b5db6681aad9c68b36baa1d8ffd8a87ab3c432e2"
+      },
+      "src/recsys/evaluation.py": {
+        "bytes": 5001,
+        "sha256": "be42f387f867608b90802c17024ec77f9fa0bb69655bf7a2073c1f0eb9cdc50d"
+      },
+      "src/recsys/features.py": {
+        "bytes": 1413,
+        "sha256": "a47da64066aa782da76972a023bdca71e708c6b5ce6929c8f662d919747eda77"
+      },
+      "src/recsys/fusion/__init__.py": {
+        "bytes": 87,
+        "sha256": "d8edbc46b78ce4c336c0785316ad9cc023cdc5be43c3a8565a80633463534629"
+      },
+      "src/recsys/fusion/candidates.py": {
+        "bytes": 1606,
+        "sha256": "5179f7cf62d8aa0178729d081fe2f8783454e7027da77ac033b92d534f321529"
+      },
+      "src/recsys/fusion/diagnostics.py": {
+        "bytes": 990,
+        "sha256": "9a4d4814c447e3f6697e39597457c73f35f04a0388a28508413e7ac1a9a22372"
+      },
+      "src/recsys/fusion/rrf.py": {
+        "bytes": 532,
+        "sha256": "dd67af91bf398655f7a59926e34ae53eeb1eb75f18a40b8ca2a9915b1853a7b7"
+      },
+      "src/recsys/fusion/small_rrf.py": {
+        "bytes": 13389,
+        "sha256": "6346ffa976404301ecfe7ff3f2986df27320a921132099724501d970dfda5b11"
+      },
+      "src/recsys/historical_retrieval.py": {
+        "bytes": 13165,
+        "sha256": "57df45dc1e0d55740ee3744b762c9183152dddadc20eb2b2c001cf200fd7ebd9"
+      },
+      "src/recsys/inference.py": {
+        "bytes": 7185,
+        "sha256": "940b3e2b6b88c6c27079e28d68091604741180a490407b484a7ee36848deaeae"
+      },
+      "src/recsys/metrics.py": {
+        "bytes": 1968,
+        "sha256": "44625c6806506f0dbe0f28bb77a5f7cb24b4877e26543d29af0b567a1ac89307"
+      },
+      "src/recsys/mlflow_local.py": {
+        "bytes": 3747,
+        "sha256": "59a8761d07a4fbc36fa74ecb2d3017b9750c80878f64cd1fc7a9716fbb628238"
+      },
+      "src/recsys/mlflow_model.py": {
+        "bytes": 467,
+        "sha256": "a4869974cb37fa2c7fd15dfd0fcfb6f8a210e6d50929c9311fa14d2b90a25cf8"
+      },
+      "src/recsys/mlflow_registry.py": {
+        "bytes": 6548,
+        "sha256": "f7087bf2791b877135ff25c834c445e79f8575e963c36f138251e7a00e6e257b"
+      },
+      "src/recsys/mlflow_tracking.py": {
+        "bytes": 11654,
+        "sha256": "aa3fa4cf3229095449e190e2e9c662b442a4f2ed8d4ceca354b9ece1e5ead345"
+      },
+      "src/recsys/rankers/__init__.py": {
+        "bytes": 65,
+        "sha256": "1203d3164204521996cb54abade2cc74f3133d1d561fbbe403fa7fab7a4cbb3c"
+      },
+      "src/recsys/rankers/dataset.py": {
+        "bytes": 3882,
+        "sha256": "5992cbe76ee46981c6a09b3e08f65a87c8e6c2ccd39f4ef0281fa9e5c0a147ae"
+      },
+      "src/recsys/rankers/features.py": {
+        "bytes": 3351,
+        "sha256": "71af658d29848440dbb11947167fd6a2ce63ddf2d29dd6f9a6141527e0b6a0be"
+      },
+      "src/recsys/rankers/lightgbm_ranker.py": {
+        "bytes": 4257,
+        "sha256": "4bb10dd0e4b1bd1266944a2a4a7cf24d79c8c02c8697f2688de5bbc4ab2a3f4c"
+      },
+      "src/recsys/rankers/small_lambdamart.py": {
+        "bytes": 24573,
+        "sha256": "5d30dd2d8a273530c45157834c543a272e3239947642f03c0acff5a0593062e5"
+      },
+      "src/recsys/rankers/small_schema.py": {
+        "bytes": 6340,
+        "sha256": "fb871b6e4bf0aa1e2815c9f6707f044c64b7931d974c0bb7c86e7f269e9692a0"
+      },
+      "src/recsys/ranking_features.py": {
+        "bytes": 577,
+        "sha256": "0d839745d40b5e1b7c3d6c6140548cc6535239793410f1b49829a4d07ed02bf9"
+      },
+      "src/recsys/releases.py": {
+        "bytes": 8535,
+        "sha256": "665fc62e65b3eedd6262bb7803274f33950828cf5cd8ff83301d80ab48377b02"
+      },
+      "src/recsys/retrieval_artifacts.py": {
+        "bytes": 5434,
+        "sha256": "538bfbbd9f6ed6a7d283ee885ffc8cf32458f3016da6ea6487c32a5d577af954"
+      },
+      "src/recsys/retrieval_workflow.py": {
+        "bytes": 19256,
+        "sha256": "06c04003c2100db4cdfab4560626bcaa067b201e37cb5187ebed3d829732f98b"
+      },
+      "src/recsys/retrievers/__init__.py": {
+        "bytes": 55,
+        "sha256": "b11adc3370712836584db71bf435f1eeba0b08380aa8018eca1a17c1ec1a69de"
+      },
+      "src/recsys/retrievers/base.py": {
+        "bytes": 4937,
+        "sha256": "dba699d7e0d0a881167f6e1bd4195f85f0e8cd846eaa32c54045f2c5a2ea8a09"
+      },
+      "src/recsys/retrievers/genre.py": {
+        "bytes": 274,
+        "sha256": "9b9a44b6a9afb883bb3267154b4341beec7edb64d07d0ff868bbe914927dba43"
+      },
+      "src/recsys/retrievers/implicit_als.py": {
+        "bytes": 1126,
+        "sha256": "0ae45aa46ff4df5d57e90530ad1592a48b18c94efd5ada20212d4e49b83fdf84"
+      },
+      "src/recsys/retrievers/itemcf.py": {
+        "bytes": 2770,
+        "sha256": "2b50a564c98c7144973a7ebc04de74e4a2dbd6cc4e07a164fc8166e0c25c2a59"
+      },
+      "src/recsys/retrievers/lightgcn.py": {
+        "bytes": 4090,
+        "sha256": "58e7640552153d214357598d8ffe1f9896bd82efab357a16773876e3c3558551"
+      },
+      "src/recsys/retrievers/neural.py": {
+        "bytes": 2907,
+        "sha256": "d86eb171508a21f42ed15cf21fe3108d5a401b0332b8f9a32b837f70e3065721"
+      },
+      "src/recsys/retrievers/popularity.py": {
+        "bytes": 389,
+        "sha256": "1263e6c5d6a5759821ff624bdc280f1bfc109731c1a3bdcd9f4fa1c55e23db49"
+      },
+      "src/recsys/retrievers/two_tower.py": {
+        "bytes": 3931,
+        "sha256": "fa0b849c3b567f60060b88530bffd2fbb52d6a1c28f71e1360d686c99ebbafc9"
+      },
+      "src/recsys/runtime.py": {
+        "bytes": 6420,
+        "sha256": "764a4a3850f13270407fc1c8073e0c77b8176b44ea9bb797ee6765f1edac00a6"
+      },
+      "src/recsys/small_benchmark.py": {
+        "bytes": 7316,
+        "sha256": "7e481734b241b654b300605b129bf2700c4f5473883e4bb8ce7271935ad5af84"
+      },
+      "src/recsys/small_data.py": {
+        "bytes": 13345,
+        "sha256": "73d5ee3b258c907b89cac2b62b96f97835c3c8c12ff3e095f68f912d6435256c"
+      },
+      "src/recsys/small_eda.py": {
+        "bytes": 7997,
+        "sha256": "3439539ff28100981ece644b2ee1c2409e3e7edfe75b05a62803d0f3c85d1b9c"
+      },
+      "src/recsys/small_pipeline.py": {
+        "bytes": 21234,
+        "sha256": "34edf6ab6b4bb89db82a3095c6a84d88649ee94c4a8f0a7fa892bd3e25d5019d"
+      },
+      "src/recsys/small_protocol.py": {
+        "bytes": 11851,
+        "sha256": "627a7fe076af63257092060b4e2087535ee888d0bb02e97d6e2caa30b33561bf"
+      },
+      "src/recsys/training.py": {
+        "bytes": 3004,
+        "sha256": "8ab663e4a3a9f98993067c326efd0be459ffb0fa613839d7a7af0285853579e0"
+      },
+      "uv.lock": {
+        "bytes": 447400,
+        "sha256": "e405905fdb6152228784727fcafa66749ac546a9887dc6eef7254254aaa584e9"
+      }
+    },
+    "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0"
+  },
+  "gate_a": {
+    "tracking_uri": "http://127.0.0.1:5002",
+    "run_id": "ef65d7f23cec4541b622ceeb1fbf6eca",
+    "experiment_id": "1",
+    "registry_probe_version": "3",
+    "http_tracking_artifacts_registry": true,
+    "restarted": true,
+    "persistence_verified": true
+  },
+  "gate_b": {
+    "run_count": 17,
+    "idempotent": true
+  },
+  "gate_c": {
+    "gate": "C",
+    "release": "/Users/vincent/Documents/projects/hybrid_recsys/artifacts/releases/phase5_v1",
+    "parity": "/Users/vincent/Documents/projects/hybrid_recsys/outputs/release_checks/phase5_v1",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "release_manifest_sha256": "c859217da1492c5c4add7cdd57751da5de98c739458f001ce6ddc909977fc601",
+    "release_complete_sha256": "7776b30a4cd2f392676da1096e5a22b77b7f8d091f5259c2cd0a3b5e868a7a95",
+    "queries": 611,
+    "known_users": 610,
+    "unknown_user_id": 1000610,
+    "rows": 12220,
+    "exact_prediction_parity": true,
+    "reference_seconds": 6.654530916013755,
+    "packaged_seconds": 6.809653999982402,
+    "selection": "All Train-context users plus an unknown ID; no future labels used"
+  },
+  "gate_d": {
+    "gate": "D",
+    "tracking_uri": "http://127.0.0.1:5002",
+    "name": "MovieLensHybridRecommender",
+    "version": "1",
+    "alias": "candidate",
+    "model_uri": "models:/MovieLensHybridRecommender@candidate",
+    "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+    "run_id": "b99a65b035ed4f6e868bd846153d14cb",
+    "created": true,
+    "tags": {
+      "release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d",
+      "release_status": "validation_candidate",
+      "dataset": "movielens_latest_small",
+      "split": "small_v1",
+      "protocol": "per_user_70_15_15",
+      "ranking_model": "lightgbm_lambdamart",
+      "retriever_count": "6",
+      "rrf_constant": "60",
+      "feature_count": "53",
+      "test_evaluated": "false",
+      "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+      "split_manifest_sha256": "905f1370e919f06da3be728f95010d706b078c05f5c5e455c28da398ee41e799",
+      "source_git_revision": "b110fe6959ce47e7a2872acfc793210ccd6508d5",
+      "lock_sha256": "e405905fdb6152228784727fcafa66749ac546a9887dc6eef7254254aaa584e9",
+      "release_complete_sha256": "7776b30a4cd2f392676da1096e5a22b77b7f8d091f5259c2cd0a3b5e868a7a95",
+      "release_manifest_sha256": "c859217da1492c5c4add7cdd57751da5de98c739458f001ce6ddc909977fc601"
+    }
+  },
+  "independent_inference": {
+    "model_uri": "models:/MovieLensHybridRecommender@candidate",
+    "tracking_uri": "http://127.0.0.1:5002",
+    "queries": 611,
+    "rows": 12220,
+    "exact_prediction_parity": true,
+    "imported_application": "/private/var/folders/tg/wlyh4rfn4cg7fnv67kjr7mq80000gn/T/tmpz9wcku6g/code/recsys/__init__.py",
+    "original_checkout_reads_denied": true,
+    "feature_count": 53
+  },
+  "prior_phase4_ranking_parity": {
+    "users": 579,
+    "rows": 11580,
+    "exact_ids_ranks_scores": true,
+    "scope": "Verification only: independent label-free inference reproduces prior Phase 4 Top-20; cached rankings never enter the bundle"
+  },
+  "post_restart_registry_parity": {
+    "model_uri": "models:/MovieLensHybridRecommender@candidate",
+    "queries": 611,
+    "rows": 12220,
+    "exact_parity": true,
+    "feature_schema_sha256": "21b298dc0cef61b0de9514c0db66f4e38cd9a89818bb8fe94694d0251ad48ae0",
+    "reference_release_id": "e4b38328a35c992114eb3e6acda90803f0aa16c61a027686d9e86b06bf5e475d"
+  },
+  "registration_idempotent": true,
+  "no_test_payload_access": true,
+  "no_real_model_retraining": true,
+  "no_data_or_dvc_rebuild": true,
+  "initial_failed_test_generated_artifacts": [
+    "mlruns/1/eda2dbbb10ab4efaa2035bdb129540b5/artifacts/provenance/source_record.json",
+    "mlruns/1/930c72a573a44e56903bae9444b7ecf7/artifacts/provenance/source_record.json"
+  ],
+  "limitations": [
+    "Validation-selected model; no final Test evaluation",
+    "Accepted cross-user temporal exposure",
+    "Sparse subgroup regression retained",
+    "Local SQLite/artifacts only; no remote backup",
+    "DVC whole-environment dependency drift intentionally preserved",
+    "Immutable packaged source/versions required; no public redistribution of Train histories"
+  ],
+  "backfill_cli_wrapper_verified_idempotent": true
+}
